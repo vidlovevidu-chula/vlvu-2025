@@ -12,7 +12,7 @@ import {
 
 export function CarouselComponent() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
 
   // Predefined array of image paths
@@ -51,7 +51,9 @@ export function CarouselComponent() {
                   className="w-full h-full object-cover rounded-3xl"
                 />
                 <div className="absolute bottom-0 left-0 w-full text-white p-2 text-end rounded-b-3xl font-sans">
-                  <h3 className="text-xl font-bold">{overlayTexts[index].header}</h3>
+                  <h3 className="text-xl font-bold">
+                    {overlayTexts[index].header}
+                  </h3>
                   <p className="text-[11px]">{overlayTexts[index].details}</p>
                 </div>
               </CardContent>

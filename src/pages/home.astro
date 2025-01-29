@@ -8,22 +8,33 @@ import Minigames from "@/components/Minigames.astro";
 ---
 
 <Layout title="Home | VidLoveVidYou 2025">
-  <main class="min-h-screen bg-gradient-to-t from-[#FAF0E0] via-[#FFD4D4] to-[#DCDFF0] font-Yeseva">
+  <main
+    class="min-h-screen bg-gradient-to-t from-[#FAF0E0] via-[#FFD4D4] to-[#DCDFF0] font-Yeseva"
+  >
     <!-- Moon Image -->
-  <Image src="/images/moon.webp" width={199} height={193} alt="Moon" title="Moon Image" class:list="absolute top-[122px] left-[4px]" />
-      <!-- Web Application Name -->
-      <div class="flex w-full h-[226.5px]">
-        <WebTitle />
-      </div>
+    <Image
+      src="/images/moon.webp"
+      width={199}
+      height={193}
+      alt="Moon"
+      title="Moon Image"
+      class:list="absolute top-[122px] left-[4px]"
+    />
+    <!-- Web Application Name -->
+    <div class="flex w-full h-[226.5px]">
+      <WebTitle />
+    </div>
 
-      <!-- Carousel -->
-      <div class="flex w-full h-[268.1px] py-[26.5px] items-center justify-center">
-        <CarouselComponent client:load/>
-      </div>
+    <!-- Carousel -->
+    <div
+      class="flex w-full h-[268.1px] py-[26.5px] items-center justify-center"
+    >
+      <CarouselComponent client:load />
+    </div>
 
-      <!-- Mini games -->
-      <div class="flex w-full h-auto ml-[35px]">
-        <Minigames />
-      </div>
+    <!-- Mini games -->
+    <div class="flex w-full h-auto ml-[35px]">
+      <Minigames />
+    </div>
   </main>
 </Layout>
