@@ -5,36 +5,91 @@ import WebTitle from "@/components/WebTitle.astro";
 import "@/styles/global.css";
 import Image from "astro/components/Image.astro";
 import Minigames from "@/components/Minigames.astro";
+import Navbar from "@/components/Navbar.astro";
 ---
 
 <Layout title="Home | VidLoveVidYou 2025">
   <main
-    class="min-h-screen bg-gradient-to-t from-[#FAF0E0] via-[#FFD4D4] to-[#DCDFF0] font-Yeseva"
+    class="min-h-screen bg-gradient-to-b from-[#DCDFF0] via-[#FFD4D4] to-[#FAF0E0]"
   >
-    <!-- Moon Image -->
-    <Image
-      src="/images/moon.webp"
-      width={199}
-      height={193}
-      alt="Moon"
-      title="Moon Image"
-      class:list="absolute top-[122px] left-[4px]"
-    />
-    <!-- Web Application Name -->
-    <div class="flex w-full h-[226.5px]">
+  <div class="flex flex-col items-center justify-center font-Yeseva h-auto">
+    <!-- Web Title -->
+    <div class="flex h-[125px] w-[324px] mt-[75px] z-10">
       <WebTitle />
     </div>
 
+    <!-- Moon Image -->
+     <div class="absolute top-[116px] max-w-md w-full">
+      <Image
+      src="/images/moon.webp"
+      width={200}
+      height={200}
+      alt="Moon"
+      title="Moon Image"
+      class:list="mx-8"
+    />
+     </div>
+    
+
     <!-- Carousel -->
     <div
-      class="flex w-full h-[268.1px] py-[26.5px] items-center justify-center"
+      class="flex w-full h-[268.1px] mt-[112px] items-center justify-center"
     >
       <CarouselComponent client:load />
     </div>
 
+    <!-- Register Button -->
+    <div class="flex w-full h-auto mt-[112px] items-center justify-center">
+      <a
+        class="bg-[#A77B73] text-white text-xl w-[250px] h-[57px] flex items-center justify-center"
+        href="/"
+      >
+        Click to Register
+      </a>
+    </div>
+
     <!-- Mini games -->
-    <div class="flex w-full h-auto ml-[35px]">
+    <div class="flex w-full mt-[112px] h-auto">
       <Minigames />
     </div>
+
+    <!-- Quote -->
+    <div class="flex w-full h-auto mt-[95px] items-center justify-center">
+      <p class="text-[#B1546F] text-[14px] bg-[#F1C1C3] w-[354px] h-[40px] p-3 text-center">
+        "Be a lover. Give love. Choose love, always."
+      </p>
+    </div>
+
+    <!-- Larnchak x Larngear -->
+    <div class="flex flex-col w-full h-auto my-[95px] items-center justify-center gap-2">
+      <Image
+        src="/images/location.webp"
+        width={354}
+        height={221}
+        alt="Larnchak x Larngear"
+        title="Larnchak x Larngear"
+        class:list="mx-8 bg-[#DCDFF0] text-center items-center justify-center"
+      />
+        <div class="flex items-center justify-center space-x-6">
+          <!-- First Column -->
+          <div class="text-center">
+            <p class="text-sm font-semibold">Larnchak</p>
+            <p class="text-sm font-bold font-Atasanee">ลานจักร</p>
+          </div>
+          <!-- Separator -->
+          <p class="text-2xl font-bold">×</p>
+          <!-- Second Column -->
+          <div class="text-center">
+            <p class="text-sm font-semibold">Larngear</p>
+            <p class="text-sm font-bold font-Atasanee">ลานเกียร์</p>
+          </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex w-full h-auto items-center justify-center">
+      <Navbar />
+    </div>
+  </div>
   </main>
 </Layout>

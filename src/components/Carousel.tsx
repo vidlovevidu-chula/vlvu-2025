@@ -26,17 +26,17 @@ export function CarouselComponent() {
 
   // Predefined array of overlay texts with header and details
   const overlayTexts = [
-    { header: "Slide 1 Header", details: "Slide 1 Details" },
-    { header: "Slide 2 Header", details: "Slide 2 Details" },
-    { header: "Slide 3 Header", details: "Slide 3 Details" },
-    { header: "Slide 4 Header", details: "Slide 4 Details" },
-    { header: "Slide 5 Header", details: "Slide 5 Details" },
+    { header: "อัคคีสลาตัน", details: "โกเอ็นจิ ชูยะ" },
+    { header: "น่ากลัวจังเลย", details: "คาจิม่าและอิจิโนเสะ" },
+    { header: "คุณตาครับ", details: "เอ็นโด มาโมรุ" },
+    { header: "เพื่อนรักหันหลังใส่กัน", details: "โกเอ็นจิและลูกสมุนของเขา" },
+    { header: "เบียวอิคิเท็นไค", details: "โกะโจ ซาโตรุ" },
   ];
 
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-[369px] h-[215px] flex items-center justify-center"
+      className="w-[368px] h-[215px] flex items-center justify-center"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
