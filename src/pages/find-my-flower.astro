@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+  GAME_STATE_COOKIE_KEY,
+  FlowerGameContainer,
+} from "../components/FlowerGame/FlowerGameContainer";
+
+export const prerender = false;
+const cookies = Astro.cookies;
+const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
+const serializedState = serializedStateCookie?.value;
+---
+
+<Layout title="Find my flower">
+  <FlowerGameContainer serializedState={serializedState} client:load />
+</Layout>
