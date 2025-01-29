@@ -1,3 +1,6 @@
+---
+import "../styles/global.css";
+---
 <!doctype html>
 <html lang="en">
   <head>
@@ -5,14 +8,13 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
     <title>Astro Basics</title>
   </head>
   <body>
-    <main class = "relative max-w-md min-h-screen h-full mx-auto shadow">
+    <main class="relative max-w-md min-h-screen h-full mx-auto shadow">
       <slot />
     </main>
-
   </body>
 </html>
 
