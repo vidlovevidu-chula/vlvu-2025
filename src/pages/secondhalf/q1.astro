@@ -1,0 +1,43 @@
+---
+// import {useNavigate} form 'react-router-dom'
+import Board from "../../components/Board.astro";
+import Layout from "../../layouts/Layout.astro";
+let cata = "sen";
+---
+
+<Layout>
+  <form
+    class="relative bg-gray-400 flex flex-col h-svh"
+    action="/secondhalf/q2"
+  >
+    <Board question=`ถ้าต้องเขียนไดอารี่วันวาเลนไทน์ จะเขียนเกี่ยวกับอะไร`>
+      {
+        cata == "sen" && (
+          <>
+            <button>A. สิ่งดี ๆ ที่สร้างรอยยิ้มให้ผู้อื่นในวันนี้</button>
+            <button>B. ช่วงเวลาที่มีความสุขกับผู้อื่น</button>
+            <button>C. สิ่งที่ทำได้ดีในวันนี้</button>
+          </>
+        )
+      }
+      {
+        cata == "har" && (
+          <>
+            <button>A. choice Harmony 1</button>
+            <button>B. choice Harmony 2</button>
+            <button>C. choice Harmony 3</button>
+          </>
+        )
+      }
+      {
+        cata == "cha" && (
+          <>
+            <button>A. choice Charity 1</button>
+            <button>B. choice Charity 2</button>
+            <button>C. choice Charity 3</button>
+          </>
+        )
+      }
+    </Board>
+  </form>
+</Layout>
