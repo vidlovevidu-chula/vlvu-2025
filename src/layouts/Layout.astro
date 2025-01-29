@@ -1,4 +1,5 @@
 ---
+import type { Fragment } from "react";
 import "../styles/global.css";
 ---
 <!doctype html>
@@ -12,7 +13,7 @@ import "../styles/global.css";
     <title>Astro Basics</title>
   </head>
   <body>
-    <main class="relative max-w-md min-h-screen h-full mx-auto shadow">
+    <main class="mobile">
       <slot />
     </main>
   </body>
@@ -32,6 +33,15 @@ import "../styles/global.css";
   @font-face {
     font-family: "YesevaOne";
     src: url("/fonts/YesevaOne-Regular.ttf") format("truetype");
+  }
+
+  .mobile {
+    display: relative;
+    max-width: 448px;
+    margin: 0 auto;
+    min-height: 100vh;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   html,
