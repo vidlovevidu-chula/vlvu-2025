@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { edgeType, bgType, style, wing, prop } from "../store";
+import { edgeType, heartColor, style, wing, prop } from "../store";
 
 interface TicketCustomProps {
   src: string;
@@ -10,14 +10,14 @@ interface TicketCustomProps {
 
 const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
   const $edgeType = useStore(edgeType);
-  const $bgType = useStore(bgType);
+  const $heartColor = useStore(heartColor);
   const $style = useStore(style);
   const $wing = useStore(wing);
   const $prop = useStore(prop);
 
   const data = {
     edgeType: $edgeType,
-    bgType: $bgType,
+    heartColor: $heartColor,
     style: $style,
     wing: $wing,
     prop: $prop,
@@ -29,14 +29,14 @@ const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
         edgeType.set(alt);
         data.edgeType = alt;
         break;
-      case "background":
-        if ($bgType === alt) {
-          bgType.set("");
-          data.bgType = "";
+      case "heart":
+        if ($heartColor === alt) {
+          heartColor.set("");
+          data.heartColor = "";
           break;
         }
-        bgType.set(alt);
-        data.bgType = alt;
+        heartColor.set(alt);
+        data.heartColor = alt;
         break;
       case "style":
         if ($style === alt) {
@@ -77,7 +77,8 @@ const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
         ${type === "style" ? "h-[200px] w-[100px] object-[-68px_-30px]" : ""} 
         ${type === "edge" ? "m-[8px] h-[100px]" : ""}
         ${type === "wing" ? "h-[200px] w-[100px] object-[-100px_0px]" : ""}
-        ${type === "prop" ? "h-[200px] w-[100px] object-[-10px_-15px]" : ""}`}
+        ${type === "prop" ? "h-[200px] w-[100px] object-[-10px_-15px]" : ""}
+        ${type === "heart" ? "m-[8px] w-[100px]" : ""}`}
       onClick={() => {
         changeItem(type, alt);
         console.log("type,alt :", type, alt);

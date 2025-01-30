@@ -1,11 +1,20 @@
 import React, { useState, useRef } from "react";
 import { useStore } from "@nanostores/react";
-import { page, edgeType, edgeColor, style, wing, prop } from "../store";
+import {
+  page,
+  edgeType,
+  edgeColor,
+  heartColor,
+  style,
+  wing,
+  prop,
+} from "../store";
 import Ticketlist from "./ticketList";
 const Ticket = () => {
   const $pageName = useStore(page);
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);
+  const $heartColor = useStore(heartColor);
   const $style = useStore(style);
   const $wing = useStore(wing);
   const $prop = useStore(prop);
@@ -90,7 +99,7 @@ const Ticket = () => {
           {ticketcolors.map((ticketcolors) => (
             <button
               key={ticketcolors.name}
-              className='h-[38px] w-[97.52px] rounded-l-full'
+              className="h-[38px] w-[97.52px] rounded-l-full"
               style={{ background: ticketcolors.hex }}
               onClick={() => edgeColor.set(`${ticketcolors.name}.png`)}
             ></button>
@@ -99,36 +108,43 @@ const Ticket = () => {
       ) : undefined}
 
       {/* ---- Display ---- */}
-      <div className="relative flex w-[200px] h-[355.56px] justify-center items-center">
+      <div className="relative flex w-[210px] h-[355.56px] justify-center items-center">
         <img
           src={`src/assets/edge/${$edgeType}/${$edgeColor}`}
-          width={200}
+          width={210}
           className="absolute"
         />
+        {$heartColor ? (
+          <img
+            src={`src/assets/heart/${$edgeType}/${$heartColor}`}
+            width={210}
+            className="absolute"
+          />
+        ) : undefined}
         {$wing ? (
           <img
             src={`src/assets/wing/${$wing}`}
-            width={180}
-            className="absolute top-12"
+            width={150}
+            className="absolute top-[84px]"
           />
         ) : undefined}
         <img
           src={"src/assets/cupid/cupid.png"}
-          width={180}
-          className="absolute top-12"
+          width={150}
+          className="absolute top-[84px]"
         />
         {$style ? (
           <img
             src={`src/assets/style/${$style}`}
-            width={180}
-            className="absolute top-12"
+            width={150}
+            className="absolute top-[84px]"
           />
         ) : undefined}
         {$prop ? (
           <img
             src={`src/assets/prop/${$prop}`}
-            width={180}
-            className="absolute top-12"
+            width={150}
+            className="absolute top-[84px]"
           />
         ) : undefined}
       </div>
@@ -184,7 +200,7 @@ const Ticket = () => {
                   ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
                   : undefined
               }
-              onClick={() => page.set("Background")}
+              onClick={() => page.set("Heart")}
             >
               <p>Heart</p>
             </button>

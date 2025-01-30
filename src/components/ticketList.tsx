@@ -5,7 +5,7 @@ import Edge from "./cupid/edge";
 import Style from "./cupid/style";
 import Wing from "./cupid/wing";
 import Prop from "./cupid/prop";
-
+import Hearts from "./cupid/heart";
 const Page = () => {
   const $pageName = useStore(page) || "Edge";
 
@@ -15,6 +15,7 @@ const Page = () => {
       {$pageName === "Style" ? <Style /> : null}
       {$pageName === "Wing" ? <Wing /> : null}
       {$pageName === "Prop" ? <Prop /> : null}
+      {$pageName === "Heart" ? <Hearts /> : null}
     </>
   );
 };
