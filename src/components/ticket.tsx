@@ -42,13 +42,12 @@ const Ticket = () => {
   ];
   return (
     <div
-      className="flex flex-col justify-between items-center w-full h-full relative py-10"
+      className="flex flex-col justify-between items-center h-full relative py-10"
       style={{
         backgroundImage: "url('/src/assets/background.png')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        height: "100%",
         overflow: "hidden",
       }}
     >
@@ -91,7 +90,8 @@ const Ticket = () => {
           {ticketcolors.map((ticketcolors) => (
             <button
               key={ticketcolors.name}
-              className={`h-[38px] w-[97.52px] rounded-l-full bg-[${ticketcolors.hex}]`}
+              className='h-[38px] w-[97.52px] rounded-l-full'
+              style={{ background: ticketcolors.hex }}
               onClick={() => edgeColor.set(`${ticketcolors.name}.png`)}
             ></button>
           ))}
