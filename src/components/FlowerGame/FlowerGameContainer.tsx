@@ -163,7 +163,10 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
             )}
           </div>
         ) : (
-          <ResultPage flowerType={flowerType} />
+          <ResultPage
+            flowerType={flowerType}
+            showIntro={!storedState || storedState.questionNumber <= 10}
+          />
         )}
       </div>
     </>

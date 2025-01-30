@@ -5,10 +5,12 @@ import type { FlowerType } from "./FlowerGameContainer";
 
 interface Props {
   flowerType: FlowerType;
+  showIntro: boolean;
 }
-export const ResultPage: React.FC<Props> = ({ flowerType }) => {
+export const ResultPage: React.FC<Props> = ({ flowerType, showIntro }) => {
   return (
     <div>
+      {showIntro && <h1>Intro</h1>}
       <h1>Your flower is {flowerType}</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
