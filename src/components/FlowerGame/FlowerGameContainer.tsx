@@ -7,14 +7,18 @@ interface Props {
   serializedState: string | undefined;
 }
 
-class InvalidStateError extends Error {}
+class InvalidStateError extends Error {
+  constructor(message?: string) {
+    super(message);
+  }
+}
 
 // sensory = body, harmony = heart, charity = head
 export type FlowerGroup = "sensory" | "harmony" | "charity";
 export type FlowerType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 // sorted by least to most points
-export const FLOWER_TYPES: Record<FlowerGroup, FlowerType[]> = {
+const FLOWER_TYPES: Record<FlowerGroup, FlowerType[]> = {
   sensory: [1, 9, 8],
   harmony: [4, 3, 2],
   charity: [7, 6, 5],
@@ -33,13 +37,9 @@ export const FlowerGameContainer: React.FC<Props> = (state) => {
     return FlowerGame(state);
   } catch (err) {
     if (err instanceof InvalidStateError) {
-      // clears the state if the saved state is invalid
-      return (
-        <>
-          <span>Cleared</span>
-          <FlowerGame serializedState={undefined} />
-        </>
-      );
+      console.error(err);
+      // clear the state if the saved state is invalid
+      return FlowerGame({ serializedState: undefined });
     } else {
       throw err;
     }
@@ -74,14 +74,14 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
       return "harmony";
     }
 
-    throw new InvalidStateError();
+    throw new InvalidStateError("Score is not valid for determining a group");
   }
 
   function determineFlowerType(): FlowerType | undefined {
-    if (questionNumber < 10) return;
+    if (questionNumber <= 10) return;
     if (group === undefined)
       throw new InvalidStateError(
-        "Question number is 10 (or more) but the group has not yet been determined",
+        "Ran out of questions (no. > 10) but the group has not yet been determined",
       );
 
     const possibleTypes = FLOWER_TYPES[group];
@@ -92,7 +92,7 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
     } else if (19 <= secondHalfScore && secondHalfScore <= 25) {
       return possibleTypes[2];
     } else {
-      throw new InvalidStateError();
+      throw new InvalidStateError("Invalid score");
     }
   }
 
@@ -146,14 +146,18 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
   return (
     <>
       <div>
-        <pre>
-          State:<br></br>
-          {JSON.stringify(
-            { firstHalfScore, secondHalfScore, questionNumber },
-            null,
-            4,
-          )}
-        </pre>
+        {import.meta.env.MODE === "development" && (
+          <details>
+            <summary>Game state for debug</summary>
+            <pre>
+              {JSON.stringify(
+                { firstHalfScore, secondHalfScore, questionNumber },
+                null,
+                4,
+              )}
+            </pre>
+          </details>
+        )}
 
         {flowerType === undefined ? (
           <div className="">
