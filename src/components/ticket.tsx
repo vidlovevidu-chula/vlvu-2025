@@ -39,7 +39,7 @@ const Ticket = () => {
     }
   };
 
-  const ticketcolors = [
+  const edgecolors = [
     { name: "brown", hex: "#4D3525" },
     { name: "green", hex: "#BDD340" },
     { name: "red", hex: "#F9746C" },
@@ -51,7 +51,7 @@ const Ticket = () => {
   ];
   return (
     <div
-      className="flex flex-col justify-between items-center h-full relative py-10"
+      className="flex flex-col justify-between items-center h-screen relative py-10"
       style={{
         backgroundImage: "url('/src/assets/background.png')",
         backgroundSize: "cover",
@@ -96,12 +96,12 @@ const Ticket = () => {
       {/* ---- Select Ticket Color ---- */}
       {display === "Ticket" && $pageName === "Edge" ? (
         <div className="absolute top-24 -right-9 flex flex-col gap-2">
-          {ticketcolors.map((ticketcolors) => (
+          {edgecolors.map((edgecolor) => (
             <button
-              key={ticketcolors.name}
+              key={edgecolor.name}
               className="h-[38px] w-[97.52px] rounded-l-full"
-              style={{ background: ticketcolors.hex }}
-              onClick={() => edgeColor.set(`${ticketcolors.name}.png`)}
+              style={{ background: edgecolor.hex }}
+              onClick={() => edgeColor.set(`${edgecolor.name}.png`)}
             ></button>
           ))}
         </div>
