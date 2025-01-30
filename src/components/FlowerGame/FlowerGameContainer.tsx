@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type * as React from "react";
-import { FirstHalfQuestions, SecondHalfQuestions } from "./QuestionPages";
+import { FirstHalfQuestions } from "./FirstHalfQuestions";
+import { SecondHalfQuestions } from "./SecondHalfQuestions";
 import { ResultPage } from "./ResultPage";
 
 interface Props {
@@ -146,19 +147,6 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
   return (
     <>
       <div>
-        {import.meta.env.MODE === "development" && (
-          <details>
-            <summary>Game state for debug</summary>
-            <pre>
-              {JSON.stringify(
-                { firstHalfScore, secondHalfScore, questionNumber },
-                null,
-                4,
-              )}
-            </pre>
-          </details>
-        )}
-
         {flowerType === undefined ? (
           <div className="">
             {group === undefined ? (
