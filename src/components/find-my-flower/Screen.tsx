@@ -8,6 +8,8 @@ export interface GifScene
   duration?: number;
 }
 
+// buttonImage?: string | { buttonImageUrl?: string, className?: string, jumpState?: }[]
+
 export interface FindYourFlowerScreenProps {
   scenes: GifScene[];
 }
@@ -29,7 +31,7 @@ export const FindYourFlowerScreen: React.FC<FindYourFlowerScreenProps> = ({
   }, [currentScene]);
 
   return (
-    <div className="max-w-screen-sm w-fit max-h-[80vh] relative">
+    <div className="max-w-screen-sm w-full max-h-screen relative">
       {Array.isArray(url) ? (
         url.map(({ url, className }, index) => (
           <img key={index} className={className} src={url} alt="scene" />
@@ -39,7 +41,7 @@ export const FindYourFlowerScreen: React.FC<FindYourFlowerScreenProps> = ({
       )}
       {buttonImageUrl && (
         <button
-          className={twMerge("absolute top-0", className)}
+          className={twMerge("absolute", className)}
           onClick={() => setCurrentScene((prev) => prev + 1)}
           {...props}
         >
