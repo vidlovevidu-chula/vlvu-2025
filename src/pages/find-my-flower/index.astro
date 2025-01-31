@@ -1,4 +1,5 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import {
   FindYourFlowerScreen,
   type GifScene,
@@ -6,9 +7,10 @@ import {
 
 const scenes: GifScene[] = [
   {
-    url: "/videos/0/1.gif",
+    //start
+    url: [{ url: "/videos/0/1.gif", className: "relative w-full" }],
     buttonImageUrl: "/images/0/1.png",
-    className: "top-24 left-16 w-32",
+    className: "absolute top-32 left-3 ",
   },
   {
     url: "/videos/0/2_s.gif",
@@ -20,72 +22,285 @@ const scenes: GifScene[] = [
   },
   {
     url: [
+      //1
       { url: "/videos/1/2.gif", className: "w-full" },
-      { url: "/images/1/1.png", className: "absolute" },
+      {
+        url: "/images/1/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ",
+      },
     ],
     buttonImageUrl: "/images/tap.png",
-    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/1/2.gif",
-    buttonImageUrl: "/images/1/1.png",
-    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3",
-  },
-  {
-    url: "/videos/1/2.gif",
+    url: [
+      //2
+      { url: "/videos/1/2.gif", className: "w-full" },
+      {
+        url: "/images/1/2.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
     buttonImageUrl: "/images/tap.png",
-    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/1/2.gif",
-    buttonImageUrl: "/images/2/1.png",
-    className: "top-16 right-12",
+    url: [
+      //3
+      { url: "/videos/1/2.gif", className: "w-full" },
+      {
+        url: "/images/1/3.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/2/2_s.gif",
+    url: [
+      //letter
+      { url: "/videos/1/3.gif", className: "w-full" },
+      {
+        url: "/images/1/letter.png",
+        className:
+          "absolute top-full left-0 w-full -translate-y-full transition-all duration-5000",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      //letter end
+      { url: "/videos/1/4.gif", className: "w-full" },
+    ],
     duration: 1000,
+  },
+  {
+    url: [
+      //black bg1
+      { url: "/videos/1_1/black.png", className: "w-full" },
+      {
+        url: "/images/1_1/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      //black bg2
+      { url: "/videos/1_1/black.png", className: "w-full" },
+      {
+        url: "/images/1_1/2.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: "/videos/2/1_s.gif",
+    duration: 1000,
+  },
+  {
+    url: [
+      //tickets
+      { url: "/videos/2/2.gif", className: "w-full" },
+      {
+        url: "/images/2/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      // Q1
+      { url: "/videos/2/2.gif", className: "w-full" },
+    ],
+    buttonImageUrl: "/images/2/q1.png",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
   },
   {
     url: "/videos/3/1_s.gif",
-    duration: 1000,
+    duration: 400,
   },
   {
-    url: "/videos/3/2.gif",
-    buttonImageUrl: "/images/3/1.png",
-    className: "bottom-16 left-12",
+    url: [
+      //train1
+      { url: "/videos/3/2.gif", className: "w-full" },
+      {
+        url: "/images/3/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/4/1_s.gif",
-    duration: 1000,
+    url: [
+      //train2
+      { url: "/videos/3/2.gif", className: "w-full" },
+      {
+        url: "/images/3/2.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/4/2.gif",
-    buttonImageUrl: "/images/4/1.png",
-    className: "bottom-16 right-12",
+    url: [
+      //train3
+      { url: "/videos/3/3.gif", className: "w-full" },
+      {
+        url: "/images/3/3.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/5/1_s.gif",
-    duration: 1000,
+    url: [
+      //train4
+      { url: "/videos/3/3.gif", className: "w-full" },
+      {
+        url: "/images/3/4.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/5/2.gif",
-    buttonImageUrl: "/images/5/1.png",
-    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+    url: [
+      // Q2
+      { url: "/videos/4/1_s.gif", className: "w-full" },
+    ],
+    buttonImageUrl: "/images/4/q2.png",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
   },
   {
-    url: "/videos/6/1.gif",
-    buttonImageUrl: "/images/6/1.png",
-    className: "top-16 left-12",
+    url: [
+      //man
+      { url: "/videos/4/2.gif", className: "w-full" },
+      {
+        url: "/images/4/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
   {
-    url: "/videos/6/2_s.gif",
-    duration: 1000,
+    url: [
+      // Q3
+      { url: "/videos/4/1_s.gif", className: "w-full" },
+    ],
+    buttonImageUrl: "/images/4/q3.png",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    url: [
+      //drinks
+      { url: "/videos/5/1.gif", className: "w-full" },
+      {
+        url: "/images/5/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      // Q4
+      { url: "/videos/5/1.gif", className: "w-full" },
+    ],
+    buttonImageUrl: "/images/5/q4.png",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    url: [
+      //6
+      { url: "/videos/6/1.gif", className: "w-full" },
+      {
+        url: "/images/6/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      //6-2
+      { url: "/videos/6/2.gif", className: "w-full" },
+      {
+        url: "/images/6/2.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      // Q5
+      { url: "/videos/6/2.gif", className: "w-full" },
+    ],
+    buttonImageUrl: "/images/6/q5.png",
+    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    url: [
+      //6-3-1
+      { url: "/videos/6/3.gif", className: "w-full" },
+      {
+        url: "/images/6/3.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      //6-3-2
+      { url: "/videos/6/3.gif", className: "w-full" },
+      {
+        url: "/images/6/4.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
   },
 ];
 ---
 
-<div class="flex justify-center items-center w-full h-[100vh] bg-black">
-  <FindYourFlowerScreen scenes={scenes} client:load />
-</div>
-
-<script></script>
+<Layout>
+  <div class="flex justify-center items-center w-full h-[100vh] bg-black">
+    <FindYourFlowerScreen scenes={scenes} client:load />
+  </div>
+</Layout>
