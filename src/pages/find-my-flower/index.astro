@@ -1,0 +1,91 @@
+---
+import {
+  FindYourFlowerScreen,
+  type GifScene,
+} from "../../components/find-my-flower/Screen";
+
+const scenes: GifScene[] = [
+  {
+    url: "/videos/0/1.gif",
+    buttonImageUrl: "/images/0/1.png",
+    className: "top-24 left-16 w-32",
+  },
+  {
+    url: "/videos/0/2_s.gif",
+    duration: 1000,
+  },
+  {
+    url: "/videos/1/1_s.gif",
+    duration: 1000,
+  },
+  {
+    url: [
+      { url: "/videos/1/2.gif", className: "w-full" },
+      { url: "/images/1/1.png", className: "absolute" },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3",
+  },
+  {
+    url: "/videos/1/2.gif",
+    buttonImageUrl: "/images/1/1.png",
+    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3",
+  },
+  {
+    url: "/videos/1/2.gif",
+    buttonImageUrl: "/images/tap.png",
+    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    url: "/videos/1/2.gif",
+    buttonImageUrl: "/images/2/1.png",
+    className: "top-16 right-12",
+  },
+  {
+    url: "/videos/2/2_s.gif",
+    duration: 1000,
+  },
+  {
+    url: "/videos/3/1_s.gif",
+    duration: 1000,
+  },
+  {
+    url: "/videos/3/2.gif",
+    buttonImageUrl: "/images/3/1.png",
+    className: "bottom-16 left-12",
+  },
+  {
+    url: "/videos/4/1_s.gif",
+    duration: 1000,
+  },
+  {
+    url: "/videos/4/2.gif",
+    buttonImageUrl: "/images/4/1.png",
+    className: "bottom-16 right-12",
+  },
+  {
+    url: "/videos/5/1_s.gif",
+    duration: 1000,
+  },
+  {
+    url: "/videos/5/2.gif",
+    buttonImageUrl: "/images/5/1.png",
+    className: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    url: "/videos/6/1.gif",
+    buttonImageUrl: "/images/6/1.png",
+    className: "top-16 left-12",
+  },
+  {
+    url: "/videos/6/2_s.gif",
+    duration: 1000,
+  },
+];
+---
+
+<div class="flex justify-center items-center w-full h-[100vh] bg-black">
+  <FindYourFlowerScreen scenes={scenes} client:load />
+</div>
+
+<script></script>
