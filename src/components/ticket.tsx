@@ -8,6 +8,7 @@ import {
   style,
   wing,
   prop,
+  name,
 } from "../store";
 import Ticketlist from "./ticketList";
 const Ticket = () => {
@@ -18,7 +19,7 @@ const Ticket = () => {
   const $style = useStore(style);
   const $wing = useStore(wing);
   const $prop = useStore(prop);
-
+  const $name = useStore(name);
   const [display, setDisplay] = useState("Ticket");
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,50 +52,50 @@ const Ticket = () => {
   ];
   return (
     <div
-      className="flex flex-col justify-between items-center h-screen relative py-10"
+      className="flex flex-col items-center min-h-screen relative py-[70px]"
       style={{
         backgroundImage: "url('/src/assets/background.png')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        overflow: "hidden",
+        overflowY:'scroll',
+        overflowX:'hidden'
       }}
     >
-      <p className="text-[25px] text-[#925A48] font-Inter font-light">
-        My Love God
-      </p>
-
       {/* ---- Select Custom Page ---- */}
-      <button
-        className={`absolute top-12 h-[38px] w-[97.52px] bg-[#FFCFCF] rounded-r-full ${display === "Ticket" ? "-left-5 shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : " -left-10 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
-        onClick={() => {
-          setDisplay("Ticket");
-          page.set("Edge");
-        }}
-      >
-        <img
-          src={"src/assets/cupid/ticket.png"}
-          width={30}
-          className="absolute right-5 top-1"
-        />
-      </button>
-
-      <button
-        className={`absolute top-24 h-[38px] w-[97.52px] bg-[#FFCFCF] rounded-r-full ${display === "Dress" ? "-left-5 shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)] " : " -left-10 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
-        onClick={() => {
-          setDisplay("Dress");
-          page.set("Style");
-        }}
-      >
-        <img
-          src={"src/assets/cupid/cupidmini.png"}
-          width={29}
-          className="absolute right-5 top-1"
-        />
-      </button>
+      {display !== "Name" && (
+        <div className="absolute top-0 left-0">
+          <button
+            className={`absolute top-12 h-[38px] w-[97.52px] bg-[#FFCFCF] rounded-r-full ${display === "Ticket" ? "-left-5 shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : " -left-10 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
+            onClick={() => {
+              setDisplay("Ticket");
+              page.set("Edge");
+            }}
+          >
+            <img
+              src={"src/assets/cupid/ticket.png"}
+              width={30}
+              className="absolute right-5 top-1"
+            />
+          </button>
+          <button
+            className={`absolute top-24 h-[38px] w-[97.52px] bg-[#FFCFCF] rounded-r-full ${display === "Dress" ? "-left-5 shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)] " : " -left-10 drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
+            onClick={() => {
+              setDisplay("Dress");
+              page.set("Style");
+            }}
+          >
+            <img
+              src={"src/assets/cupid/cupidmini.png"}
+              width={29}
+              className="absolute right-5 top-1"
+            />
+          </button>
+        </div>
+      )}
 
       {/* ---- Select Ticket Color ---- */}
-      {display === "Ticket" && $pageName === "Edge" ? (
+      {display === "Ticket" && $pageName === "Edge" && (
         <div className="absolute top-24 -right-9 flex flex-col gap-2">
           {edgecolors.map((edgecolor) => (
             <button
@@ -105,79 +106,92 @@ const Ticket = () => {
             ></button>
           ))}
         </div>
-      ) : undefined}
+      )}
+      
+      <div className="flex flex-col items-center h-fit">
+        {/* ---- Title ---- */}
+        <p className="text-[25px] text-[#925A48] font-Inter font-light">
+          My Love God
+        </p>
 
-      {/* ---- Display ---- */}
-      <div className="relative flex w-[240px] h-[355.56px] justify-center items-center">
-        <img
-          src={`src/assets/edge/${$edgeType}/${$edgeColor}`}
-          width={240}
-          className="absolute"
-        />
-        {$heartColor ? (
+        {/* ---- Display ---- */}
+        <div className="relative flex w-fit h-fit justify-center items-center">
+          <img src={`src/assets/edge/${$edgeType}/${$edgeColor}`} width={240} />
+          {$heartColor && (
+            <img
+              src={`src/assets/heart/${$edgeType}/${$heartColor}`}
+              width={240}
+              className="absolute"
+            />
+          )}
+          {$wing && (
+            <img
+              src={`src/assets/wing/${$wing}`}
+              width={170}
+              className="absolute top-[100px]"
+            />
+          )}
           <img
-            src={`src/assets/heart/${$edgeType}/${$heartColor}`}
-            width={240}
-            className="absolute"
-          />
-        ) : undefined}
-        {$wing ? (
-          <img
-            src={`src/assets/wing/${$wing}`}
+            src={"src/assets/cupid/cupid.png"}
             width={170}
-            className="absolute top-[68px]"
+            className="absolute top-[100px]"
           />
-        ) : undefined}
-        <img
-          src={"src/assets/cupid/cupid.png"}
-          width={170}
-          className="absolute top-[68px]"
-        />
-        {$style ? (
-          <img
-            src={`src/assets/style/${$style}`}
-            width={170}
-            className="absolute top-[68px]"
-          />
-        ) : undefined}
-        {$prop ? (
-          <img
-            src={`src/assets/prop/${$prop}`}
-            width={170}
-            className="absolute top-[68px]"
-          />
-        ) : undefined}
+          {$style && (
+            <img
+              src={`src/assets/style/${$style}`}
+              width={170}
+              className="absolute top-[100px]"
+            />
+          )}
+          {$prop && (
+            <img
+              src={`src/assets/prop/${$prop}`}
+              width={170}
+              className="absolute top-[100px]"
+            />
+          )}
+          {$name && (
+            <p
+              className={`absolute bottom-[140px] font-Inter text-xs font-bold text-[#863752]`}
+            >
+              {$name}
+            </p>
+          )}
+        </div>
       </div>
 
-      {/* ---- Tickets Carousel ---- */}
       <div className="flex flex-col justify-center items-center">
-        <div className="flex items-center">
-          <button
-            className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
-            onClick={scrollPrev}
-            aria-label="Scroll to previous"
-          >
-            <img src={"src/assets/arrow/chevrons-left.svg"} width={29} />
-          </button>
+        {/* ---- Tickets Carousel ---- */}
 
-          <div
-            ref={containerRef}
-            className="flex w-[297.25px] h-[125.12px] items-center justify-center bg-[#D9D9D9] bg-opacity-[50%] overflow-x-auto overflow-y-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-          >
-            <Ticketlist />
+        {display !== "Name" && (
+          <div className="flex items-center">
+            <button
+              className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
+              onClick={scrollPrev}
+              aria-label="Scroll to previous"
+            >
+              <img src={"src/assets/arrow/chevrons-left.svg"} width={29} />
+            </button>
+
+            <div
+              ref={containerRef}
+              className="flex w-[297.25px] h-[125.12px] items-center justify-center bg-[#D9D9D9] bg-opacity-[50%] overflow-x-auto overflow-y-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            >
+              <Ticketlist />
+            </div>
+
+            <button
+              className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
+              onClick={scrollNext}
+              aria-label="Scroll to next"
+            >
+              <img src={"src/assets/arrow/chevrons-right.svg"} width={29} />
+            </button>
           </div>
-
-          <button
-            className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
-            onClick={scrollNext}
-            aria-label="Scroll to next"
-          >
-            <img src={"src/assets/arrow/chevrons-right.svg"} width={29} />
-          </button>
-        </div>
+        )}
 
         {/* ---- Ticket button ---- */}
-        {display == "Ticket" ? (
+        {display == "Ticket" && (
           <div className="flex gap-2 mt-4">
             <button
               className={`h-[48.42px] w-[97.52px] text-[15px] font-Inter font-light rounded-l-full
@@ -204,10 +218,10 @@ const Ticket = () => {
               <img src="src/assets/cupid/arrow-r-blue.svg" alt="arrow-right" />
             </button>
           </div>
-        ) : undefined}
+        )}
 
         {/* ---- Dress button ---- */}
-        {display == "Dress" ? (
+        {display == "Dress" && (
           <div className="flex gap-2 mt-4">
             <button
               className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
@@ -240,14 +254,51 @@ const Ticket = () => {
               <p>prop</p>
             </button>
 
-            <button className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full">
+            <button
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full"
+              onClick={() => setDisplay("Name")}
+            >
               <img
                 src="src/assets/cupid/arrow-r-orange.svg"
                 alt="arrow-right"
               />
             </button>
           </div>
-        ) : undefined}
+        )}
+
+        {display === "Name" && (
+          <div className="flex flex-col items-center gap-2">
+            <p className="font-Inter font-light text-[#925A48] text-center">
+              Enter your name
+            </p>
+            <input
+              placeholder="Name"
+              className="rounded-[13px] h-[37px] px-4 text-center focus:outline-none"
+              maxLength={13}
+              onChange={(e) => name.set(e.target.value.trim())}
+            />
+            <div className="flex gap-2">
+              <button
+                className="flex h-[48px] w-[75.95px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
+                onClick={() => {
+                  setDisplay("Dress");
+                  page.set("Style");
+                }}
+              >
+                <img src="src/assets/cupid/arrow-left.svg" alt="arrow-left" />
+              </button>
+              <button
+                className="flex h-[48px] w-[116px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full"
+                onClick={() => {
+                  setDisplay("Ticket");
+                  page.set("Edge");
+                }}
+              >
+                <p>Save</p>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

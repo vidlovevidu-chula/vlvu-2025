@@ -60,6 +60,7 @@ const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
         if ($prop === alt) {
           prop.set("");
           data.prop = "";
+          break;
         }
         prop.set(alt);
         data.prop = alt;
