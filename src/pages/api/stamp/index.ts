@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { getFirestore, FieldValue } from "firebase-admin/firestore";
-import { app } from "../../firebase/server.ts";
+import { app } from "../../../firebase/server.ts";
 
 const db = getFirestore(app);
 
