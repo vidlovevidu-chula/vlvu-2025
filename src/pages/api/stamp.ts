@@ -18,7 +18,7 @@ const STAMPS = [
 const VALIDATE_STAMP = "validateStamp";
 
 // Add a stamp for a specific user
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const { uID, boothId } = await request.json();
 
@@ -87,7 +87,7 @@ export const post: APIRoute = async ({ request }) => {
 };
 
 // Get all stamps for a specific user
-export const get: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request }) => {
   try {
     const { uID } = await request.json();
 
