@@ -68,6 +68,7 @@ export default {
         Atasanee: ["AtasaneeDEMO", "sans-serif"],
         Ribbon: ["RibbonDemo", "serif"],
         Yeseva: ["YesevaOne", "cursive"],
+        Inter: ["Inter", "sans-serif"],
       },
     },
   },

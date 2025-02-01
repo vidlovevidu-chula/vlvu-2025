@@ -60,8 +60,8 @@ const Ticket = () => {
         overflow: "hidden",
       }}
     >
-      <p className="text-[25px] text-[#925A48] font-Yeseva font-normal">
-        My God Love
+      <p className="text-[25px] text-[#925A48] font-Inter font-light">
+        My Love God
       </p>
 
       {/* ---- Select Custom Page ---- */}
@@ -99,7 +99,7 @@ const Ticket = () => {
           {edgecolors.map((edgecolor) => (
             <button
               key={edgecolor.name}
-              className="h-[38px] w-[97.52px] rounded-l-full"
+              className="h-[38px] w-[97.52px] rounded-l-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               style={{ background: edgecolor.hex }}
               onClick={() => edgeColor.set(`${edgecolor.name}.png`)}
             ></button>
@@ -108,43 +108,43 @@ const Ticket = () => {
       ) : undefined}
 
       {/* ---- Display ---- */}
-      <div className="relative flex w-[210px] h-[355.56px] justify-center items-center">
+      <div className="relative flex w-[240px] h-[355.56px] justify-center items-center">
         <img
           src={`src/assets/edge/${$edgeType}/${$edgeColor}`}
-          width={210}
+          width={240}
           className="absolute"
         />
         {$heartColor ? (
           <img
             src={`src/assets/heart/${$edgeType}/${$heartColor}`}
-            width={210}
+            width={240}
             className="absolute"
           />
         ) : undefined}
         {$wing ? (
           <img
             src={`src/assets/wing/${$wing}`}
-            width={150}
-            className="absolute top-[84px]"
+            width={170}
+            className="absolute top-[68px]"
           />
         ) : undefined}
         <img
           src={"src/assets/cupid/cupid.png"}
-          width={150}
-          className="absolute top-[84px]"
+          width={170}
+          className="absolute top-[68px]"
         />
         {$style ? (
           <img
             src={`src/assets/style/${$style}`}
-            width={150}
-            className="absolute top-[84px]"
+            width={170}
+            className="absolute top-[68px]"
           />
         ) : undefined}
         {$prop ? (
           <img
             src={`src/assets/prop/${$prop}`}
-            width={150}
-            className="absolute top-[84px]"
+            width={170}
+            className="absolute top-[68px]"
           />
         ) : undefined}
       </div>
@@ -162,7 +162,7 @@ const Ticket = () => {
 
           <div
             ref={containerRef}
-            className="flex w-[297.25px] h-[125.12px] items-center justify-center bg-[#D9D9D9] bg-opacity-[50%] overflow-x-auto overflow-y-hidden filter drop-shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            className="flex w-[297.25px] h-[125.12px] items-center justify-center bg-[#D9D9D9] bg-opacity-[50%] overflow-x-auto overflow-y-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
           >
             <Ticketlist />
           </div>
@@ -180,32 +180,22 @@ const Ticket = () => {
         {display == "Ticket" ? (
           <div className="flex gap-2 mt-4">
             <button
-              className={`h-[48.42px] w-[97.52px] text-[15px] font-Yeseva rounded-l-full
-              ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white" : "bg-[#FBF0A9] text-[#925A48]"}`}
-              style={
-                $pageName === "Edge"
-                  ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
-                  : undefined
-              }
+              className={`h-[48.42px] w-[97.52px] text-[15px] font-Inter font-light rounded-l-full
+              ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
               onClick={() => page.set("Edge")}
             >
-              <p>Edge</p>
+              <p>edge</p>
             </button>
 
             <button
-              className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Yeseva rounded-r-full
-              ${$pageName === "Background" ? "bg-[#E5AB6C] text-white" : "bg-[#FBF0A9] text-[#925A48]"}`}
-              style={
-                $pageName === "Background"
-                  ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
-                  : undefined
-              }
+              className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Inter font-light rounded-r-full
+              ${$pageName === "Heart" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
               onClick={() => page.set("Heart")}
             >
-              <p>Heart</p>
+              <p>heart</p>
             </button>
             <button
-              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Yeseva bg-[#BAEAFE] rounded-full"
+              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
               onClick={() => {
                 setDisplay("Dress");
                 page.set("Style");
@@ -220,7 +210,7 @@ const Ticket = () => {
         {display == "Dress" ? (
           <div className="flex gap-2 mt-4">
             <button
-              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Yeseva bg-[#BAEAFE] rounded-full"
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
               onClick={() => {
                 setDisplay("Ticket");
                 page.set("Edge");
@@ -230,42 +220,27 @@ const Ticket = () => {
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Yeseva rounded-l-full ${$pageName === "Style" ? "bg-[#E5AB6C] text-white" : "bg-[#FBF0A9] text-[#925A48]"}`}
-              style={
-                $pageName === "Style"
-                  ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
-                  : undefined
-              }
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-l-full ${$pageName === "Style" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
               onClick={() => page.set("Style")}
             >
-              <p>Style</p>
+              <p>style</p>
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Yeseva ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white" : "bg-[#FBF0A9] text-[#925A48]"}`}
-              style={
-                $pageName === "Wing"
-                  ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
-                  : undefined
-              }
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
               onClick={() => page.set("Wing")}
             >
-              <p>Wing</p>
+              <p>wing</p>
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Yeseva rounded-r-full ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white" : "bg-[#FBF0A9] text-[#925A48]"}`}
-              style={
-                $pageName === "Prop"
-                  ? { boxShadow: "inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25)" }
-                  : undefined
-              }
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-r-full ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
               onClick={() => page.set("Prop")}
             >
-              <p>Prop</p>
+              <p>prop</p>
             </button>
 
-            <button className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Yeseva bg-[#FFD199] rounded-full">
+            <button className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full">
               <img
                 src="src/assets/cupid/arrow-r-orange.svg"
                 alt="arrow-right"

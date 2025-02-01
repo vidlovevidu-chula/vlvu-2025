@@ -74,11 +74,11 @@ const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
       src={src}
       alt={alt}
       className={`cursor-pointer object-cover
-        ${type === "style" ? "h-[200px] w-[100px] object-[-68px_-30px]" : ""} 
+        ${type === "heart" ? "m-[8px] w-[100px]" : ""}
         ${type === "edge" ? "m-[8px] h-[100px]" : ""}
+        ${type === "style" ? "h-[200px] w-[100px] object-[-68px_-30px]" : ""} 
         ${type === "wing" ? "h-[200px] w-[100px] object-[-100px_0px]" : ""}
-        ${type === "prop" ? "h-[200px] w-[100px] object-[-10px_-15px]" : ""}
-        ${type === "heart" ? "m-[8px] w-[100px]" : ""}`}
+        ${type === "prop" ? "h-[200px] w-[100px] object-[-10px_-15px]" : ""}`}
       onClick={() => {
         changeItem(type, alt);
         console.log("type,alt :", type, alt);
