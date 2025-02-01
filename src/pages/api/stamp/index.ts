@@ -89,7 +89,14 @@ export const POST: APIRoute = async ({ request }) => {
 // Get all stamps for a specific user
 export const GET: APIRoute = async ({ request }) => {
   try {
-    const { uID } = await request.json();
+    const uID = new URL(request.url).searchParams.get("uID");
+
+    if (!uID) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Missing uID!" }),
+        { status: 400 },
+      );
+    }
 
     // Reference to the user's document in StampsCollection
     const userRef = db.collection("StampsCollection").doc(uID);
