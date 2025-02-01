@@ -1,17 +1,20 @@
-import { A as AstroError, M as MissingSharp } from './astro/server_T2yNNXBH.mjs';
-import { b as baseService, p as parseQuality } from './generic_Dr5M0bu_.mjs';
+import {
+  A as AstroError,
+  M as MissingSharp,
+} from "./astro/server_T2yNNXBH.mjs";
+import { b as baseService, p as parseQuality } from "./generic_Dr5M0bu_.mjs";
 
 let sharp;
 const qualityTable = {
   low: 25,
   mid: 50,
   high: 80,
-  max: 100
+  max: 100,
 };
 async function loadSharp() {
   let sharpImport;
   try {
-    sharpImport = (await import('sharp')).default;
+    sharpImport = (await import("sharp")).default;
   } catch {
     throw new AstroError(MissingSharp);
   }
@@ -25,7 +28,7 @@ const fitMap = {
   none: "outside",
   "scale-down": "inside",
   outside: "outside",
-  inside: "inside"
+  inside: "inside",
 };
 const sharpService = {
   validateOptions: baseService.validateOptions,
@@ -40,7 +43,7 @@ const sharpService = {
     const result = sharp(inputBuffer, {
       failOnError: false,
       pages: -1,
-      limitInputPixels: config.service.config.limitInputPixels
+      limitInputPixels: config.service.config.limitInputPixels,
     });
     result.rotate();
     const withoutEnlargement = Boolean(transform.fit);
@@ -51,17 +54,17 @@ const sharpService = {
         height: Math.round(transform.height),
         fit,
         position: transform.position,
-        withoutEnlargement
+        withoutEnlargement,
       });
     } else if (transform.height && !transform.width) {
       result.resize({
         height: Math.round(transform.height),
-        withoutEnlargement
+        withoutEnlargement,
       });
     } else if (transform.width) {
       result.resize({
         width: Math.round(transform.width),
-        withoutEnlargement
+        withoutEnlargement,
       });
     }
     if (transform.format) {
@@ -71,7 +74,10 @@ const sharpService = {
         if (typeof parsedQuality === "number") {
           quality = parsedQuality;
         } else {
-          quality = transform.quality in qualityTable ? qualityTable[transform.quality] : undefined;
+          quality =
+            transform.quality in qualityTable
+              ? qualityTable[transform.quality]
+              : undefined;
         }
       }
       result.toFormat(transform.format, { quality });
@@ -79,9 +85,9 @@ const sharpService = {
     const { data, info } = await result.toBuffer({ resolveWithObject: true });
     return {
       data,
-      format: info.format
+      format: info.format,
     };
-  }
+  },
 };
 var sharp_default = sharpService;
 

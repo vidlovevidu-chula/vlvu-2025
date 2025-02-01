@@ -17,15 +17,18 @@ function isString(path) {
   return typeof path === "string" || path instanceof String;
 }
 function joinPaths(...paths) {
-  return paths.filter(isString).map((path, i) => {
-    if (i === 0) {
-      return removeTrailingForwardSlash(path);
-    } else if (i === paths.length - 1) {
-      return removeLeadingForwardSlash(path);
-    } else {
-      return trimSlashes(path);
-    }
-  }).join("/");
+  return paths
+    .filter(isString)
+    .map((path, i) => {
+      if (i === 0) {
+        return removeTrailingForwardSlash(path);
+      } else if (i === paths.length - 1) {
+        return removeLeadingForwardSlash(path);
+      } else {
+        return trimSlashes(path);
+      }
+    })
+    .join("/");
 }
 function isRemotePath(src) {
   return /^(?:http|ftp|https|ws):?\/\//.test(src) || src.startsWith("data:");
@@ -38,4 +41,13 @@ function fileExtension(path) {
   return ext !== path ? `.${ext}` : "";
 }
 
-export { appendForwardSlash as a, fileExtension as f, isRemotePath as i, joinPaths as j, prependForwardSlash as p, removeTrailingForwardSlash as r, slash as s, trimSlashes as t };
+export {
+  appendForwardSlash as a,
+  fileExtension as f,
+  isRemotePath as i,
+  joinPaths as j,
+  prependForwardSlash as p,
+  removeTrailingForwardSlash as r,
+  slash as s,
+  trimSlashes as t,
+};

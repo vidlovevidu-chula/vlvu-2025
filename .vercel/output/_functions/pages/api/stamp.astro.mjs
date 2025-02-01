@@ -1,6 +1,6 @@
-import { getFirestore, FieldValue } from 'firebase-admin/firestore';
-import { a as app } from '../../chunks/server_1hFA-0b5.mjs';
-export { renderers } from '../../renderers.mjs';
+import { getFirestore, FieldValue } from "firebase-admin/firestore";
+import { a as app } from "../../chunks/server_1hFA-0b5.mjs";
+export { renderers } from "../../renderers.mjs";
 
 const db = getFirestore(app);
 const STAMPS = [
@@ -11,7 +11,7 @@ const STAMPS = [
   "boot5",
   "boot6",
   "boot7",
-  "boot8"
+  "boot8",
 ];
 const VALIDATE_STAMP = "validateStamp";
 const post = async ({ request }) => {
@@ -20,7 +20,7 @@ const post = async ({ request }) => {
     if (![...STAMPS, VALIDATE_STAMP].includes(boothId)) {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid stamp name!" }),
-        { status: 400 }
+        { status: 400 },
       );
     }
     const userRef = db.collection("StampsCollection").doc(uID);
@@ -32,35 +32,36 @@ const post = async ({ request }) => {
     if (currentStamps.includes(boothId)) {
       return new Response(
         JSON.stringify({ success: false, message: "Already stamped!" }),
-        { status: 400 }
+        { status: 400 },
       );
     }
     if (boothId === VALIDATE_STAMP) {
       const missingStamps = STAMPS.filter(
-        (stamp) => !currentStamps.includes(stamp)
+        (stamp) => !currentStamps.includes(stamp),
       );
       if (missingStamps.length > 0) {
         return new Response(
           JSON.stringify({
             success: false,
-            message: "Cannot collect validateStamp until all other stamps are collected!",
-            missingStamps
+            message:
+              "Cannot collect validateStamp until all other stamps are collected!",
+            missingStamps,
           }),
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
     await userRef.update({
-      stamps: FieldValue.arrayUnion(boothId)
+      stamps: FieldValue.arrayUnion(boothId),
     });
     return new Response(
-      JSON.stringify({ success: true, message: "Stamp recorded!" })
+      JSON.stringify({ success: true, message: "Stamp recorded!" }),
     );
   } catch (error) {
     console.error("Error processing stamp:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error processing stamp" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
@@ -72,7 +73,7 @@ const get = async ({ request }) => {
     if (!userDoc.exists) {
       return new Response(
         JSON.stringify({ success: false, message: "No stamps found!" }),
-        { status: 404 }
+        { status: 404 },
       );
     }
     const stamps = userDoc.data()?.stamps || [];
@@ -81,16 +82,22 @@ const get = async ({ request }) => {
     console.error("Error fetching stamps:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error fetching stamps" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
 
-const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  get,
-  post
-}, Symbol.toStringTag, { value: 'Module' }));
+const _page = /*#__PURE__*/ Object.freeze(
+  /*#__PURE__*/ Object.defineProperty(
+    {
+      __proto__: null,
+      get,
+      post,
+    },
+    Symbol.toStringTag,
+    { value: "Module" },
+  ),
+);
 
 const page = () => _page;
 

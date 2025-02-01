@@ -1,4 +1,4 @@
-import { getApps, initializeApp } from 'firebase-admin/app';
+import { getApps, initializeApp } from "firebase-admin/app";
 
 const activeApps = getApps();
 const initApp = () => {
