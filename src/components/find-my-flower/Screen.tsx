@@ -8,8 +8,6 @@ export interface GifScene
   duration?: number;
 }
 
-// buttonImage?: string | { buttonImageUrl?: string, className?: string, jumpState?: }[]
-
 export interface FindYourFlowerScreenProps {
   scenes: GifScene[];
 }
