@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 import { getFirestore, FieldValue } from "firebase-admin/firestore";
-import { app } from "../../firebase/server.ts";
+import { app } from "../../../firebase/server.ts";
 
 const db = getFirestore(app);
 
@@ -18,7 +18,7 @@ const STAMPS = [
 const VALIDATE_STAMP = "validateStamp";
 
 // Add a stamp for a specific user
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const { uID, boothId } = await request.json();
 
@@ -87,9 +87,16 @@ export const post: APIRoute = async ({ request }) => {
 };
 
 // Get all stamps for a specific user
-export const get: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request }) => {
   try {
-    const { uID } = await request.json();
+    const uID = new URL(request.url).searchParams.get("uID");
+
+    if (!uID) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Missing uID!" }),
+        { status: 400 },
+      );
+    }
 
     // Reference to the user's document in StampsCollection
     const userRef = db.collection("StampsCollection").doc(uID);
