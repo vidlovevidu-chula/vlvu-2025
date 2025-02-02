@@ -10,10 +10,10 @@ import {
   FlowerGameContainer,
 } from "../../components/FlowerGame/FlowerGameContainer";
 
-export const prerender = false;
-const cookies = Astro.cookies;
-const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
-const serializedState = serializedStateCookie?.value;
+// export const prerender = false;
+// const cookies = Astro.cookies;
+// const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
+// const serializedState = serializedStateCookie?.value;
 
 const scenes: GifScene[] = [
   //--start--
@@ -163,8 +163,9 @@ const scenes: GifScene[] = [
       // Q1
       { url: "/videos/2/2.gif", className: "w-full" },
     ],
-    buttonImageUrl: "/images/2/q1.png",
-    className: "absolute top-56 left-14",
+    // buttonImageUrl: "/images/2/q1.png",
+    className: "",
+    q: { boardImageUrl: "/images/2/q1.png" },
   },
   {
     //train_come
@@ -232,8 +233,9 @@ const scenes: GifScene[] = [
       // Q2
       { url: "/videos/4/1_s.gif", className: "w-full" },
     ],
-    buttonImageUrl: "/images/4/q2.png",
-    className: "absolute top-56 left-14",
+    // buttonImageUrl: "/images/4/q2.png",
+    className: "",
+    q: { boardImageUrl: "/images/4/q2.png" },
   },
   {
     url: [
@@ -253,8 +255,9 @@ const scenes: GifScene[] = [
       // Q3
       { url: "/videos/4/2.gif", className: "w-full" },
     ],
-    buttonImageUrl: "/images/4/q3.png",
-    className: "absolute top-56 left-14",
+    // buttonImageUrl: "/images/4/q3.png",
+    className: "",
+    q: { boardImageUrl: "/images/4/q3.png" },
   },
   {
     url: "/videos/5/1.gif",
@@ -278,8 +281,9 @@ const scenes: GifScene[] = [
       // Q4
       { url: "/videos/5/1.gif", className: "w-full" },
     ],
-    buttonImageUrl: "/images/5/q4.png",
-    className: "absolute top-56 left-14",
+    // buttonImageUrl: "/images/5/q4.png",
+    className: "",
+    q: { boardImageUrl: "/images/5/q4.png" },
   },
   {
     url: [
@@ -312,8 +316,9 @@ const scenes: GifScene[] = [
       // Q5
       { url: "/videos/6/2.gif", className: "w-full" },
     ],
-    buttonImageUrl: "/images/6/q5.png",
-    className: "absolute top-56 left-14",
+    // buttonImageUrl: "/images/6/q5.png",
+    className: "",
+    q: { boardImageUrl: "/images/6/q5.png" },
   },
   {
     url: [
