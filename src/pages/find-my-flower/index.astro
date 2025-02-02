@@ -5,24 +5,43 @@ import {
   type GifScene,
 } from "../../components/find-my-flower/Screen";
 
+import {
+  GAME_STATE_COOKIE_KEY,
+  FlowerGameContainer,
+} from "../../components/FlowerGame/FlowerGameContainer";
+
+export const prerender = false;
+const cookies = Astro.cookies;
+const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
+const serializedState = serializedStateCookie?.value;
+
 const scenes: GifScene[] = [
+  //--start--
   {
-    //start
     url: [{ url: "/videos/0/1.gif", className: "relative w-full" }],
     buttonImageUrl: "/images/0/1.png",
     className: "absolute top-32 left-3 ",
   },
   {
     url: "/videos/0/2_s.gif",
-    duration: 1000,
+    duration: 2800,
   },
   {
+    url: "/videos/1_1/black.png",
+    duration: 500,
+  },
+  //--opening--
+  {
     url: "/videos/1/1_s.gif",
-    duration: 1000,
+    duration: 1300,
+  },
+  {
+    url: "/videos/1/2.gif",
+    duration: 500,
   },
   {
     url: [
-      //1
+      //window1
       { url: "/videos/1/2.gif", className: "w-full" },
       {
         url: "/images/1/1.png",
@@ -35,7 +54,7 @@ const scenes: GifScene[] = [
   },
   {
     url: [
-      //2
+      //window2
       { url: "/videos/1/2.gif", className: "w-full" },
       {
         url: "/images/1/2.png",
@@ -48,7 +67,7 @@ const scenes: GifScene[] = [
   },
   {
     url: [
-      //3
+      //window3
       { url: "/videos/1/2.gif", className: "w-full" },
       {
         url: "/images/1/3.png",
@@ -60,13 +79,17 @@ const scenes: GifScene[] = [
     className: "absolute bottom-20 left-72",
   },
   {
+    url: "/videos/1/3.gif",
+    duration: 500,
+  },
+  {
     url: [
-      //letter
+      //window_without_letter
       { url: "/videos/1/3.gif", className: "w-full" },
       {
         url: "/images/1/letter.png",
         className:
-          "absolute top-full left-0 w-full -translate-y-full transition-all duration-5000",
+          "absolute top-full left-0 w-full -translate-y-full transition-all duration-0",
       },
     ],
     buttonImageUrl: "/images/tap.png",
@@ -77,7 +100,11 @@ const scenes: GifScene[] = [
       //letter end
       { url: "/videos/1/4.gif", className: "w-full" },
     ],
-    duration: 1000,
+    duration: 1500,
+  },
+  {
+    url: "/videos/1_1/black.png",
+    duration: 500,
   },
   {
     url: [
@@ -106,7 +133,16 @@ const scenes: GifScene[] = [
     className: "absolute bottom-20 left-72",
   },
   {
+    url: "/videos/1_1/black.png",
+    duration: 500,
+  },
+  //--chapter1--
+  {
     url: "/videos/2/1_s.gif",
+    duration: 1500,
+  },
+  {
+    url: "/videos/2/2.gif",
     duration: 1000,
   },
   {
@@ -128,9 +164,10 @@ const scenes: GifScene[] = [
       { url: "/videos/2/2.gif", className: "w-full" },
     ],
     buttonImageUrl: "/images/2/q1.png",
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+    className: "absolute top-56 left-14",
   },
   {
+    //train_come
     url: "/videos/3/1_s.gif",
     duration: 400,
   },
@@ -161,8 +198,12 @@ const scenes: GifScene[] = [
     className: "absolute bottom-20 left-72",
   },
   {
+    url: "/videos/3/3.gif",
+    duration: 1000,
+  },
+  {
     url: [
-      //train3
+      //in_train1
       { url: "/videos/3/3.gif", className: "w-full" },
       {
         url: "/images/3/3.png",
@@ -175,7 +216,7 @@ const scenes: GifScene[] = [
   },
   {
     url: [
-      //train4
+      //in_train2
       { url: "/videos/3/3.gif", className: "w-full" },
       {
         url: "/images/3/4.png",
@@ -192,7 +233,7 @@ const scenes: GifScene[] = [
       { url: "/videos/4/1_s.gif", className: "w-full" },
     ],
     buttonImageUrl: "/images/4/q2.png",
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+    className: "absolute top-56 left-14",
   },
   {
     url: [
@@ -210,10 +251,14 @@ const scenes: GifScene[] = [
   {
     url: [
       // Q3
-      { url: "/videos/4/1_s.gif", className: "w-full" },
+      { url: "/videos/4/2.gif", className: "w-full" },
     ],
     buttonImageUrl: "/images/4/q3.png",
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+    className: "absolute top-56 left-14",
+  },
+  {
+    url: "/videos/5/1.gif",
+    duration: 1000,
   },
   {
     url: [
@@ -234,7 +279,7 @@ const scenes: GifScene[] = [
       { url: "/videos/5/1.gif", className: "w-full" },
     ],
     buttonImageUrl: "/images/5/q4.png",
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+    className: "absolute top-56 left-14",
   },
   {
     url: [
@@ -268,7 +313,7 @@ const scenes: GifScene[] = [
       { url: "/videos/6/2.gif", className: "w-full" },
     ],
     buttonImageUrl: "/images/6/q5.png",
-    className: "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+    className: "absolute top-56 left-14",
   },
   {
     url: [
@@ -296,10 +341,54 @@ const scenes: GifScene[] = [
     buttonImageUrl: "/images/tap.png",
     className: "absolute bottom-20 left-72",
   },
+  //--chapter2--
+  {
+    url: [
+      // window fast
+      { url: "/videos/chapter2/1.gif", className: "w-full" },
+      {
+        url: "/images/chapter2/1.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      // window door1
+      { url: "/videos/chapter2/2.gif", className: "w-full" },
+      {
+        url: "/images/chapter2/2.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: [
+      // window door2
+      { url: "/videos/chapter2/2.gif", className: "w-full" },
+      {
+        url: "/images/chapter2/3.png",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+      },
+    ],
+    buttonImageUrl: "/images/tap.png",
+    className: "absolute bottom-20 left-72",
+  },
+  {
+    url: "/videos/chapter2/3.gif",
+    duration: 1500,
+  },
 ];
 ---
 
-<Layout>
+<Layout title="Find my flower">
   <div class="flex justify-center items-center w-full h-[100vh] bg-black">
     <FindYourFlowerScreen scenes={scenes} client:load />
   </div>
