@@ -1,15 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {
-  FlowerGameContainer,
-  GAME_STATE_COOKIE_KEY,
-} from "../FlowerGame/FlowerGameContainer";
-import Cookies from "js-cookie";
-
-export const prerender = false;
-// const cookies = Astro.cookies;
-const serializedStateCookie = Cookies.get(GAME_STATE_COOKIE_KEY);
-const serializedState = serializedStateCookie?.value;
 
 export interface GifScene
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -26,22 +16,12 @@ export interface FindYourFlowerScreenProps {
 export const FindYourFlowerScreen: React.FC<FindYourFlowerScreenProps> = ({
   scenes,
 }) => {
-  const [currentScene, setCurrentScene] = useState(16);
-  // const [isHidden, setHidden] = useState("");
-  // const [boardUrl, setBoardUrl] = useState<string | undefined>(undefined);
+  const [currentScene, setCurrentScene] = useState(0);
 
   const { url, buttonImageUrl, className, duration, q, ...props } =
     scenes?.[currentScene] || {};
 
   useEffect(() => {
-    // if (q) {
-    //   setBoardUrl(q.boardImageUrl);
-    //   setHidden("visible");
-    // } else {
-    //   setHidden("invisible");
-    // }
-    // console.log(isHidden);
-    // console.log(boardUrl);
     if (buttonImageUrl || !duration) return;
 
     setTimeout(() => {
@@ -87,9 +67,9 @@ export const FindYourFlowerScreen: React.FC<FindYourFlowerScreenProps> = ({
                 setCurrentScene((prev) => prev + 1);
               }}
             >
-              <FlowerGameContainer
+              {/* <FlowerGameContainer
                 serializedState={serializedState}
-              ></FlowerGameContainer>
+              ></FlowerGameContainer> */}
             </form>
           </div>
         </div>
