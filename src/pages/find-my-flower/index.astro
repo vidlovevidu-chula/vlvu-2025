@@ -10,10 +10,10 @@ import {
   FlowerGameContainer,
 } from "../../components/FlowerGame/FlowerGameContainer";
 
-// export const prerender = false;
-// const cookies = Astro.cookies;
-// const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
-// const serializedState = serializedStateCookie?.value;
+export const prerender = false;
+const cookies = Astro.cookies;
+const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
+const serializedState = serializedStateCookie?.value;
 
 const scenes: GifScene[] = [
   //--start--
@@ -395,6 +395,11 @@ const scenes: GifScene[] = [
 
 <Layout title="Find my flower">
   <div class="flex justify-center items-center w-full h-[100vh] bg-black">
-    <FindYourFlowerScreen scenes={scenes} client:load />
+    <FlowerGameContainer
+      serializedState={serializedState}
+      scenes={scenes}
+      client:load
+    />
+    <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->
   </div>
 </Layout>
