@@ -75,7 +75,7 @@ export default {
       },
       backgroundImage: {
         home: "url('/images/home/homebg.webp')",
-      }
+      },
     },
   },
   plugins: [import("tailwindcss-animate")],
