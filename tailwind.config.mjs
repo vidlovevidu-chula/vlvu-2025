@@ -18,6 +18,8 @@ export default {
         blue: "#aadbfe",
         lightbrown: "#c68c79",
         brown: "#a77b73",
+        rose: "#B64667",
+        periwinkleBlue: "#8099E3",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -68,7 +70,12 @@ export default {
         Atasanee: ["AtasaneeDEMO", "sans-serif"],
         Ribbon: ["RibbonDemo", "serif"],
         Yeseva: ["YesevaOne", "cursive"],
+        Amoresa: ["Amoresa", "cursive"],
+        Ovo: ["Ovo", "sans-serif"],
       },
+      backgroundImage: {
+        home: "url('/images/home/homebg.webp')",
+      }
     },
   },
   plugins: [import("tailwindcss-animate")],

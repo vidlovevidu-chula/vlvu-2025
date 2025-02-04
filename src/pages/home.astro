@@ -9,56 +9,47 @@ import Navbar from "@/components/Navbar.astro";
 ---
 
 <Layout title="Home | VidLoveVidYou 2025">
-  <main
-    class="min-h-screen bg-gradient-to-b from-[#DCDFF0] via-[#FFD4D4] to-[#FAF0E0]"
-  >
-    <div class="flex flex-col items-center justify-center font-Yeseva h-auto">
+  <main class="min-h-screen bg-home">
+    <div class="flex flex-col items-center justify-center h-auto font-Yeseva">
       <!-- Web Title -->
       <div class="flex h-[125px] w-[324px] mt-[75px] z-10">
         <WebTitle />
       </div>
 
-      <!-- Moon Image -->
-      <div class="absolute top-[116px] max-w-md w-full">
-        <Image
-          src="/images/moon.webp"
-          width={200}
-          height={200}
-          alt="Moon"
-          title="Moon Image"
-          class:list="mx-8"
-        />
-      </div>
-
       <!-- Carousel -->
       <div
-        class="flex w-full h-[268.1px] mt-[112px] items-center justify-center"
+        class="flex w-full h-auto mt-20 items-center justify-center"
       >
         <CarouselComponent client:load />
       </div>
 
       <!-- Register Button -->
-      <div class="flex w-full h-auto mt-[112px] items-center justify-center">
-        <a
-          class="bg-[#A77B73] text-white text-xl w-[250px] h-[57px] flex items-center justify-center"
-          href="/"
-        >
-          Click to Register
+      <div class="flex w-3/4 h-auto mt-10 items-center justify-center">
+        <a href="https://www.instagram.com/min.taadaa/" target="_blank">
+          <Image
+            src="/images/home/register_1.webp"
+            width={400}
+            height={238}
+            alt="Register"
+            title="Register"
+          />
         </a>
       </div>
 
       <!-- Mini games -->
-      <div class="flex w-full mt-[112px] h-auto">
+      <div class="flex w-full mt-10 h-auto">
         <Minigames />
       </div>
 
       <!-- Quote -->
-      <div class="flex w-full h-auto mt-[95px] items-center justify-center">
-        <p
-          class="text-[#B1546F] text-[14px] bg-[#F1C1C3] w-[354px] h-[40px] p-3 text-center"
-        >
-          "Be a lover. Give love. Choose love, always."
-        </p>
+      <div class="flex w-full h-auto mt-16 items-center justify-center">
+        <Image
+          src="/images/home/quote.webp"
+          width={400}
+          height={238}
+          alt="Quote"
+          title="Quote"
+        />
       </div>
 
       <!-- Larnchak x Larngear -->
@@ -88,6 +79,9 @@ import Navbar from "@/components/Navbar.astro";
           </div>
         </div>
       </div>
+
+      <!-- Sponsors -->
+       
 
       <!-- Footer -->
       <div class="flex w-full h-auto items-center justify-center">

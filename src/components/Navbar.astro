@@ -1,5 +1,5 @@
 ---
-
+import Image from "astro/components/Image.astro";
 ---
 
 <!-- Navigation Bar -->
@@ -8,17 +8,35 @@
 >
   <!-- Navigation Item -->
   <a href="/home" class="flex flex-col items-center">
-    <div class="w-[50px] h-[50px] bg-gray-300 rounded-full"></div>
+    <Image
+      src="/images/home/nav home.webp"
+      width={50}
+      height={50}
+      alt="Home"
+      title="Home"
+      />
     <span class="mt-1 font-semibold text-black">Home</span>
   </a>
   <!-- Navigation Item -->
   <a href="/ticket" class="flex flex-col items-center">
-    <div class="w-[50px] h-[50px] bg-gray-300 rounded-full"></div>
+    <Image
+      src="/images/home/nav ticket.webp"
+      width={50}
+      height={50}
+      alt="Home"
+      title="Home"
+      />
     <span class="mt-1 font-semibold text-black">Ticket</span>
   </a>
   <!-- Navigation Item -->
   <a href="/flower" class="flex flex-col items-center">
-    <div class="w-[50px] h-[50px] bg-gray-300 rounded-full"></div>
+    <Image
+      src="/images/home/flowernav_1.webp"
+      width={50}
+      height={50}
+      alt="Home"
+      title="Home"
+      />
     <span class="mt-1 font-semibold text-black">Flower</span>
   </a>
 </nav>

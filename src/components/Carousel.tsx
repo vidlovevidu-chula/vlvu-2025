@@ -17,11 +17,11 @@ export function CarouselComponent() {
 
   // Predefined array of image paths
   const imagePaths = [
-    "/images/Carousel/Slider 1.png",
-    "/images/Carousel/Slider 2.png",
-    "/images/Carousel/Slider 3.png",
-    "/images/Carousel/Slider 4.png",
-    "/images/Carousel/Slider 5.png",
+    "/images/home/Carousel/Carousel-1.webp",
+    "/images/home/Carousel/Carousel-2.webp",
+    "/images/home/Carousel/Carousel-3.webp",
+    "/images/home/Carousel/Carousel-4.webp",
+    "/images/home/Carousel/Carousel-5.webp",
   ];
 
   // Predefined array of overlay texts with header and details
