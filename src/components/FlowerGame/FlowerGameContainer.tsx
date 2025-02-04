@@ -7,7 +7,7 @@ import type { GifScene } from "./FirstHalfQuestions";
 
 interface Props {
   serializedState: string | undefined;
-  scenes: GifScene[];
+  scenes: GifScene[][];
 }
 
 class InvalidStateError extends Error {
@@ -158,13 +158,14 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
               <FirstHalfQuestions
                 questionNumber={questionNumber}
                 onFirstHalfAnswer={onFirstHalfAnswer}
-                scenes={scenes}
+                scenes={scenes[0]}
               />
             ) : (
               <SecondHalfQuestions
                 questionNumber={questionNumber}
                 group={group}
                 onSecondHalfAnswer={onSecondHalfAnswer}
+                scenes={scenes[1]}
               />
             )}
           </div>
