@@ -13,4 +13,5 @@ export default defineConfig({
     }),
     react(),
   ],
+  output: "server",
 });

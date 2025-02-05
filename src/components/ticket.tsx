@@ -11,7 +11,11 @@ import {
   name,
 } from "../store";
 import Ticketlist from "./ticketList";
-const Ticket = () => {
+interface TicketProps {
+  user_id: string;
+}
+
+const Ticket: React.FC<TicketProps> = ({ user_id }) => {
   const $pageName = useStore(page);
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);
@@ -58,8 +62,8 @@ const Ticket = () => {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        overflowY:'scroll',
-        overflowX:'hidden'
+        overflowY: "scroll",
+        overflowX: "hidden",
       }}
     >
       {/* ---- Select Custom Page ---- */}
@@ -73,7 +77,7 @@ const Ticket = () => {
             }}
           >
             <img
-              src={"src/assets/cupid/ticket.png"}
+              src={"/cupid/ticket.png"}
               width={30}
               className="absolute right-5 top-1"
             />
@@ -86,7 +90,7 @@ const Ticket = () => {
             }}
           >
             <img
-              src={"src/assets/cupid/cupidmini.png"}
+              src={"/cupid/cupidmini.png"}
               width={29}
               className="absolute right-5 top-1"
             />
@@ -107,7 +111,7 @@ const Ticket = () => {
           ))}
         </div>
       )}
-      
+
       <div className="flex flex-col items-center h-fit">
         {/* ---- Title ---- */}
         <p className="text-[25px] text-[#925A48] font-Inter font-light">
@@ -115,37 +119,37 @@ const Ticket = () => {
         </p>
 
         {/* ---- Display ---- */}
-        <div className="relative flex w-fit h-fit justify-center items-center">
-          <img src={`src/assets/edge/${$edgeType}/${$edgeColor}`} width={240} />
+        <div className="relative flex w-[fit] h-fit justify-center items-center">
+          <img src={`/edge/${$edgeType}/${$edgeColor}`} width={240} />
           {$heartColor && (
             <img
-              src={`src/assets/heart/${$edgeType}/${$heartColor}`}
+              src={`/heart/${$edgeType}/${$heartColor}`}
               width={240}
               className="absolute"
             />
           )}
           {$wing && (
             <img
-              src={`src/assets/wing/${$wing}`}
+              src={`/wing/${$wing}`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           <img
-            src={"src/assets/cupid/cupid.png"}
+            src={"/cupid/cupid.png"}
             width={170}
             className="absolute top-[100px]"
           />
           {$style && (
             <img
-              src={`src/assets/style/${$style}`}
+              src={`/style/${$style}`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           {$prop && (
             <img
-              src={`src/assets/prop/${$prop}`}
+              src={`/prop/${$prop}`}
               width={170}
               className="absolute top-[100px]"
             />
@@ -170,7 +174,7 @@ const Ticket = () => {
               onClick={scrollPrev}
               aria-label="Scroll to previous"
             >
-              <img src={"src/assets/arrow/chevrons-left.svg"} width={29} />
+              <img src={"/arrow/chevrons-left.svg"} width={29} />
             </button>
 
             <div
@@ -185,7 +189,7 @@ const Ticket = () => {
               onClick={scrollNext}
               aria-label="Scroll to next"
             >
-              <img src={"src/assets/arrow/chevrons-right.svg"} width={29} />
+              <img src={"/arrow/chevrons-right.svg"} width={29} />
             </button>
           </div>
         )}
@@ -215,7 +219,7 @@ const Ticket = () => {
                 page.set("Style");
               }}
             >
-              <img src="src/assets/cupid/arrow-r-blue.svg" alt="arrow-right" />
+              <img src="/cupid/arrow-r-blue.svg" alt="arrow-right" />
             </button>
           </div>
         )}
@@ -230,7 +234,7 @@ const Ticket = () => {
                 page.set("Edge");
               }}
             >
-              <img src="src/assets/cupid/arrow-left.svg" alt="arrow-left" />
+              <img src="/cupid/arrow-left.svg" alt="arrow-left" />
             </button>
 
             <button
@@ -258,41 +262,37 @@ const Ticket = () => {
               className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full"
               onClick={() => setDisplay("Name")}
             >
-              <img
-                src="src/assets/cupid/arrow-r-orange.svg"
-                alt="arrow-right"
-              />
+              <img src="/cupid/arrow-r-orange.svg" alt="arrow-right" />
             </button>
           </div>
         )}
 
         {display === "Name" && (
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 bg-white bg-opacity-[70%] p-4 rounded-[10px]">
             <p className="font-Inter font-light text-[#925A48] text-center">
               Enter your name
             </p>
             <input
               placeholder="Name"
-              className="rounded-[13px] h-[37px] px-4 text-center focus:outline-none"
+              className="rounded-[13px] h-[37px] px-4 text-center bg-white focus:outline-none"
               maxLength={13}
               onChange={(e) => name.set(e.target.value.trim())}
             />
             <div className="flex gap-2">
               <button
-                className="flex h-[48px] w-[75.95px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
+                className="flex h-[27px] w-[75.95px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
                 onClick={() => {
                   setDisplay("Dress");
                   page.set("Style");
                 }}
               >
-                <img src="src/assets/cupid/arrow-left.svg" alt="arrow-left" />
+                <img src="/cupid/arrow-left.svg" alt="arrow-left" />
               </button>
               <button
-                className="flex h-[48px] w-[116px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full"
-                onClick={() => {
-                  setDisplay("Ticket");
-                  page.set("Edge");
-                }}
+                className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full"
+                onClick={() =>
+                  (window.location.href = `/ticket-stamp/${user_id}`)
+                }
               >
                 <p>Save</p>
               </button>

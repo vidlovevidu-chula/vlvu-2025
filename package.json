@@ -12,9 +12,9 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@nanostores/react": "^0.8.4",
     "@astrojs/react": "^4.2.0",
     "@astrojs/tailwind": "^5.1.5",
+    "@nanostores/react": "^0.8.4",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "astro": "^5.1.10",
@@ -22,8 +22,9 @@
     "clsx": "^2.1.1",
     "firebase": "^11.2.0",
     "firebase-admin": "^13.0.2",
-    "nanostores": "^0.11.3",
+    "html-to-image": "^1.11.11",
     "lucide-react": "^0.474.0",
+    "nanostores": "^0.11.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^2.6.0",

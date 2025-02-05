@@ -1,0 +1,10 @@
+---
+import TicketsStamp from "../../components/ticket-stamp";
+import Layout from "../../layouts/Layout.astro";
+
+const { user_id } = Astro.params;
+---
+
+<Layout>
+  <TicketsStamp client:load />
+</Layout>

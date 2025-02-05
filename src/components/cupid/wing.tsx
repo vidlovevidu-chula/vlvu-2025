@@ -14,21 +14,9 @@ const Wings = () => {
         alt="wing2.png"
         type="wing"
       />
-      <Ticketcustom
-        src="src/assets/wing/wing3.png"
-        alt="wing3.png"
-        type="wing"
-      />
-      <Ticketcustom
-        src="src/assets/wing/wing4.png"
-        alt="wing4.png"
-        type="wing"
-      />
-      <Ticketcustom
-        src="src/assets/wing/wing5.png"
-        alt="wing5.png"
-        type="wing"
-      />
+      <Ticketcustom src="/wing/wing3.png" alt="wing3.png" type="wing" />
+      <Ticketcustom src="/wing/wing4.png" alt="wing4.png" type="wing" />
+      <Ticketcustom src="/wing/wing5.png" alt="wing5.png" type="wing" />
     </div>
   );
 };

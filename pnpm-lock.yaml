@@ -37,6 +37,9 @@ importers:
       firebase-admin:
         specifier: ^13.0.2
         version: 13.0.2
+      html-to-image:
+        specifier: ^1.11.11
+        version: 1.11.11
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@19.0.0)
@@ -3236,6 +3239,12 @@ packages:
     resolution:
       {
         integrity: sha512-RuMffC89BOWQoY0WKGpIhn5gX3iI54O6nRA0yC124NYVtzjmFWBIiFd8M0x+ZdX0P9R4lADg1mgP8C7PxGOWuQ==,
+      }
+
+  html-to-image@1.11.11:
+    resolution:
+      {
+        integrity: sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==,
       }
 
   html-void-elements@3.0.0:
@@ -8322,6 +8331,8 @@ snapshots:
     optional: true
 
   html-escaper@3.0.3: {}
+
+  html-to-image@1.11.11: {}
 
   html-void-elements@3.0.0: {}
 

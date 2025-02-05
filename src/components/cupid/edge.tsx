@@ -7,26 +7,10 @@ const Edges = () => {
 
   return (
     <div className="flex flex-row">
-      <Ticketcustom
-        src={`src/assets/edge/edge1/${$edgeColor}`}
-        alt="edge1"
-        type="edge"
-      />
-      <Ticketcustom
-        src={`src/assets/edge/edge2/${$edgeColor}`}
-        alt="edge2"
-        type="edge"
-      />
-      <Ticketcustom
-        src={`src/assets/edge/edge3/${$edgeColor}`}
-        alt="edge3"
-        type="edge"
-      />
-      <Ticketcustom
-        src={`src/assets/edge/edge4/${$edgeColor}`}
-        alt="edge4"
-        type="edge"
-      />
+      <Ticketcustom src={`/edge/edge1/${$edgeColor}`} alt="edge1" type="edge" />
+      <Ticketcustom src={`/edge/edge2/${$edgeColor}`} alt="edge2" type="edge" />
+      <Ticketcustom src={`/edge/edge3/${$edgeColor}`} alt="edge3" type="edge" />
+      <Ticketcustom src={`/edge/edge4/${$edgeColor}`} alt="edge4" type="edge" />
     </div>
   );
 };
