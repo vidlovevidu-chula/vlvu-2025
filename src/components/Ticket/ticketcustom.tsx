@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { edgeType, heartColor, style, wing, prop } from "../store";
+import { edgeType, heartColor, style, wing, prop } from "@/store";
 
 interface TicketCustomProps {
   src: string;

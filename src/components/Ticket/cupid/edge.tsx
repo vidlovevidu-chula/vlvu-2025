@@ -1,7 +1,7 @@
 import React from "react";
 import Ticketcustom from "../ticketcustom";
 import { useStore } from "@nanostores/react";
-import { edgeColor } from "../../store";
+import { edgeColor } from "../../../store";
 const Edges = () => {
   const $edgeColor = useStore(edgeColor);
 

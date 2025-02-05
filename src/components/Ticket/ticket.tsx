@@ -9,7 +9,7 @@ import {
   wing,
   prop,
   name,
-} from "../store";
+} from "@/store";
 import Ticketlist from "./ticketList";
 interface TicketStampProps {
   user_id: string;

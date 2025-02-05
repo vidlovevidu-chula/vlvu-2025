@@ -9,9 +9,9 @@ import {
   name,
 } from "@/store";
 import { useStore } from "@nanostores/react";
-import * as htmlToImage from 'html-to-image';
-interface TicketStampProps{
-  user_id :string;
+import * as htmlToImage from "html-to-image";
+interface TicketStampProps {
+  user_id: string;
 }
 const TicketsStamp = ({ user_id }: TicketStampProps) => {
   const $edgeType = useStore(edgeType);
@@ -21,7 +21,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
   const $wing = useStore(wing);
   const $prop = useStore(prop);
   const $name = useStore(name);
-  
+
   const downloadIMG = () => {
     const node = document.getElementById("Ticket");
 
@@ -42,7 +42,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
         console.error("Oops, something went wrong!", error);
       });
   };
-    
+
   return (
     <div
       className="relative flex flex-col items-center justify-center gap-4 min-h-screen py-[70px]"
@@ -55,9 +55,11 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
         overflowX: "hidden",
       }}
     >
-      <p>{ user_id }</p>
       {/* Ticket Card */}
-      <div id='Ticket' className="relative flex w-fit h-fit justify-center items-center bg-transparent">
+      <div
+        id="Ticket"
+        className="relative flex w-fit h-fit justify-center items-center bg-transparent"
+      >
         <img src={`/edge/${$edgeType}/${$edgeColor}`} width={240} />
         {$heartColor && (
           <img
@@ -96,24 +98,26 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
       {/* Navigation */}
       <div className="flex flex-col gap-4">
-      <div className="bottom-8 flex gap-4">
-        <button
-          className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter"
-          onClick={() => (window.location.href = "/ticket-stamp/ticket/1")}
-        >
-          ตกแต่ง ticket
-        </button>
-        <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter">
-          ดูแสตมป์
-        </button>
-      </div>
+        <div className="bottom-8 flex gap-4">
+          <button
+            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter"
+            onClick={() => (window.location.href = `/ticket-stamp/ticket/${user_id}`)}
+          >
+            ตกแต่ง ticket
+          </button>
+          <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter">
+            ดูแสตมป์
+          </button>
+        </div>
 
-      {/* Share */}
-      <div className="bg-white w-full py-[10px] filter bg-blur-sm bg-opacity-[75%] rounded-[7px] text-[13px] text-center
+        {/* Share */}
+        <div
+          className="bg-white w-full py-[10px] filter bg-blur-sm bg-opacity-[75%] rounded-[7px] text-[13px] text-center
       cursor-pointer"
-      onClick={downloadIMG}>
-        Download Your Ticket
-      </div>
+          onClick={downloadIMG}
+        >
+          Download Your Ticket
+        </div>
       </div>
     </div>
   );

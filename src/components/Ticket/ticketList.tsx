@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@nanostores/react";
-import { page } from "../store";
+import { page } from "@/store";
 import Edge from "./cupid/edge";
 import Style from "./cupid/style";
 import Wing from "./cupid/wing";

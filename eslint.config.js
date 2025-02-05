@@ -10,5 +10,5 @@ export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
-  { ignores: ["node_modules", "dist", ".astro"] },
+  { ignores: ["node_modules", "dist", ".astro", ".vercel"] },
 ];
