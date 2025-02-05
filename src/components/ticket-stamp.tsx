@@ -10,8 +10,10 @@ import {
 } from "@/store";
 import { useStore } from "@nanostores/react";
 import * as htmlToImage from 'html-to-image';
-
-const TicketsStamp = () => {
+interface TicketStampProps{
+  user_id :string;
+}
+const TicketsStamp = ({ user_id }: TicketStampProps) => {
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);
   const $heartColor = useStore(heartColor);
@@ -53,34 +55,35 @@ const TicketsStamp = () => {
         overflowX: "hidden",
       }}
     >
+      <p>{ user_id }</p>
       {/* Ticket Card */}
       <div id='Ticket' className="relative flex w-fit h-fit justify-center items-center bg-transparent">
-        <img src={`src/assets/edge/${$edgeType}/${$edgeColor}`} width={240} />
+        <img src={`/edge/${$edgeType}/${$edgeColor}`} width={240} />
         {$heartColor && (
           <img
-            src={`src/assets/heart/${$edgeType}/${$heartColor}`}
+            src={`/heart/${$edgeType}/${$heartColor}`}
             width={240}
             className="absolute"
           />
         )}
         <img
-          src={`src/assets/wing/${$wing}`}
+          src={`/wing/${$wing}`}
           width={170}
           className="absolute top-[100px]"
         />
         <img
-          src={"src/assets/cupid/cupid.png"}
+          src={"/cupid/cupid.png"}
           width={170}
           className="absolute top-[100px]"
         />
         <img
-          src={`src/assets/style/${$style}`}
+          src={`/style/${$style}`}
           width={170}
           className="absolute top-[100px]"
         />
 
         <img
-          src={`src/assets/prop/${$prop}`}
+          src={`/prop/${$prop}`}
           width={170}
           className="absolute top-[100px]"
         />
@@ -96,7 +99,7 @@ const TicketsStamp = () => {
       <div className="bottom-8 flex gap-4">
         <button
           className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter"
-          onClick={() => (window.location.href = "/ticket")}
+          onClick={() => (window.location.href = "/ticket-stamp/ticket/1")}
         >
           ตกแต่ง ticket
         </button>

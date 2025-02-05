@@ -11,11 +11,11 @@ import {
   name,
 } from "../store";
 import Ticketlist from "./ticketList";
-interface TicketProps {
+interface TicketStampProps {
   user_id: string;
 }
 
-const Ticket: React.FC<TicketProps> = ({ user_id }) => {
+const Ticket = ({ user_id }: TicketStampProps) => {
   const $pageName = useStore(page);
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);

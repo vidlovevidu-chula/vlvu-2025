@@ -6,5 +6,5 @@ const { user_id } = Astro.params;
 ---
 
 <Layout>
-  <Ticket  client:load />
+  <Ticket user_id = {user_id}  client:load />
 </Layout>
