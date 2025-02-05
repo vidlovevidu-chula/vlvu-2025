@@ -72,9 +72,13 @@ export default {
         Yeseva: ["YesevaOne", "cursive"],
         Amoresa: ["Amoresa", "cursive"],
         Ovo: ["Ovo", "sans-serif"],
+        Inter: ["Inter", "sans-serif"],
+        NotoSansThai: ["Noto Sans Thai", "sans-serif"],
       },
       backgroundImage: {
         home: "url('/images/home/homebg.webp')",
+        sponsor: "url('/images/home/bg-spon-home.webp')",
+        location: "url('/images/home/location.webp')",
       },
     },
   },

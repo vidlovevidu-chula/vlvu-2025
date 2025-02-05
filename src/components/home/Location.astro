@@ -1,0 +1,28 @@
+---
+import Image from "astro/components/Image.astro";
+---
+
+<div class="bg-location bg-cover w-full h-auto pt-10 mx-4">
+    <Image
+        src="/images/location.webp"
+        width={354}
+        height={221}
+        alt="Larnchak x Larngear"
+        title="Larnchak x Larngear"
+        class:list="mx-auto bg-[#DCDFF0]"
+    />
+    <div class="flex items-center justify-center space-x-6 p-4">
+        <!-- First Column -->
+        <div class="text-center">
+            <p class="text-sm font-semibold">Larnchak</p>
+            <p class="text-sm font-semibold font-NotoSansThai">ลานจักร</p>
+        </div>
+        <!-- Separator -->
+        <p class="text-2xl font-bold">×</p>
+        <!-- Second Column -->
+        <div class="text-center">
+            <p class="text-sm font-semibold">Larn Intania</p>
+            <p class="text-sm font-semibold font-NotoSansThai">ลานอินทาเนีย</p>
+        </div>
+    </div>
+</div>

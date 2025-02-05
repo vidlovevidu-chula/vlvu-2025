@@ -1,15 +1,22 @@
 ---
-import { CarouselComponent } from "@/components/Carousel";
+import { CarouselComponent } from "@/components/home/Carousel";
 import Layout from "../layouts/Layout.astro";
-import WebTitle from "@/components/WebTitle.astro";
+import WebTitle from "@/components/home/WebTitle.astro";
 import "@/styles/global.css";
 import Image from "astro/components/Image.astro";
-import Minigames from "@/components/Minigames.astro";
+import Minigames from "@/components/home/Minigames.astro";
 import Navbar from "@/components/Navbar.astro";
+import Location from "@/components/home/Location.astro";
+import Sponsors from "@/components/home/Sponsors.astro";
 ---
 
 <Layout title="Home | VidLoveVidYou 2025">
-  <main class="min-h-screen bg-home">
+  <!-- Navbar -->
+  <nav class="fixed bottom-0 max-w-md w-full z-30">
+    <Navbar />
+   </nav>
+
+  <main class="min-h-screen bg-home bg-cover">
     <div class="flex flex-col items-center justify-center h-auto font-Yeseva">
       <!-- Web Title -->
       <div class="flex h-[125px] w-[324px] mt-[75px] z-10">
@@ -23,7 +30,7 @@ import Navbar from "@/components/Navbar.astro";
 
       <!-- Register Button -->
       <div class="flex w-3/4 h-auto mt-10 items-center justify-center">
-        <a href="https://www.instagram.com/min.taadaa/" target="_blank">
+        <a href="https://forms.gle/oB1YhtJAxJ8nmkN59" target="_blank">
           <Image
             src="/images/home/register_1.webp"
             width={400}
@@ -50,40 +57,15 @@ import Navbar from "@/components/Navbar.astro";
         />
       </div>
 
-      <!-- Larnchak x Larngear -->
-      <div
-        class="flex flex-col w-full h-auto my-[95px] items-center justify-center gap-2"
-      >
-        <Image
-          src="/images/location.webp"
-          width={354}
-          height={221}
-          alt="Larnchak x Larngear"
-          title="Larnchak x Larngear"
-          class:list="mx-8 bg-[#DCDFF0] text-center items-center justify-center"
-        />
-        <div class="flex items-center justify-center space-x-6">
-          <!-- First Column -->
-          <div class="text-center">
-            <p class="text-sm font-semibold">Larnchak</p>
-            <p class="text-sm font-bold font-Atasanee">ลานจักร</p>
-          </div>
-          <!-- Separator -->
-          <p class="text-2xl font-bold">×</p>
-          <!-- Second Column -->
-          <div class="text-center">
-            <p class="text-sm font-semibold">Larngear</p>
-            <p class="text-sm font-bold font-Atasanee">ลานเกียร์</p>
-          </div>
-        </div>
+      <!-- Location -->
+      <div class="flex w-full h-auto my-[95px]">
+        <Location />
       </div>
 
       <!-- Sponsors -->
-
-      <!-- Footer -->
-      <div class="flex w-full h-auto items-center justify-center">
-        <Navbar />
-      </div>
+       <div class="flex w-full h-auto m-10 items-center justify-center">
+        <Sponsors />
+       </div>
     </div>
   </main>
 </Layout>
