@@ -91,5 +91,5 @@ export const CarouselForSponsors = () => {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
+  );
 };
