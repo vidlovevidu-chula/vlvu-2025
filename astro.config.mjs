@@ -17,7 +17,6 @@ export default defineConfig({
   ],
 
   output: "server",
-  site: "https://vlvu-2025-topaz.vercel.app",
 
   adapter: vercel(),
 });
