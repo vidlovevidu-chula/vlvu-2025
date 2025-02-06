@@ -1,7 +1,7 @@
 ---
 import { Example } from "./Example";
 
-const wai = await fetch("/api/example");
+const wai = await fetch(`${import.meta.env.BASE_URL}/api/example`);
 const json = await wai.json();
 console.info(json);
 ---
