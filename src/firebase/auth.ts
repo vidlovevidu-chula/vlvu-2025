@@ -4,14 +4,27 @@ import { app } from "./client";
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+const getStoredToken = (): string | null => localStorage.getItem("accessToken");
+
+const saveToken = (token: string) => localStorage.setItem("accessToken", token);
+
 export const signInWithGoogle = async () => {
   try {
+    const existingToken = getStoredToken();
+    
+    if (existingToken) {
+      console.log("Already signed in.");
+      return { user: auth.currentUser, token: existingToken };
+    }
+
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
     const token = credential?.accessToken ?? null;
     const user = result.user;
 
-    console.log("User:", user);
+    if (token) saveToken(token);
+
+    console.log("User signed in:", user);
     console.log("Access Token:", token);
     return { user, token };
   } catch (error: unknown) {

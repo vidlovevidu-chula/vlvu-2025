@@ -1,7 +1,7 @@
 import React from "react";
 import { signInWithGoogle } from "../firebase/auth"; 
 
-export const LoginButton: React.FC = () => {
+export default function LoginButton() {
   return (
     <button 
       className="google-btn border-black-300" 
