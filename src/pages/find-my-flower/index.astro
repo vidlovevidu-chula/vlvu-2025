@@ -625,7 +625,9 @@ const scenes2: GifScene[] = [
     className: "",
     q: { boardImageUrl: "/images/group1/q10.png" },
   },
-  //<--ending scene-->
+];
+//<--ending scene-->
+const scenes3: GifScene[] = [
   {
     url: "/videos/group1/8.gif",
     duration: 1000,
@@ -710,7 +712,7 @@ const scenes2: GifScene[] = [
   <div class="flex justify-center items-center w-full h-[100vh] bg-black">
     <FlowerGameContainer
       serializedState={serializedState}
-      scenes={[scenes, scenes2]}
+      scenes={[scenes, scenes2, scenes3]}
       client:load
     />
     <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->
