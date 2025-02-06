@@ -11,7 +11,7 @@ const saveToken = (token: string) => localStorage.setItem("accessToken", token);
 export const signInWithGoogle = async () => {
   try {
     const existingToken = getStoredToken();
-    
+
     if (existingToken) {
       console.log("Already signed in.");
       return { user: auth.currentUser, token: existingToken };

@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCA1HYeMmIuUFEysGQ8GfJpr6kvni5I4PU",
-  authDomain: "vlvu2025.firebaseapp.com",
+  apiKey: import.meta.env.FIREBASE_API_KEY,
+  authDomain: import.meta.env.FIREBASE_AUTH_DOMAIN,
   projectId: "vlvu2025",
-  storageBucket: "vlvu2025.firebasestorage.app",
-  messagingSenderId: "1004972445900",
-  appId: "1:1004972445900:web:944ab8e021ae586c19b269",
-  measurementId: "G-ZL7EN8T99Z"
+  storageBucket: import.meta.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.FIREBASE_APP_ID,
+  measurementId: import.meta.env.FIREBASE_MEASUREMENT_ID,
 };
 
 export const app = initializeApp(firebaseConfig);
