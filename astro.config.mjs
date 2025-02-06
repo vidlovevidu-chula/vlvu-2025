@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 import react from "@astrojs/react";
 
-import vercel from '@astrojs/vercel';
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +17,7 @@ export default defineConfig({
   ],
 
   output: "server",
+  site: "https://vlvu-2025-topaz.vercel.app/",
 
   adapter: vercel(),
 });
