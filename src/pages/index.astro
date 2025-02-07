@@ -25,7 +25,7 @@ import Sponsors from "@/components/home/Sponsors.astro";
 
 			<!-- Carousel -->
 			<div class="flex w-full h-auto mt-20 items-center justify-center">
-				<CarouselComponent client:visible />
+				<CarouselComponent client:load />
 			</div>
 
 			<!-- Register Button -->
@@ -43,7 +43,7 @@ import Sponsors from "@/components/home/Sponsors.astro";
 
 			<!-- Mini games -->
 			<div class="flex w-full mt-10 h-auto">
-				<Minigames client:visible />
+				<Minigames />
 			</div>
 
 			<!-- Quote -->
@@ -64,7 +64,7 @@ import Sponsors from "@/components/home/Sponsors.astro";
 
 			<!-- Sponsors -->
 			<div class="flex w-full h-auto m-10 items-center justify-center">
-				<Sponsors client:visible />
+				<Sponsors />
 			</div>
 		</div>
 	</main>
