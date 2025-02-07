@@ -12,8 +12,6 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.2.1",
-    "@astrojs/netlify": "^6.1.0",
     "@astrojs/react": "^4.2.0",
     "@astrojs/tailwind": "^5.1.5",
     "@astrojs/vercel": "^8.0.5",
