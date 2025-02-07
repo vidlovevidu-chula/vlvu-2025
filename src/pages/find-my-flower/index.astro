@@ -1260,13 +1260,13 @@ const ending: GifScene[] = [
     url: [
       // result
       { url: "/videos/group1/7-9.gif", className: "w-full" },
-      {
-        url: "/images/group1/flower.png",
-        className:
-          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
-      },
+      // {
+      //   url: "/images/group1/flower.png",
+      //   className:
+      //     "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
+      // },
     ],
-    buttonImageUrl: "/images/tap.png",
+    buttonImageUrl: "/images/group1/flower.png", //"/images/tap.png",
     className: "absolute bottom-[12%] right-[7%] w-[20%]",
   },
 ];
@@ -1276,7 +1276,7 @@ const ending: GifScene[] = [
   <div class="flex justify-center items-center w-full h-[100vh] bg-black">
     <FlowerGameContainer
       serializedState={serializedState}
-      scenes={[scenes, group2, ending]}
+      scenes={[scenes, group1, group2, group3, ending]}
       client:load
     />
     <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->

@@ -66,29 +66,20 @@ export const FirstHalfQuestions: React.FC<Props> = ({
             />
             <form
               id="question"
-              className="absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6  max-[450px]:text-[4vw]"
+              className="text-red-500 absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6  max-[450px]:text-[4vw]"
               onSubmit={() => {
                 setCurrentScene((prev) => prev + 1);
               }}
             >
-              <h1 className="text-red-500">Question {questionNumber}</h1>
-              <div className="flex flex-col gap-x-2 gap-y-10 text-red-500 max-[450px]:gap-y-[8vw]">
-                <button
-                  className="border border-red-500"
-                  onClick={() => onFirstHalfAnswer("charity")}
-                >
+              <h1 className="">Question {questionNumber}</h1>
+              <div className="flex flex-col gap-x-2 gap-y-10 max-[450px]:gap-y-[8vw]">
+                <button onClick={() => onFirstHalfAnswer("charity")}>
                   charity
                 </button>
-                <button
-                  className="border border-red-500"
-                  onClick={() => onFirstHalfAnswer("sensory")}
-                >
+                <button onClick={() => onFirstHalfAnswer("sensory")}>
                   sensory
                 </button>
-                <button
-                  className="border border-red-500"
-                  onClick={() => onFirstHalfAnswer("harmony")}
-                >
+                <button onClick={() => onFirstHalfAnswer("harmony")}>
                   harmony
                 </button>
               </div>
