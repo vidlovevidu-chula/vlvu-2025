@@ -15,6 +15,7 @@ const serviceAccount = {
   client_x509_cert_url: import.meta.env.VITE_FIREBASE_CLIENT_CERT_URL,
 };
 
+
 export const app =
   activeApps.length === 0
     ? initializeApp({
