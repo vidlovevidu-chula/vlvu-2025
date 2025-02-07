@@ -15,16 +15,10 @@ const serviceAccount = {
   client_x509_cert_url: import.meta.env.VITE_FIREBASE_CLIENT_CERT_URL,
 };
 
-const initApp = () => {
-  if (import.meta.env.PROD) {
-    console.info("PROD env detected. Using default service account.");
-    // Use default config in firebase functions. Should be already injected in the server by Firebase.
-    return initializeApp();
-  }
-  console.info("Loading service account from env.");
-  return initializeApp({
-    credential: cert(serviceAccount as ServiceAccount),
-  });
-};
 
-export const app = activeApps.length === 0 ? initApp() : activeApps[0];
+export const app =
+  activeApps.length === 0
+    ? initializeApp({
+        credential: cert(serviceAccount as ServiceAccount),
+      })
+    : activeApps[0];
