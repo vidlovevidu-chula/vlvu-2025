@@ -8,7 +8,7 @@ interface Props {
   questionNumber: number;
   group: FlowerGroup;
   onSecondHalfAnswer: (typeNumber: FlowerType) => unknown;
-  scenes: GifScene[];
+  scenes: GifScene[][];
 }
 export const SecondHalfQuestions: React.FC<Props> = ({
   questionNumber,
@@ -18,8 +18,13 @@ export const SecondHalfQuestions: React.FC<Props> = ({
 }) => {
   const [currentScene, setCurrentScene] = useState(0);
 
+  let groupNum = 0;
+  if (group == "sensory") groupNum = 0;
+  else if (group == "charity") groupNum = 1;
+  else groupNum = 2;
+
   const { url, buttonImageUrl, className, duration, q, ...props } =
-    scenes?.[currentScene] || {};
+    scenes[groupNum]?.[currentScene] || {};
 
   useEffect(() => {
     if (buttonImageUrl || !duration) return;
@@ -61,15 +66,15 @@ export const SecondHalfQuestions: React.FC<Props> = ({
             />
             <form
               id="question"
-              className="absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6"
+              className="text-transparent absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6 max-[450px]:text-[4vw]"
               onSubmit={() => {
                 setCurrentScene((prev) => prev + 1);
               }}
             >
-              <h1 className="text-red-500">
+              <h1 className="">
                 You are in {group} Question {questionNumber}
               </h1>
-              <div className="flex flex-col gap-x-2 gap-y-10 text-red-500 max-[450px]:gap-y-[8vw] max-[450px]:text-[4vw]">
+              <div className="flex flex-col gap-x-2 gap-y-10 max-[450px]:gap-y-[8vw]">
                 {group === "charity" ? (
                   <>
                     <button onClick={() => onSecondHalfAnswer(5)}>five</button>

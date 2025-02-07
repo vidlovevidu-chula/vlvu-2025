@@ -165,7 +165,7 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
                 questionNumber={questionNumber}
                 group={group}
                 onSecondHalfAnswer={onSecondHalfAnswer}
-                scenes={scenes[1]}
+                scenes={[scenes[1], scenes[2], scenes[3]]}
               />
             )}
           </div>
@@ -173,7 +173,7 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
           <ResultPage
             flowerType={flowerType}
             showIntro={!storedState || storedState.questionNumber <= 10}
-            scenes={scenes[2]}
+            scenes={scenes[4]}
           />
         )}
       </div>
