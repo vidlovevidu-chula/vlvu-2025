@@ -6,8 +6,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export function CarouselComponent() {
@@ -17,20 +15,22 @@ export function CarouselComponent() {
 
   // Predefined array of image paths
   const imagePaths = [
-    "/images/home/Carousel/Carousel-1.webp",
-    "/images/home/Carousel/Carousel-2.webp",
-    "/images/home/Carousel/Carousel-3.webp",
-    "/images/home/Carousel/Carousel-4.webp",
-    "/images/home/Carousel/Carousel-5.webp",
+    "/images/home/Carousel/wristband.jpg",
+    "/images/home/Carousel/stage.webp",
+    "/images/home/Carousel/dance.jpeg",
+    "/images/home/Carousel/fortune.jpeg",
+    "/images/home/Carousel/blinddate.webp",
+    "/images/home/Carousel/market.jpg",
   ];
 
   // Predefined array of overlay texts with header and details
   const overlayTexts = [
-    { header: "อัคคีสลาตัน", details: "โกเอ็นจิ ชูยะ" },
-    { header: "น่ากลัวจังเลย", details: "คาจิม่าและอิจิโนเสะ" },
-    { header: "คุณตาครับ", details: "เอ็นโด มาโมรุ" },
-    { header: "เพื่อนรักหันหลังใส่กัน", details: "โกเอ็นจิและลูกสมุนของเขา" },
-    { header: "เบียวอิคิเท็นไค", details: "โกะโจ ซาโตรุ" },
+    { header: "Special for Register", details: "พิเศษสำหรับผู้ลงทะเบียน! ไม่ว่าคุณจะเป็น #ทีมโสด #ทีมมีคู่ หรือ #ทีมไม่อยากบอก รับไปเลย Wristband สุด Exclusive มีจำนวนจำกัด 1000 ชิ้น แจกเฉพาะวันงาน First come, First serve!" },
+    { header: "พบกับ Highlight Stage", details: "“ความรักจะไปทางไหน? ถามใจเธอดู” มาฟังการโต้วาทีสุดจี๊ด แล้วต่อด้วยคอนเสิร์ตสุดมันส์ ที่ลานอินทาเนีย บอกเลยว่า แสง สี แสง จัดเต็ม! สนุกสุดเหวี่ยงแบบนี้ คนโสดอาจสะดุดเจอรักแท้ก็ได้นะ" },
+    { header: "สายแดนซ์ตัวจริงห้ามพลาด", details: "เปิดพื้นที่โชว์สเตป ปลุกความเป็นเมนแดนซ์ในตัวคุณ! ไม่ว่าจะ Dance Show หรือ Random Dance มาขยับร่างกายไปตามจังหวะสนุก ๆ นี้ แล้วมาดูกันว่า ลานอินทาเนียจะลุกเป็นไฟแค่ไหน?!" },
+    { header: "ดวงของเธอฉันขอดูนะ", details: "1 ใน 8 บูธกิจกรรมสุดสนุก! ถ้าอยากรู้ว่าอนาคตจะไปทางไหน ไม่ว่าจะเรื่องความรัก การเรียน การงาน มาดูดวงกับผู้เชี่ยวชาญที่ลานจักรพงษ์! เปิดไพ่ไขความลับ แล้วมาดูกันว่า ดวงของคุณจะบอกอะไร!" },
+    { header: "ระวังสิ้นสุดทางโสด", details: "Next Station: Love คนโสดเตรียมตัวให้พร้อม เปิดตาเปิดใจ มาพบกับใครบางคน ที่อาจเป็น (soul)mate ของคุณ! มาพูดคุยให้หัวใจเต้นแรงในบูธ Blind Date ที่สวนรวมใจ!" },
+    { header: "อร่อยตัวแตก เพื่อนต้องแบกกลับบ้าน", details: "เพลิดเพลินกับกิจกรรมแล้ว อย่าลืมแวะมาเติมพลังที่ Market zone! อิ่มอร่อยกับของคาวจานเด็ด              ขนมหวานสุดฟิน และเครื่องดื่มเติมความสดชื่น พร้อมลุยกับความสนุกต่อแบบไม่มีสะดุด!" }
   ];
 
   return (
@@ -50,46 +50,18 @@ export function CarouselComponent() {
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover rounded-3xl"
                 />
-                <div className="absolute bottom-0 left-0 w-full text-white p-2 text-end rounded-b-3xl font-sans">
+                <div className="absolute bottom-0 left-0 w-full text-white p-2 text-end rounded-b-3xl font-NotoSansThai bg-black bg-opacity-20 rounded-t-lg">
                   <h3 className="text-xl font-bold">
                     {overlayTexts[index].header}
                   </h3>
-                  <p className="text-[11px]">{overlayTexts[index].details}</p>
+                  <p className="text-[12px]">{overlayTexts[index].details}</p>
                 </div>
               </CardContent>
             </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="mx-3 bg-transparent" />
-      <CarouselNext className="mx-3 bg-transparent" />
     </Carousel>
   );
 }
 
-export const CarouselForSponsors = () => {
-  return (
-    <Carousel
-      opts={{
-        align: "start",
-      }}
-      className="w-full max-w-sm"
-    >
-      <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-3xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
-    </Carousel>
-  );
-};

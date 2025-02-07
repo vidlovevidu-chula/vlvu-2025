@@ -1,10 +1,67 @@
 ---
 import Image from "astro/components/Image.astro";
-import { CarouselForSponsors } from "@/components/home/Carousel";
 ---
 
-<div
-  class="flex bg-sponsor w-full h-auto pt-10 pb-28 justify-center items-center"
->
-  <CarouselForSponsors client:load />
+<div class="flex flex-col bg-sponsor w-full h-auto pt-10 pb-28 justify-center items-center">
+  <div class="w-full flex gap-4 justify-center items-center">
+    <Image
+      src="/images/home/sponsors/bewild.png"
+      width={70}
+      height={70}
+      alt="Sponsor"
+      class:list={"w-auto h-[70px]"}
+    />
+    <Image
+      src="/images/home/sponsors/mansome.png"
+      width={70}
+      height={70}
+      alt="Sponsor"
+      class:list={"w-auto h-[70px]"}
+    />
+    <Image
+      src="/images/home/sponsors/molto.png"
+      width={70}
+      height={70}
+      alt="Sponsor"
+      class:list={"w-auto h-[70px]"}
+    />
+    <Image
+      src="/images/home/sponsors/ido360.png"
+      width={70}
+      height={70}
+      alt="Sponsor"
+      class:list={"w-auto h-[70px]"}
+    />
+    </div>
+    <div class="w-full flex gap-4 justify-center items-center mt-4">
+      <Image
+        src="/images/home/sponsors/2a.png"
+        width={45}
+        height={45}
+        alt="Sponsor"
+        class:list={"w-auto h-[45px]"}
+      />
+      <Image
+        src="/images/home/sponsors/huisuki.png"
+        width={45}
+        height={45}
+        alt="Sponsor"
+        class:list={"w-auto h-[45px]"}
+      />
+      <Image
+        src="/images/home/sponsors/onetouch.png"
+        width={45}
+        height={45}
+        alt="Sponsor"
+        class:list={"w-auto h-[45px]"}
+      />
+      <Image
+        src="/images/home/sponsors/koka.png"
+        width={45}
+        height={45}
+        alt="Sponsor"
+        class:list={"w-auto h-[45px]"}
+      />
+
+
 </div>
