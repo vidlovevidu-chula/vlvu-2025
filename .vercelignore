@@ -1,4 +1,11 @@
 node_modules/
-*.log
+.git/
 tests/
 *.md
+*.log
+.env
+.vscode/
+dist/
+tmp/
+build/
+coverage/
