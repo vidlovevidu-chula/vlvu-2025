@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_FIREBASE_TOKEN_URI: string;
   readonly VITE_FIREBASE_AUTH_CERT_URL: string;
   readonly VITE_FIREBASE_CLIENT_CERT_URL: string;
+  readonly BASE_URL: string;
 }
 
 interface ImportMeta {
