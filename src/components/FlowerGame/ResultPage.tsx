@@ -17,6 +17,7 @@ export const ResultPage: React.FC<Props> = ({
   scenes,
 }) => {
   const [currentScene, setCurrentScene] = useState(0);
+  const [showResult, setShowResult] = useState(false);
 
   const { url, buttonImageUrl, className, duration, ...props } =
     scenes?.[currentScene] || {};
@@ -37,7 +38,18 @@ export const ResultPage: React.FC<Props> = ({
       ) : (
         <img className="w-full" src={url} alt="scene" />
       )}
-      {buttonImageUrl && (
+      {buttonImageUrl && currentScene == scenes.length - 1 ? (
+        <button
+          className={twMerge(
+            //"absolute -bottom-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%]",
+            "border border-red-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
+          )}
+          onClick={() => setShowResult(!showResult)}
+          {...props}
+        >
+          <img className="w-full" src={buttonImageUrl} alt="next" />
+        </button>
+      ) : (
         <button
           className={twMerge("absolute", className)}
           onClick={() => setCurrentScene((prev) => prev + 1)}
@@ -46,15 +58,39 @@ export const ResultPage: React.FC<Props> = ({
           <img src={buttonImageUrl} alt="next" />
         </button>
       )}
-      {currentScene == scenes.length ? (
-        <div className="bg-white">
+      {showResult ? (
+        <div className="w-[80%] h-[70%] absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2">
           {showIntro && <h1>Intro</h1>}
           <h1>Your flower is {flowerType}</h1>
-          <p>
+          <p className="w-full h-full bg-white">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
             quos sit maiores, similique nesciunt ut velit possimus explicabo
             quam porro numquam ab ea corporis.
           </p>
+          <div className="flex justify-evenly my-[3%]">
+            <button
+              className="w-[45%]"
+              onClick={() => setShowResult(!showResult)}
+              {...props}
+            >
+              <img
+                className="w-full"
+                alt="Close"
+                src="/images/bouquetButton.png"
+              />
+            </button>
+            <button
+              className="w-[45%]"
+              onClick={() => setShowResult(!showResult)}
+              {...props}
+            >
+              <img
+                className="w-full"
+                alt="Close"
+                src="/images/saveButton.png"
+              />
+            </button>
+          </div>
         </div>
       ) : (
         <></>
