@@ -47,7 +47,11 @@ export const ResultPage: React.FC<Props> = ({
           onClick={() => setShowResult(!showResult)}
           {...props}
         >
-          <img className="w-full" src={buttonImageUrl} alt="next" />
+          <img
+            className="w-full animate-zoomIn"
+            src={buttonImageUrl}
+            alt="next"
+          />
         </button>
       ) : (
         <button

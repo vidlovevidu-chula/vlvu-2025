@@ -69,6 +69,24 @@ export default {
         Ribbon: ["RibbonDemo", "serif"],
         Yeseva: ["YesevaOne", "cursive"],
       },
+      keyframes: {
+        "zoom-in": {
+          "0%": {
+            opacity: 0,
+            transform: "scale3d(0.3, 0.3, 0.3)",
+          },
+          "80%": {
+            opacity: 0.8,
+            transform: "scale3d(1.1, 1.1, 1.1)",
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
+      },
+      animation: {
+        zoomIn: "zoom-in 1s ease-out 0s 1",
+      },
     },
   },
   plugins: [import("tailwindcss-animate")],
