@@ -66,7 +66,7 @@ export const FirstHalfQuestions: React.FC<Props> = ({
             />
             <form
               id="question"
-              className="text-red-500 absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6  max-[450px]:text-[4vw]"
+              className="text-transparent absolute top-[62%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6  max-[450px]:text-[4vw]"
               onSubmit={() => {
                 setCurrentScene((prev) => prev + 1);
               }}
