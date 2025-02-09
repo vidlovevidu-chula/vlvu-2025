@@ -8,9 +8,10 @@ import Minigames from "@/components/home/Minigames.astro";
 import Navbar from "@/components/Navbar.astro";
 import Location from "@/components/home/Location.astro";
 import Sponsors from "@/components/home/Sponsors.astro";
+import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 ---
 
-<Layout title="Home | VidLoveVidYou 2025">
+<Layout title="Home | VidLoveVidU 2025">
   <!-- Navbar -->
   <nav class="fixed bottom-0 max-w-md w-full z-30">
     <Navbar />
@@ -24,15 +25,15 @@ import Sponsors from "@/components/home/Sponsors.astro";
       </div>
 
       <!-- Carousel -->
-      <div class="flex w-full h-auto mt-20 items-center justify-center">
+      <div class="flex w-full h-auto mt-32 items-center justify-center">
         <CarouselComponent client:load />
       </div>
 
       <!-- Register Button -->
-      <div class="flex w-3/4 h-auto mt-10 pr-4 items-center justify-center">
+      <div class="flex w-3/4 h-auto mt-20 items-center justify-center">
         <a href="https://forms.gle/oB1YhtJAxJ8nmkN59" target="_blank">
           <Image
-            src="/images/home/pre-registerfinal.svg"
+            src="/images/home/pre-register.svg"
             width={177}
             height={108}
             alt="Register"

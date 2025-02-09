@@ -79,8 +79,25 @@ export default {
         home: "url('/images/home/homebg.webp')",
         sponsor: "url('/images/home/bg-spon-home.webp')",
         location: "url('/images/home/location.webp')",
+        title: "url('/images/home/title.webp')",
+      },
+      /** ✅ Added text-shadow styles */
+      textShadow: {
+        sm: "1px 1px 2px rgba(0, 0, 0, 0.2)",
+        md: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+        lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
       },
     },
   },
-  plugins: [import("tailwindcss-animate")],
+  plugins: [
+    import("tailwindcss-animate"),
+    /** ✅ Adding custom text-shadow as Tailwind utilities */
+    function ({ addUtilities }) {
+      addUtilities({
+        ".text-shadow-sm": { textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)" },
+        ".text-shadow-md": { textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)" },
+        ".text-shadow-lg": { textShadow: "3px 3px 6px rgba(0, 0, 0, 2)" },
+      });
+    },
+  ],
 };
