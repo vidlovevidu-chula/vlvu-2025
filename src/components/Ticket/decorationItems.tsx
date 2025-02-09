@@ -6,7 +6,7 @@ import Style from "./cupid/style";
 import Wing from "./cupid/wing";
 import Prop from "./cupid/prop";
 import Hearts from "./cupid/heart";
-const Page = () => {
+const DecorationItems = () => {
   const $pageName = useStore(page) || "Edge";
 
   return (
@@ -20,4 +20,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default DecorationItems;

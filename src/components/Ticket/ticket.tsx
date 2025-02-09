@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import {
   page,
@@ -10,12 +10,13 @@ import {
   prop,
   name,
 } from "@/store";
-import Ticketlist from "./ticketList";
-interface TicketStampProps {
-  user_id: string;
+import DecorationItems from "./decorationItems";
+
+interface TicketProps {
+  user_id: string | undefined;
 }
 
-const Ticket = ({ user_id }: TicketStampProps) => {
+const Ticket = ({ user_id }: TicketProps) => {
   const $pageName = useStore(page);
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);
@@ -25,22 +26,42 @@ const Ticket = ({ user_id }: TicketStampProps) => {
   const $prop = useStore(prop);
   const $name = useStore(name);
   const [display, setDisplay] = useState("Ticket");
-
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const scrollPrev = () => {
-    if (containerRef.current) {
-      const container = containerRef.current;
-      const scrollAmount = container.clientWidth;
-      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    }
-  };
+  useEffect(() => {
+    const fetchTickets = async () => {
+      try {
+        const res = await fetch(`/api/tickets?uID=${user_id}`);
+        const data = await res.json();
 
-  const scrollNext = () => {
+        if (data.success && data.tickets) {
+          const ticket = data.tickets;
+          edgeColor.set(ticket.decoration.edgeColor);
+          edgeType.set(ticket.decoration.edgeType);
+          heartColor.set(ticket.decoration.heartColor);
+          style.set(ticket.decoration.style);
+          wing.set(ticket.decoration.wing);
+          prop.set(ticket.decoration.prop);
+          name.set(ticket.ticketName);
+        } else {
+          console.error("No ticket data found", user_id);
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+
+    fetchTickets();
+  }, [user_id]);
+
+  const scroll = (direction: "prev" | "next") => {
     if (containerRef.current) {
       const container = containerRef.current;
       const scrollAmount = container.clientWidth;
-      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      container.scrollBy({
+        left: direction === "prev" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -54,16 +75,12 @@ const Ticket = ({ user_id }: TicketStampProps) => {
     { name: "pink", hex: "#FF8DB9" },
     { name: "purple", hex: "#C5A2FB" },
   ];
+
   return (
     <div
-      className="flex flex-col items-center min-h-screen relative py-[70px]"
+      className="flex flex-col items-center min-h-screen relative py-[70px] bg-cover bg-center bg-no-repeat overflow-y-scroll overflow-x-hidden"
       style={{
-        backgroundImage: "url('/src/assets/background.png')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        overflowY: "scroll",
-        overflowX: "hidden",
+        backgroundImage: "url('/assets/background.png')",
       }}
     >
       {/* ---- Select Custom Page ---- */}
@@ -106,7 +123,7 @@ const Ticket = ({ user_id }: TicketStampProps) => {
               key={edgecolor.name}
               className="h-[38px] w-[97.52px] rounded-l-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               style={{ background: edgecolor.hex }}
-              onClick={() => edgeColor.set(`${edgecolor.name}.png`)}
+              onClick={() => edgeColor.set(`${edgecolor.name}`)}
             ></button>
           ))}
         </div>
@@ -119,18 +136,20 @@ const Ticket = ({ user_id }: TicketStampProps) => {
         </p>
 
         {/* ---- Display ---- */}
-        <div className="relative flex w-[fit] h-fit justify-center items-center">
-          <img src={`/edge/${$edgeType}/${$edgeColor}`} width={240} />
+        <div className="relative flex w-[240px] h-[427px] justify-center items-center">
+          {$edgeType && $edgeColor && (
+            <img src={`/edge/${$edgeType}/${$edgeColor}.png`} width={240} />
+          )}
           {$heartColor && (
             <img
-              src={`/heart/${$edgeType}/${$heartColor}`}
+              src={`/heart/${$edgeType}/${$heartColor}.png`}
               width={240}
               className="absolute"
             />
           )}
           {$wing && (
             <img
-              src={`/wing/${$wing}`}
+              src={`/wing/${$wing}.png`}
               width={170}
               className="absolute top-[100px]"
             />
@@ -142,22 +161,20 @@ const Ticket = ({ user_id }: TicketStampProps) => {
           />
           {$style && (
             <img
-              src={`/style/${$style}`}
+              src={`/style/${$style}.png`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           {$prop && (
             <img
-              src={`/prop/${$prop}`}
+              src={`/prop/${$prop}.png`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           {$name && (
-            <p
-              className={`absolute bottom-[140px] font-Inter text-xs font-bold text-[#863752]`}
-            >
+            <p className="absolute bottom-[138px] font-Inter text-xs font-bold text-[#863752]">
               {$name}
             </p>
           )}
@@ -171,7 +188,7 @@ const Ticket = ({ user_id }: TicketStampProps) => {
           <div className="flex items-center">
             <button
               className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
-              onClick={scrollPrev}
+              onClick={() => scroll("prev")}
               aria-label="Scroll to previous"
             >
               <img src={"/arrow/chevrons-left.svg"} width={29} />
@@ -181,12 +198,12 @@ const Ticket = ({ user_id }: TicketStampProps) => {
               ref={containerRef}
               className="flex w-[297.25px] h-[125.12px] items-center justify-center bg-[#D9D9D9] bg-opacity-[50%] overflow-x-auto overflow-y-hidden shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
             >
-              <Ticketlist />
+              <DecorationItems />
             </div>
 
             <button
               className="h-[152.72px] w-[15px] bg-[#9E9E9E] rounded-full"
-              onClick={scrollNext}
+              onClick={() => scroll("next")}
               aria-label="Scroll to next"
             >
               <img src={"/arrow/chevrons-right.svg"} width={29} />
@@ -199,21 +216,20 @@ const Ticket = ({ user_id }: TicketStampProps) => {
           <div className="flex gap-2 mt-4">
             <button
               className={`h-[48.42px] w-[97.52px] text-[15px] font-Inter font-light rounded-l-full
-              ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
+              ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Edge")}
             >
               <p>edge</p>
             </button>
-
             <button
               className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Inter font-light rounded-r-full
-              ${$pageName === "Heart" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
+              ${$pageName === "Heart" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Heart")}
             >
               <p>heart</p>
             </button>
             <button
-              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
+              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => {
                 setDisplay("Dress");
                 page.set("Style");
@@ -228,7 +244,7 @@ const Ticket = ({ user_id }: TicketStampProps) => {
         {display == "Dress" && (
           <div className="flex gap-2 mt-4">
             <button
-              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => {
                 setDisplay("Ticket");
                 page.set("Edge");
@@ -238,28 +254,31 @@ const Ticket = ({ user_id }: TicketStampProps) => {
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-l-full ${$pageName === "Style" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-l-full
+              ${$pageName === "Style" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Style")}
             >
               <p>style</p>
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light
+              ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Wing")}
             >
               <p>wing</p>
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-r-full ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48]"}`}
+              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-r-full
+              ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Prop")}
             >
               <p>prop</p>
             </button>
 
             <button
-              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full"
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => setDisplay("Name")}
             >
               <img src="/cupid/arrow-r-orange.svg" alt="arrow-right" />
@@ -276,11 +295,12 @@ const Ticket = ({ user_id }: TicketStampProps) => {
               placeholder="Name"
               className="rounded-[13px] h-[37px] px-4 text-center bg-white focus:outline-none"
               maxLength={13}
-              onChange={(e) => name.set(e.target.value.trim())}
+              value={$name}
+              onChange={(e) => name.set(e.target.value)}
             />
             <div className="flex gap-2">
               <button
-                className="flex h-[27px] w-[75.95px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full"
+                className="flex h-[27px] w-[75.95px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
                 onClick={() => {
                   setDisplay("Dress");
                   page.set("Style");
@@ -289,12 +309,12 @@ const Ticket = ({ user_id }: TicketStampProps) => {
                 <img src="/cupid/arrow-left.svg" alt="arrow-left" />
               </button>
               <button
-                className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full"
+                className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
                 onClick={() =>
                   (window.location.href = `/ticket-stamp/${user_id}`)
                 }
               >
-                <p>Save</p>
+                <p>เสร็จสิ้น</p>
               </button>
             </div>
           </div>

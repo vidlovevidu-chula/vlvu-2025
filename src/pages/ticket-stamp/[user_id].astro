@@ -1,10 +1,14 @@
 ---
 import TicketStamp from "../../components/Ticket/ticket-stamp";
 import Layout from "../../layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
 
 const { user_id } = Astro.params;
 ---
 
 <Layout>
   <TicketStamp user_id={user_id} client:load />
+  <nav class="fixed bottom-0 max-w-md w-full z-30">
+    <Navbar />
+  </nav>
 </Layout>

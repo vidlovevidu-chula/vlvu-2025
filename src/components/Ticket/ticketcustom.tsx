@@ -30,11 +30,6 @@ const Customticket: React.FC<TicketCustomProps> = ({ src, alt, type }) => {
         data.edgeType = alt;
         break;
       case "heart":
-        if ($heartColor === alt) {
-          heartColor.set("");
-          data.heartColor = "";
-          break;
-        }
         heartColor.set(alt);
         data.heartColor = alt;
         break;

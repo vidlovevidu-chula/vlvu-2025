@@ -1,10 +1,10 @@
 import { atom } from "nanostores";
 
 export const page = atom("Edge");
-export const edgeType = atom(`edge3`);
-export const edgeColor = atom("pink.png");
-export const heartColor = atom("pink.png");
-export const style = atom("style4.png");
-export const wing = atom("wing2.png");
-export const prop = atom("prop3.png");
-export const name = atom("vidya & vidva");
+export const edgeType = atom("");
+export const edgeColor = atom("brown");
+export const heartColor = atom("");
+export const style = atom("");
+export const wing = atom("");
+export const prop = atom("");
+export const name = atom("");
