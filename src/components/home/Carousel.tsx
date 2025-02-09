@@ -77,8 +77,12 @@ export function CarouselComponent() {
                   <h3 className="text-xl font-bold text-shadow-lg">
                     {overlayTexts[index].header}
                   </h3>
-                  <p className="text-[12px] text-shadow-lg">{overlayTexts[index].details}</p>
-                  <p className="text-[12px] text-lightpink font-semibold text-shadow-lg">{overlayTexts[index].tags?.join(" ")}</p>
+                  <p className="text-[12px] text-shadow-lg">
+                    {overlayTexts[index].details}
+                  </p>
+                  <p className="text-[12px] text-lightpink font-semibold text-shadow-lg">
+                    {overlayTexts[index].tags?.join(" ")}
+                  </p>
                 </div>
               </CardContent>
             </Card>
