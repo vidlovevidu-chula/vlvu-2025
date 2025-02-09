@@ -1,0 +1,11 @@
+node_modules/
+.git/
+tests/
+*.md
+*.log
+.env
+.vscode/
+dist/
+tmp/
+build/
+coverage/

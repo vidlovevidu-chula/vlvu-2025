@@ -5,7 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 import react from "@astrojs/react";
 
-import vercelServerless from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,10 +18,5 @@ export default defineConfig({
 
   output: "server",
 
-  adapter: vercelServerless({
-    webAnalytics: {
-      enabled: true,
-    },
-    maxDuration: 30,
-  }),
+  adapter: vercel(),
 });
