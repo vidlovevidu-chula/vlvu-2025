@@ -22,7 +22,6 @@ export function Home() {
         width: "100%",
         maxWidth: "448px",
         margin: "0 auto",
-        touchAction: "none",
       }}
       config={{ tension: 180, friction: 26 }} // Smoother animations
     >
