@@ -14,9 +14,8 @@
   "dependencies": {
     "@nanostores/react": "^0.8.4",
     "@astrojs/vercel": "^8.0.5",
-    "@astrojs/react": "^4.2.0",
-    "@astrojs/tailwind": "^5.1.5",
     "@radix-ui/react-slot": "^1.1.1",
+    "@react-spring/parallax": "^9.7.5",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "astro": "^5.1.10",
