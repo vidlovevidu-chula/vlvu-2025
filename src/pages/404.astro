@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Error 404">
+	<main
+		class="flex justify-center items-center min-h-screen font-inter text-black m-0"
+		style="background: linear-gradient(to top, #FAF0E0, #FFD4D4, #DCDFF0);"
+	>
+		<div class="text-center">
+			<h1 class="text-5xl font-bold">Error 404<br />Page Not Found</h1>
+			<p class="text-xl mt-4">
+				You will be redirected to the homepage shortly.
+			</p>
+			<p class="text-xl mt-2">
+				If you are not redirected, <a href="/" class="hover:text-pink underline"
+					>click here</a
+				>.
+			</p>
+		</div>
+	</main>
+
+	<script>
+		setTimeout(() => {
+			window.location.href = "/";
+		}, 1000);
+	</script>
+</Layout>
