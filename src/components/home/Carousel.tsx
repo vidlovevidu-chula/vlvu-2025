@@ -10,20 +10,38 @@ import {
 
 export function CarouselComponent() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true }),
+    Autoplay({ delay: 5000, stopOnInteraction: true }),
   );
 
   // Predefined array of image paths
   const imagePaths = [
-    "/images/home/Carousel/stage.webp",
-    "/images/home/Carousel/dance.jpeg",
-    "/images/home/Carousel/fortune.jpeg",
     "/images/home/Carousel/blinddate.webp",
-    "/images/home/Carousel/market.jpg",
+    "/images/home/Carousel/fortune.webp",
+    "/images/home/Carousel/market.webp",
+    "/images/home/Carousel/stage.webp",
+    "/images/home/Carousel/dance.webp",
   ];
 
   // Predefined array of overlay texts with header and details
   const overlayTexts = [
+    {
+      header: "ระวังสิ้นสุดทางโสด",
+      details:
+        "Next Station: Love! คนโสดพร้อมเปิดใจ มาพบ (soul)mate พูดคุยสุดฟินในบูธ Blind Date ที่สวนรวมใจ!",
+      tags: ["#BlindDate", "#โสด", "#คนโสด"],
+    },
+    {
+      header: "ดวงของเธอฉันขอดูนะ",
+      details:
+        "1 ใน 8 บูธสุดสนุก! เปิดไพ่ดูดวงความรัก การเรียน การงาน กับผู้เชี่ยวชาญที่ลานจักรพงษ์!",
+      tags: ["#ดวง", "#ความรัก", "#เรียน", "#งาน"],
+    },
+    {
+      header: "อร่อยตัวแตก เพื่อนต้องแบกกลับบ้าน",
+      details:
+        "สนุกแล้วแวะเติมพลังที่ Market Zone! อิ่มอร่อยกับอาหาร ขนม เครื่องดื่มสดชื่น พร้อมลุยต่อแบบไม่มีสะดุด!",
+      tags: ["#MarketZone", "#อาหาร", "#ขนม", "#เครื่องดื่ม"],
+    },
     {
       header: "พบกับ Highlight Stage",
       details:
@@ -35,24 +53,6 @@ export function CarouselComponent() {
       details:
         "โชว์สเตป ปลุกเมนแดนซ์ในตัวคุณ! Dance Show หรือ Random Dance มาสนุกที่ลานอินทาเนีย แล้วลุกร้อนสุดมันส์!",
       tags: ["#DanceShow", "#RandomDance", "#สายแดนซ์"],
-    },
-    {
-      header: "ดวงของเธอฉันขอดูนะ",
-      details:
-        "1 ใน 8 บูธสุดสนุก! เปิดไพ่ดูดวงความรัก การเรียน การงาน กับผู้เชี่ยวชาญที่ลานจักรพงษ์!",
-      tags: ["#ดวง", "#ความรัก", "#เรียน", "#งาน"],
-    },
-    {
-      header: "ระวังสิ้นสุดทางโสด",
-      details:
-        "Next Station: Love! คนโสดพร้อมเปิดใจ มาพบ (soul)mate พูดคุยสุดฟินในบูธ Blind Date ที่สวนรวมใจ!",
-      tags: ["#BlindDate", "#โสด", "#คนโสด"],
-    },
-    {
-      header: "อร่อยตัวแตก เพื่อนต้องแบกกลับบ้าน",
-      details:
-        "สนุกแล้วแวะเติมพลังที่ Market Zone! อิ่มอร่อยกับอาหาร ขนม เครื่องดื่มสดชื่น พร้อมลุยต่อแบบไม่มีสะดุด!",
-      tags: ["#MarketZone", "#อาหาร", "#ขนม", "#เครื่องดื่ม"],
     },
   ];
 

@@ -19,7 +19,10 @@ export default {
         lightbrown: "#c68c79",
         brown: "#a77b73",
         rose: "#B64667",
+        blackrose: "#b55a5b",
         periwinkleBlue: "#8099E3",
+        blackbrown: "#6b574b",
+        redbrown: "#9a5555",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -86,6 +89,25 @@ export default {
         sm: "1px 1px 2px rgba(0, 0, 0, 0.2)",
         md: "2px 2px 4px rgba(0, 0, 0, 0.3)",
         lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        fadeUp: {
+          from: { opacity: 0, transform: "translateY(1rem)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 1s ease-in-out",
+        fadeOut: "fadeOut 1s ease-in-out",
+        fadeUp: "fadeUp 1s ease-in-out",
       },
     },
   },
