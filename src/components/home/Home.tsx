@@ -16,9 +16,14 @@ export function Home() {
 
   return (
     <Parallax
-      pages={3.65}
+      pages={3.85}
       ref={parallaxRed}
-      style={{ width: "100%", maxWidth: "448px", margin: "0 auto" }}
+      style={{
+        width: "100%",
+        maxWidth: "448px",
+        margin: "0 auto",
+        touchAction: "none",
+      }}
       config={{ tension: 180, friction: 26 }} // Smoother animations
     >
       {/* Landing Page */}
@@ -85,7 +90,7 @@ export function Home() {
             src="/images/home/decorations/deco1.webp"
             className="absolute w-20 -ml-6 -top-16"
           />
-          <p className="text-center text-blackrose text-lg font-Yeseva font-bold py-6">
+          <p className="text-center text-blackrose text-md font-Yeseva font-bold py-6">
             Be a lover. Give love. Choose love, always.
           </p>
           <Location />
@@ -94,13 +99,13 @@ export function Home() {
 
       {/* Sponsors Section */}
       <ParallaxLayer
-        offset={3}
+        offset={3.1}
         speed={0.12}
         factor={0.85}
         style={{
           backgroundImage: "url('/images/home/sponbg.webp')",
           backgroundSize: "550px auto",
-          backgroundPosition: "center",
+          backgroundPosition: "bottom",
         }}
       >
         <div className="flex flex-col h-full">

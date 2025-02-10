@@ -1,26 +1,46 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 ---
 
 <!-- Navigation Bar -->
+<button
+  id="navbar-toggle"
+  class="top-0 mt-1 z-50 p-4"
+  aria-label="Toggle Navigation"
+  onclick="
+    const navbar = document.getElementById('navbar');
+    navbar.classList.toggle('hidden');
+    const img = this.querySelector('img');
+    img.src = navbar.classList.contains('hidden') ? '/images/navbar/menu.webp' : '/images/navbar/close.webp';
+    this.classList.toggle('bg-black');
+    this.classList.toggle('bg-opacity-20');
+    this.classList.toggle('rounded-t-xl');
+  "
+>
+  <Image src="/images/navbar/menu.webp" alt="Menu" width={24} height={24} />
+</button>
 <nav
   id="navbar"
-  class="flex items-center justify-evenly gap-8 p-3 bg-white shadow-lg font-Yeseva transition-transform duration-300"
+  class="hidden items-center gap-4 bg-opacity-20 bg-black rounded-b-xl shadow-lg font-Yeseva"
 >
   <!-- Navigation Item -->
-  <a href="/" class="flex flex-col items-center">
+  <a href="/" class="flex flex-col items-center py-2">
     <Image
       src="/images/navbar/nav-1.webp"
-      width={50}
-      height={50}
+      width={44}
+      height={44}
       alt="Home"
       title="Home"
       class:list={"shadow-md rounded-full"}
     />
-    <span class="mt-1 font-semibold text-black">Home</span>
+    <span class="font-semibold text-xs text-black">Home</span>
   </a>
   <!-- Navigation Item -->
-  <a href="" onclick="alert('Coming soon!')" class="flex flex-col items-center">
+  <a
+    href=""
+    onclick="alert('Coming soon!')"
+    class="flex flex-col items-center py-2"
+  >
     <Image
       src="/images/navbar/nav-2.webp"
       width={50}
@@ -28,10 +48,14 @@ import Image from "astro/components/Image.astro";
       alt="Home"
       title="Home"
     />
-    <span class="mt-1 font-semibold text-black">Ticket</span>
+    <span class="font-semibold text-xs text-black">Ticket</span>
   </a>
   <!-- Navigation Item -->
-  <a href="" onclick="alert('Coming soon!')" class="flex flex-col items-center">
+  <a
+    href=""
+    onclick="alert('Coming soon!')"
+    class="flex flex-col items-center py-2"
+  >
     <Image
       src="/images/navbar/nav-3.webp"
       width={50}
@@ -39,6 +63,6 @@ import Image from "astro/components/Image.astro";
       alt="Home"
       title="Home"
     />
-    <span class="mt-1 font-semibold text-black">Flower</span>
+    <span class="font-semibold text-xs text-black">Flower</span>
   </a>
 </nav>
