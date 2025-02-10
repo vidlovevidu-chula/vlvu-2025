@@ -80,7 +80,7 @@ export const ResultPage: React.FC<Props> = ({
               <img
                 className="w-full"
                 alt="Close"
-                src="/images/bouquetButton.png"
+                src="/images/bouquetButton.webp"
               />
             </button>
             <button
@@ -91,7 +91,7 @@ export const ResultPage: React.FC<Props> = ({
               <img
                 className="w-full"
                 alt="Close"
-                src="/images/saveButton.png"
+                src="/images/saveButton.webp"
               />
             </button>
           </div>
