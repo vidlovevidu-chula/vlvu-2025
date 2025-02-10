@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const Location: React.FC = () => {
   return (
@@ -10,7 +10,9 @@ const Location: React.FC = () => {
         alt="Larnchak x Larngear"
         title="Larnchak x Larngear"
         className="rounded-lg"
-        onClick={() => window.open("https://maps.app.goo.gl/nrZ8TXM34Ep26iqa9", "_blank")}
+        onClick={() =>
+          window.open("https://maps.app.goo.gl/nrZ8TXM34Ep26iqa9", "_blank")
+        }
       />
       <div className="flex items-center justify-center space-x-6 py-2">
         <img src="/images/home/mark.webp" alt="mark" width={20} />

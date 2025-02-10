@@ -29,11 +29,15 @@ export function Home() {
           className="absolute left-10 top-40 w-60"
           style={{ transform: "scaleX(-1)" }}
         />
-        <a href="https://www.instagram.com/min.taadaa/" target="_blank" rel="noreferrer">
-        <img
-          src="../images/home/decorations/cloud.webp"
-          className="absolute bottom-0 -right-10 w-48"
-        />
+        <a
+          href="https://www.instagram.com/min.taadaa/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="../images/home/decorations/cloud.webp"
+            className="absolute bottom-0 -right-10 w-48"
+          />
         </a>
         <WebTitle />
       </ParallaxLayer>
@@ -46,20 +50,32 @@ export function Home() {
             className="absolute top-44 left-10 w-10"
           />
           <Minigames />
-          <a href="https://www.instagram.com/aemonpm/" target="_blank" rel="noreferrer">
-          <img
-            src="../images/home/decorations/deco4.webp"
-            className="absolute -right-3 -bottom-1/3 w-20"
-          />
+          <a
+            href="https://www.instagram.com/aemonpm/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="../images/home/decorations/deco4.webp"
+              className="absolute -right-3 -bottom-1/3 w-20"
+            />
           </a>
         </div>
       </ParallaxLayer>
 
       {/* Carousel Section */}
       <ParallaxLayer offset={2} speed={0.1} factor={0.5}>
-        <img src="/images/home/decorations/cupidvidva.webp" className="relative w-32 left-4" style={{ transform: "scaleX(-1) rotate(-35deg)" }} />
+        <img
+          src="/images/home/decorations/cupidvidva.webp"
+          className="relative w-32 left-4"
+          style={{ transform: "scaleX(-1) rotate(-35deg)" }}
+        />
         <CarouselComponent />
-        <img src="/images/home/decorations/cupidvidya.webp" className="relative w-32 left-2/3 mt-2" style={{ transform: "rotate(55deg)" }} />
+        <img
+          src="/images/home/decorations/cupidvidya.webp"
+          className="relative w-32 left-2/3 mt-2"
+          style={{ transform: "rotate(55deg)" }}
+        />
       </ParallaxLayer>
 
       {/* Map Section */}
