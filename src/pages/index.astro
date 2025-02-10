@@ -1,71 +1,17 @@
 ---
-import { CarouselComponent } from "@/components/home/Carousel";
 import Layout from "../layouts/Layout.astro";
-import WebTitle from "@/components/home/WebTitle.astro";
 import "@/styles/global.css";
-import Image from "astro/components/Image.astro";
-import Minigames from "@/components/home/Minigames.astro";
 import Navbar from "@/components/Navbar.astro";
-import Location from "@/components/home/Location.astro";
-import Sponsors from "@/components/home/Sponsors.astro";
+import { Home } from "@/components/home/Home";
 ---
 
-<Layout title="Home | VidLoveVidYou 2025">
+<Layout title="Home | VidLoveVidU 2025">
+  <!-- main content -->
+  <main class="min-h-screen bg-home bg-cover">
+    <Home client:load />
+  </main>
   <!-- Navbar -->
   <nav class="fixed bottom-0 max-w-md w-full z-30">
     <Navbar />
   </nav>
-
-  <main class="min-h-screen bg-home bg-cover">
-    <div class="flex flex-col items-center justify-center h-auto font-Yeseva">
-      <!-- Web Title -->
-      <div class="flex h-[125px] w-[324px] mt-[75px] z-10">
-        <WebTitle />
-      </div>
-
-      <!-- Carousel -->
-      <div class="flex w-full h-auto mt-20 items-center justify-center">
-        <CarouselComponent client:load />
-      </div>
-
-      <!-- Register Button -->
-      <div class="flex w-3/4 h-auto mt-10 pr-4 items-center justify-center">
-        <a href="https://forms.gle/oB1YhtJAxJ8nmkN59" target="_blank">
-          <Image
-            src="/images/home/pre-registerfinal.svg"
-            width={177}
-            height={108}
-            alt="Register"
-            title="Register"
-          />
-        </a>
-      </div>
-
-      <!-- Mini games -->
-      <div class="flex w-full mt-10 h-auto">
-        <Minigames />
-      </div>
-
-      <!-- Quote -->
-      <div class="flex w-full h-auto mt-16 items-center justify-center">
-        <Image
-          src="/images/home/quote.webp"
-          width={400}
-          height={238}
-          alt="Quote"
-          title="Quote"
-        />
-      </div>
-
-      <!-- Location -->
-      <div class="flex w-full h-auto my-[95px]">
-        <Location />
-      </div>
-
-      <!-- Sponsors -->
-      <div class="flex w-full h-auto m-10 items-center justify-center">
-        <Sponsors />
-      </div>
-    </div>
-  </main>
 </Layout>

@@ -4,23 +4,25 @@ import Image from "astro/components/Image.astro";
 
 <!-- Navigation Bar -->
 <nav
-  class="flex items-center justify-evenly gap-8 p-3 bg-white shadow-lg font-Yeseva"
+  id="navbar"
+  class="flex items-center justify-evenly gap-8 p-3 bg-white shadow-lg font-Yeseva transition-transform duration-300"
 >
   <!-- Navigation Item -->
   <a href="/" class="flex flex-col items-center">
     <Image
-      src="/images/home/nav home.webp"
+      src="/images/navbar/nav-1.webp"
       width={50}
       height={50}
       alt="Home"
       title="Home"
+      class:list={"shadow-md rounded-full"}
     />
     <span class="mt-1 font-semibold text-black">Home</span>
   </a>
   <!-- Navigation Item -->
   <a href="" onclick="alert('Coming soon!')" class="flex flex-col items-center">
     <Image
-      src="/images/home/nav ticket.webp"
+      src="/images/navbar/nav-2.webp"
       width={50}
       height={50}
       alt="Home"
@@ -31,7 +33,7 @@ import Image from "astro/components/Image.astro";
   <!-- Navigation Item -->
   <a href="" onclick="alert('Coming soon!')" class="flex flex-col items-center">
     <Image
-      src="/images/home/flowernav_1.webp"
+      src="/images/navbar/nav-3.webp"
       width={50}
       height={50}
       alt="Home"
