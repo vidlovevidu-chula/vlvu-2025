@@ -60,7 +60,7 @@ export const SecondHalfQuestions: React.FC<Props> = ({
         >
           <div className="relative">
             <img
-              className="justify-self-center w-full"
+              className="justify-self-center w-full  animate-fadeIn"
               src={q.boardImageUrl}
               alt="board-image"
             />
