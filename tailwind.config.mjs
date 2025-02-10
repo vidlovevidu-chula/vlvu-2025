@@ -83,9 +83,39 @@ export default {
             opacity: 1,
           },
         },
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        fadeUp: {
+          from: { opacity: 0, transform: "translateY(1rem)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        letterFadeUp: {
+          from: {
+            opacity: 0,
+            transform: "translate3d(50%, -150%, 0)",
+            top: "50%",
+            left: "50%",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate3d(50%, -50%, 0)",
+            top: "50%",
+            left: "50%",
+          },
+        },
       },
       animation: {
         zoomIn: "zoom-in 1s ease-out 0s 1",
+        fadeIn: "fadeIn 1s ease-in-out",
+        fadeOut: "fadeOut 1s ease-in-out",
+        fadeUp: "fadeUp 1s ease-in-out",
+        letterFadeUp: "fadeUp 1s ease-in-out",
       },
     },
   },
