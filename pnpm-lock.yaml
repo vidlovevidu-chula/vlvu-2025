@@ -16,6 +16,9 @@ importers:
       "@astrojs/vercel":
         specifier: ^8.0.5
         version: 8.0.5(astro@5.1.10(@types/node@22.10.7)(jiti@1.21.7)(rollup@4.31.0)(typescript@5.7.3)(yaml@2.7.0))(react@19.0.0)(rollup@4.31.0)
+      "@radix-ui/react-slot":
+        specifier: ^1.1.1
+        version: 1.1.1(@types/react@19.0.7)(react@19.0.0)
       "@types/react":
         specifier: ^19.0.7
         version: 19.0.7
@@ -31,6 +34,12 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-autoplay:
+        specifier: ^8.5.2
+        version: 8.5.2(embla-carousel@8.5.2)
+      embla-carousel-react:
+        specifier: ^8.5.2
+        version: 8.5.2(react@19.0.0)
       firebase:
         specifier: ^11.2.0
         version: 11.2.0
@@ -38,8 +47,8 @@ importers:
         specifier: ^13.0.2
         version: 13.0.2
       lucide-react:
-        specifier: ^0.474.0
-        version: 0.474.0(react@19.0.0)
+        specifier: ^0.469.0
+        version: 0.469.0(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -1343,6 +1352,30 @@ packages:
         integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==,
       }
 
+  "@radix-ui/react-compose-refs@1.1.1":
+    resolution:
+      {
+        integrity: sha512-Y9VzoRDSJtgFMUCoiZBDVo084VQ5hfpXxVE+NgkdNsjiDBByiImMZKKhxMwCbdHvhlENG6a833CbFkOQvTricw==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+
+  "@radix-ui/react-slot@1.1.1":
+    resolution:
+      {
+        integrity: sha512-RApLLOcINYJA+dMVbOju7MYv1Mb2EBp2nH4HdDzXTSyaR5optlm6Otrz1euW3HbdOR8UmmFK06TD+A9frYWv+g==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+
   "@rollup/pluginutils@5.1.4":
     resolution:
       {
@@ -2623,6 +2656,36 @@ packages:
     resolution:
       {
         integrity: sha512-LcUDPqSt+V0QmI47XLzZrz5OqILSMGsPFkDYus22rIbgorSvBYEFqq854ltTmUdHkY92FSdAAvsh4jWEULMdfQ==,
+      }
+
+  embla-carousel-autoplay@8.5.2:
+    resolution:
+      {
+        integrity: sha512-27emJ0px3q/c0kCHCjwRrEbYcyYUPfGO3g5IBWF1i7714TTzE6L9P81V6PHLoSMAKJ1aHoT2e7YFOsuFKCbyag==,
+      }
+    peerDependencies:
+      embla-carousel: 8.5.2
+
+  embla-carousel-react@8.5.2:
+    resolution:
+      {
+        integrity: sha512-Tmx+uY3MqseIGdwp0ScyUuxpBgx5jX1f7od4Cm5mDwg/dptEiTKf9xp6tw0lZN2VA9JbnVMl/aikmbc53c6QFA==,
+      }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+
+  embla-carousel-reactive-utils@8.5.2:
+    resolution:
+      {
+        integrity: sha512-QC8/hYSK/pEmqEdU1IO5O+XNc/Ptmmq7uCB44vKplgLKhB/l0+yvYx0+Cv0sF6Ena8Srld5vUErZkT+yTahtDg==,
+      }
+    peerDependencies:
+      embla-carousel: 8.5.2
+
+  embla-carousel@8.5.2:
+    resolution:
+      {
+        integrity: sha512-xQ9oVLrun/eCG/7ru3R+I5bJ7shsD8fFwLEY7yPe27/+fDHCNj0OT5EoG5ZbFyOxOcG6yTwW8oTz/dWyFnyGpg==,
       }
 
   emoji-regex-xs@1.0.0:
@@ -3995,10 +4058,10 @@ packages:
         integrity: sha512-GXn7gyHAMhO13WSKrIiNfztwxodVsP8IoZ3XfrJV4yH2x0/OeTO/FIaAHTY5YekdGgW94njfuKmyyt1E0mR6Ug==,
       }
 
-  lucide-react@0.474.0:
+  lucide-react@0.469.0:
     resolution:
       {
-        integrity: sha512-CmghgHkh0OJNmxGKWc0qfPJCYHASPMVSyGY8fj3xgk4v84ItqDg64JNKFZn5hC6E0vHi6gxnbCgwhyVB09wQtA==,
+        integrity: sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==,
       }
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -7021,6 +7084,19 @@ snapshots:
 
   "@protobufjs/utf8@1.1.0": {}
 
+  "@radix-ui/react-compose-refs@1.1.1(@types/react@19.0.7)(react@19.0.0)":
+    dependencies:
+      react: 19.0.0
+    optionalDependencies:
+      "@types/react": 19.0.7
+
+  "@radix-ui/react-slot@1.1.1(@types/react@19.0.7)(react@19.0.0)":
+    dependencies:
+      "@radix-ui/react-compose-refs": 1.1.1(@types/react@19.0.7)(react@19.0.0)
+      react: 19.0.0
+    optionalDependencies:
+      "@types/react": 19.0.7
+
   "@rollup/pluginutils@5.1.4(rollup@4.31.0)":
     dependencies:
       "@types/estree": 1.0.6
@@ -7881,6 +7957,22 @@ snapshots:
       safe-buffer: 5.2.1
 
   electron-to-chromium@1.5.83: {}
+
+  embla-carousel-autoplay@8.5.2(embla-carousel@8.5.2):
+    dependencies:
+      embla-carousel: 8.5.2
+
+  embla-carousel-react@8.5.2(react@19.0.0):
+    dependencies:
+      embla-carousel: 8.5.2
+      embla-carousel-reactive-utils: 8.5.2(embla-carousel@8.5.2)
+      react: 19.0.0
+
+  embla-carousel-reactive-utils@8.5.2(embla-carousel@8.5.2):
+    dependencies:
+      embla-carousel: 8.5.2
+
+  embla-carousel@8.5.2: {}
 
   emoji-regex-xs@1.0.0: {}
 
@@ -8918,7 +9010,7 @@ snapshots:
       lodash.clonedeep: 4.5.0
       lru-cache: 6.0.0
 
-  lucide-react@0.474.0(react@19.0.0):
+  lucide-react@0.469.0(react@19.0.0):
     dependencies:
       react: 19.0.0
 
