@@ -63,17 +63,17 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-        <div className="w-[80%] h-[70%] absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
           {showIntro && <h1>Intro</h1>}
-          <h1>Your flower is {flowerType}</h1>
           <p className="w-full h-full bg-white">
+            Your flower is {flowerType}
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
             quos sit maiores, similique nesciunt ut velit possimus explicabo
             quam porro numquam ab ea corporis.
           </p>
-          <div className="flex justify-evenly my-[3%]">
+          <div className="flex justify-center gap-[2%] my-[2%]">
             <button
-              className="w-[45%]"
+              className="w-[35%]"
               onClick={() => setShowResult(!showResult)}
               {...props}
             >
@@ -84,7 +84,7 @@ export const ResultPage: React.FC<Props> = ({
               />
             </button>
             <button
-              className="w-[45%]"
+              className="w-[35%]"
               onClick={() => setShowResult(!showResult)}
               {...props}
             >
@@ -95,6 +95,13 @@ export const ResultPage: React.FC<Props> = ({
               />
             </button>
           </div>
+          <a
+            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
+            href="/"
+          >
+            {`<< `}
+            <span className="underline">กลับไปหน้าหลัก</span>
+          </a>
         </div>
       ) : (
         <></>
