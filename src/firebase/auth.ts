@@ -12,8 +12,9 @@ const postDefaultTicket = async (uID: string) => {
     ticketName: "vidva & vidya",
     uID,
     decoration: {
-      background: "pink",
-      edge: "edge3",
+      edgeColor: "pink",
+      edgeType: "edge3",
+      heartColor: "edge3",
       prop: "prop3",
       style: "style4",
       wing: "wing2",

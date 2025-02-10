@@ -35,7 +35,7 @@ const Ticket = ({ user_id }: TicketProps) => {
         const data = await res.json();
 
         if (data.success && data.tickets) {
-          const ticket = data.tickets;
+          const ticket = data.tickets[0];
           edgeColor.set(ticket.decoration.edgeColor);
           edgeType.set(ticket.decoration.edgeType);
           heartColor.set(ticket.decoration.heartColor);

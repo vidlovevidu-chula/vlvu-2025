@@ -21,7 +21,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
         const data = await res.json();
 
         if (data.success && data.tickets) {
-          const ticket = data.tickets;
+          const ticket = data.tickets[0];
           setEdgeColor(ticket.decoration.edgeColor);
           setEdgeType(ticket.decoration.edgeType);
           setHeartColor(ticket.decoration.heartColor);

@@ -78,8 +78,9 @@ export const POST: APIRoute = async ({ request }) => {
     if (
       !ticketData.decoration ||
       typeof ticketData.decoration !== "object" ||
-      !ticketData.decoration.background ||
-      !ticketData.decoration.edge ||
+      !ticketData.decoration.edgeColor ||
+      !ticketData.decoration.edgeType ||
+      !ticketData.decoration.heartColor ||
       !ticketData.decoration.prop ||
       !ticketData.decoration.style ||
       !ticketData.decoration.wing
