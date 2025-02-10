@@ -18,7 +18,12 @@ export function Home() {
     <Parallax
       pages={3.85}
       ref={parallaxRed}
-      style={{ width: "100%", maxWidth: "448px", margin: "0 auto", touchAction: "none" }}
+      style={{
+        width: "100%",
+        maxWidth: "448px",
+        margin: "0 auto",
+        touchAction: "none",
+      }}
       config={{ tension: 180, friction: 26 }} // Smoother animations
     >
       {/* Landing Page */}
