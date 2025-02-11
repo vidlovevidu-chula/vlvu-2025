@@ -91,6 +91,18 @@ export default {
         lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
       },
       keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        fadeUp: {
+          from: { opacity: 0, transform: "translateY(1rem)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
         "zoom-in": {
           "0%": {
             opacity: 0,
@@ -103,18 +115,6 @@ export default {
           "100%": {
             opacity: 1,
           },
-        },
-        fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
-        },
-        fadeOut: {
-          from: { opacity: 1 },
-          to: { opacity: 0 },
-        },
-        fadeUp: {
-          from: { opacity: 0, transform: "translateY(1rem)" },
-          to: { opacity: 1, transform: "translateY(0)" },
         },
         letterFadeUp: {
           from: {
@@ -136,7 +136,7 @@ export default {
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
-        letterFadeUp: "fadeUp 1s ease-in-out",
+        letterFadeUp: "letterFadeUp 1s ease-in-out",
       },
     },
   },
