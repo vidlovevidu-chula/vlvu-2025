@@ -17,7 +17,7 @@ export const ResultPage: React.FC<Props> = ({
   onRetakeQuiz,
 }) => {
   const [currentScene, setCurrentScene] = useState(0);
-  const [showResult, setShowResult] = useState(false);
+  const [showResult, setShowResult] = useState(!showIntro); // immediately show result if showIntro is false
 
   const { url, buttonImageUrl, className, duration, ...props } =
     scenes?.[currentScene] || {};
@@ -64,7 +64,6 @@ export const ResultPage: React.FC<Props> = ({
       )}
       {showResult ? (
         <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {showIntro && <h1>Intro</h1>}
           <p className="w-full h-full bg-white">
             Your flower is {flowerType}
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
