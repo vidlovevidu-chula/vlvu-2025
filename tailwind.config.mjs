@@ -19,7 +19,10 @@ export default {
         lightbrown: "#c68c79",
         brown: "#a77b73",
         rose: "#B64667",
+        blackrose: "#b55a5b",
         periwinkleBlue: "#8099E3",
+        blackbrown: "#6b574b",
+        redbrown: "#9a5555",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -79,8 +82,44 @@ export default {
         home: "url('/images/home/homebg.webp')",
         sponsor: "url('/images/home/bg-spon-home.webp')",
         location: "url('/images/home/location.webp')",
+        title: "url('/images/home/title.webp')",
+      },
+      /** ✅ Added text-shadow styles */
+      textShadow: {
+        sm: "1px 1px 2px rgba(0, 0, 0, 0.2)",
+        md: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+        lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        fadeUp: {
+          from: { opacity: 0, transform: "translateY(1rem)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 1s ease-in-out",
+        fadeOut: "fadeOut 1s ease-in-out",
+        fadeUp: "fadeUp 1s ease-in-out",
       },
     },
   },
-  plugins: [import("tailwindcss-animate")],
+  plugins: [
+    import("tailwindcss-animate"),
+    /** ✅ Adding custom text-shadow as Tailwind utilities */
+    function ({ addUtilities }) {
+      addUtilities({
+        ".text-shadow-sm": { textShadow: "1px 1px 2px rgba(0, 0, 0, 0.2)" },
+        ".text-shadow-md": { textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)" },
+        ".text-shadow-lg": { textShadow: "3px 3px 6px rgba(0, 0, 0, 2)" },
+      });
+    },
+  ],
 };
