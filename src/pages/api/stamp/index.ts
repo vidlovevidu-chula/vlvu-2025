@@ -26,7 +26,14 @@ export const POST: APIRoute = async ({ request }) => {
     const { uID, boothId } = await request.json();
 
     // Validate the stamp name
-    if (![...STAMPS, VALIDATE_STAMP, SMALL_REWARD_STAMP, BIG_REWARD_STAMP].includes(boothId)) {
+    if (
+      ![
+        ...STAMPS,
+        VALIDATE_STAMP,
+        SMALL_REWARD_STAMP,
+        BIG_REWARD_STAMP,
+      ].includes(boothId)
+    ) {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid stamp name!" }),
         { status: 400 },
