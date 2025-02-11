@@ -96,20 +96,22 @@ export const ResultPage: React.FC<Props> = ({
               />
             </button>
           </div>
-          <a
-            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
-            href="/"
-          >
-            {`<< `}
-            <span className="underline">กลับไปหน้าหลัก</span>
-          </a>
-          <button
-            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
-            onClick={onRetakeQuiz}
-          >
-            {`<< `}
-            <span className="underline">ลองทำอีกรอบ</span>
-          </button>
+          <div className="flex justify-between gap-[2%] my-[2%] font-Ribbon">
+            <a
+              className="text-white text-center text-xl max-[450px]:text-[5vw]"
+              href="/"
+            >
+              {`<< `}
+              <span className="underline">กลับไปหน้าหลัก</span>
+            </a>
+            <button
+              className="text-white text-center text-xl max-[450px]:text-[5vw]"
+              onClick={onRetakeQuiz}
+            >
+              <span className="underline">ลองทำอีกรอบ</span>
+              {` >>`}
+            </button>
+          </div>
         </div>
       ) : (
         <></>
