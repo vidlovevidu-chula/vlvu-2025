@@ -80,7 +80,7 @@ const Ticket = ({ user_id }: TicketProps) => {
     <div
       className="flex flex-col items-center min-h-screen relative py-[70px] bg-cover bg-center bg-no-repeat overflow-y-scroll overflow-x-hidden"
       style={{
-        backgroundImage: "url('/assets/background.png')",
+        backgroundImage: "url('/assets/background.webp')",
       }}
     >
       {/* ---- Select Custom Page ---- */}
@@ -94,7 +94,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             }}
           >
             <img
-              src={"/cupid/ticket.png"}
+              src={"/cupid/ticket.webp"}
               width={30}
               className="absolute right-5 top-1"
             />
@@ -107,7 +107,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             }}
           >
             <img
-              src={"/cupid/cupidmini.png"}
+              src={"/cupid/cupidmini.webp"}
               width={29}
               className="absolute right-5 top-1"
             />
@@ -138,37 +138,37 @@ const Ticket = ({ user_id }: TicketProps) => {
         {/* ---- Display ---- */}
         <div className="relative flex w-[240px] h-[427px] justify-center items-center">
           {$edgeType && $edgeColor && (
-            <img src={`/edge/${$edgeType}/${$edgeColor}.png`} width={240} />
+            <img src={`/edge/${$edgeType}/${$edgeColor}.webp`} width={240} />
           )}
           {$heartColor && (
             <img
-              src={`/heart/${$edgeType}/${$heartColor}.png`}
+              src={`/heart/${$edgeType}/${$heartColor}.webp`}
               width={240}
               className="absolute"
             />
           )}
           {$wing && (
             <img
-              src={`/wing/${$wing}.png`}
+              src={`/wing/${$wing}.webp`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           <img
-            src={"/cupid/cupid.png"}
+            src={"/cupid/cupid.webp"}
             width={170}
             className="absolute top-[100px]"
           />
           {$style && (
             <img
-              src={`/style/${$style}.png`}
+              src={`/style/${$style}.webp`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           {$prop && (
             <img
-              src={`/prop/${$prop}.png`}
+              src={`/prop/${$prop}.webp`}
               width={170}
               className="absolute top-[100px]"
             />

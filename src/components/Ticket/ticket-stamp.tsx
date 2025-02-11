@@ -65,7 +65,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
     <div
       className="relative flex flex-col items-center justify-center gap-4 min-h-screen py-[70px] bg-cover bg-center bg-no-repeat overflow-y-scroll overflow-x-hidden"
       style={{
-        backgroundImage: "url('/assets/background.png')",
+        backgroundImage: "url('/assets/background.webp')",
       }}
     >
       {/* ---- Ticket Card ---- */}
@@ -74,12 +74,12 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
         className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent"
       >
         {edgeType && edgeColor && (
-          <img src={`/edge/${edgeType}/${edgeColor}.png`} width={240} />
+          <img src={`/edge/${edgeType}/${edgeColor}.webp`} width={240} />
         )}
 
         {heartColor && (
           <img
-            src={`/heart/${edgeType}/${heartColor}.png`}
+            src={`/heart/${edgeType}/${heartColor}.webp`}
             width={240}
             className="absolute"
           />
@@ -87,21 +87,21 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {wing && (
           <img
-            src={`/wing/${wing}.png`}
+            src={`/wing/${wing}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
         )}
 
         <img
-          src={"/cupid/cupid.png"}
+          src={"/cupid/cupid.webp"}
           width={170}
           className="absolute top-[100px]"
         />
 
         {style && (
           <img
-            src={`/style/${style}.png`}
+            src={`/style/${style}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
@@ -109,7 +109,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {prop && (
           <img
-            src={`/prop/${prop}.png`}
+            src={`/prop/${prop}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
