@@ -1,13 +1,16 @@
 import type * as React from "react";
 import type { FlowerType } from "./FlowerGameContainer";
 
-// const FLOWER_TYPE_NAME, FLOWER_TYPE_DESCRIPTIONS = ...
-
 interface Props {
   flowerType: FlowerType;
   showIntro: boolean;
+  onRetakeQuiz: () => void;
 }
-export const ResultPage: React.FC<Props> = ({ flowerType, showIntro }) => {
+export const ResultPage: React.FC<Props> = ({
+  flowerType,
+  showIntro,
+  onRetakeQuiz,
+}) => {
   return (
     <div>
       {showIntro && <h1>Intro</h1>}
@@ -17,6 +20,7 @@ export const ResultPage: React.FC<Props> = ({ flowerType, showIntro }) => {
         quos sit maiores, similique nesciunt ut velit possimus explicabo quam
         porro numquam ab ea corporis.
       </p>
+      <button onClick={onRetakeQuiz}>ลองทำอีกรอบ</button>
     </div>
   );
 };
