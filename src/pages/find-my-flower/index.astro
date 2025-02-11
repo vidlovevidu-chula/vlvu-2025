@@ -1,0 +1,1298 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import {
+  FindYourFlowerScreen,
+  type GifScene,
+} from "../../components/find-my-flower/Screen";
+
+import {
+  GAME_STATE_COOKIE_KEY,
+  FlowerGameContainer,
+} from "../../components/FlowerGame/FlowerGameContainer";
+
+export const prerender = false;
+const cookies = Astro.cookies;
+const serializedStateCookie = cookies.get(GAME_STATE_COOKIE_KEY);
+const serializedState = serializedStateCookie?.value;
+
+const scenes: GifScene[] = [
+  //--start--
+  {
+    url: [{ url: "/videos/0/1.webp", className: "relative w-full" }],
+    buttonImageUrl: "/images/0/1.webp",
+    className: "absolute top-[15%] left-[3%] w-[50%]",
+  },
+  {
+    url: "/videos/0/2_s.webp",
+    duration: 2800,
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  //--opening--
+  {
+    url: "/videos/1/1_s.webp",
+    duration: 1300,
+  },
+  {
+    url: "/videos/1/2.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //window1
+      { url: "/videos/1/2.webp", className: "w-full" },
+      {
+        url: "/images/1/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] ",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //window2
+      { url: "/videos/1/2.webp", className: "w-full" },
+      {
+        url: "/images/1/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //window3
+      { url: "/videos/1/2.webp", className: "w-full" },
+      {
+        url: "/images/1/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/1/3.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //window_without_letter
+      { url: "/videos/1/3.webp", className: "w-full" },
+      {
+        url: "/images/1/letter.webp",
+        className:
+          "absolute top-full left-0 w-full -translate-y-full transition-all duration-0",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //letter end
+      { url: "/videos/1/4.webp", className: "w-full" },
+    ],
+    duration: 1500,
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //black bg1
+      { url: "/videos/1_1/black.webp", className: "w-full" },
+      {
+        url: "/images/1_1/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //black bg2
+      { url: "/videos/1_1/black.webp", className: "w-full" },
+      {
+        url: "/images/1_1/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  //--chapter1--
+  {
+    url: "/videos/2/1_s.webp",
+    duration: 1500,
+  },
+  {
+    url: "/videos/2/2.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //tickets
+      { url: "/videos/2/2.webp", className: "w-full" },
+      {
+        url: "/images/2/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q1
+      { url: "/videos/2/2.webp", className: "w-full" },
+    ],
+    // buttonImageUrl: "/images/2/q1.webp",
+    className: "",
+    q: { boardImageUrl: "/images/2/q1.webp" },
+  },
+  {
+    //train_come
+    url: "/videos/3/1_s.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //train1
+      { url: "/videos/3/2.webp", className: "w-full" },
+      {
+        url: "/images/3/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //train2
+      { url: "/videos/3/2.webp", className: "w-full" },
+      {
+        url: "/images/3/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/3/3.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //in_train1
+      { url: "/videos/3/3.webp", className: "w-full" },
+      {
+        url: "/images/3/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //in_train2
+      { url: "/videos/3/3.webp", className: "w-full" },
+      {
+        url: "/images/3/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/4/1_s.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // Q2
+      { url: "/videos/4/1_s.webp", className: "w-full" },
+    ],
+    // buttonImageUrl: "/images/4/q2.webp",
+    className: "",
+    q: { boardImageUrl: "/images/4/q2.webp" },
+  },
+  {
+    url: "/videos/4/2.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //man
+      { url: "/videos/4/2.webp", className: "w-full" },
+      {
+        url: "/images/4/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q3
+      { url: "/videos/4/2.webp", className: "w-full" },
+    ],
+    // buttonImageUrl: "/images/4/q3.webp",
+    className: "",
+    q: { boardImageUrl: "/images/4/q3.webp" },
+  },
+  {
+    url: "/videos/5/1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //drinks
+      { url: "/videos/5/1.webp", className: "w-full" },
+      {
+        url: "/images/5/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q4
+      { url: "/videos/5/1.webp", className: "w-full" },
+    ],
+    // buttonImageUrl: "/images/5/q4.webp",
+    className: "",
+    q: { boardImageUrl: "/images/5/q4.webp" },
+  },
+  {
+    url: [
+      //6
+      { url: "/videos/6/1.webp", className: "w-full" },
+      {
+        url: "/images/6/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //6-2
+      { url: "/videos/6/2.webp", className: "w-full" },
+      {
+        url: "/images/6/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q5
+      { url: "/videos/6/2.webp", className: "w-full" },
+    ],
+    // buttonImageUrl: "/images/6/q5.webp",
+    className: "",
+    q: { boardImageUrl: "/images/6/q5.webp" },
+  },
+];
+
+//-------------Group1-------------
+const group1: GifScene[] = [
+  {
+    url: [
+      //6-3-1
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //6-3-2
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  //--chapter2--
+  {
+    url: [
+      // window fast
+      { url: "/videos/chapter2/1.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door1
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door2
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door open
+      { url: "/videos/chapter2/3.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
+      },
+    ],
+    duration: 1500,
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //title
+      { url: "/videos/1_1/black.webp", className: "w-full" },
+      {
+        url: "/images/group1/title1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group1/1_s.webp",
+    duration: 1500,
+  },
+  {
+    url: "/videos/group1/1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //song room
+      { url: "/videos/group1/1.webp", className: "w-full" },
+      {
+        url: "/images/group1/1-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //song room2
+      { url: "/videos/group1/1.webp", className: "w-full" },
+      {
+        url: "/images/group1/1-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group1/2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // table
+      { url: "/videos/group1/2.webp", className: "w-full" },
+      {
+        url: "/images/group1/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q6
+      { url: "/videos/group1/2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group1/q6.webp" },
+  },
+  {
+    url: "/videos/group1/3-1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1
+      { url: "/videos/group1/3-1.webp", className: "w-full" },
+      {
+        url: "/images/group1/3-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group1/3-2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1 zoom
+      { url: "/videos/group1/3-2.webp", className: "w-full" },
+      {
+        url: "/images/group1/3-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q7
+      { url: "/videos/group1/3-2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group1/q7.webp" },
+  },
+  {
+    url: "/videos/group1/4.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song3
+      { url: "/videos/group1/4.webp", className: "w-full" },
+      {
+        url: "/images/group1/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q8
+      { url: "/videos/group1/4.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group1/q8.webp" },
+  },
+  {
+    url: "/videos/group1/5.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song4
+      { url: "/videos/group1/5.webp", className: "w-full" },
+      {
+        url: "/images/group1/5.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group1/6.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // bag
+      { url: "/videos/group1/6.webp", className: "w-full" },
+      {
+        url: "/images/group1/6.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q9
+      { url: "/videos/group1/6.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group1/q9.webp" },
+  },
+  {
+    url: "/videos/group1/7-9.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // back
+      { url: "/videos/group1/7-9.webp", className: "w-full" },
+      {
+        url: "/images/group1/7.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q10
+      { url: "/videos/group1/7-9.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group1/q10.webp" },
+  },
+];
+
+//-------------Group2-------------
+const group2: GifScene[] = [
+  {
+    url: [
+      //6-3-1
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //6-3-2
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  //--chapter2--
+  {
+    url: [
+      // window fast
+      { url: "/videos/chapter2/1.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door1
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door2
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door open
+      { url: "/videos/chapter2/3.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
+      },
+    ],
+    duration: 1500,
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //title
+      { url: "/videos/1_1/black.webp", className: "w-full" },
+      {
+        url: "/images/group2/title2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group2/1_s.webp",
+    duration: 1500,
+  },
+  {
+    url: "/videos/group2/1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //song room
+      { url: "/videos/group2/1.webp", className: "w-full" },
+      {
+        url: "/images/group2/1-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //song room2
+      { url: "/videos/group2/1.webp", className: "w-full" },
+      {
+        url: "/images/group2/1-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group2/2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // table
+      { url: "/videos/group2/2.webp", className: "w-full" },
+      {
+        url: "/images/group2/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q6
+      { url: "/videos/group2/2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group2/q6.webp" },
+  },
+  {
+    url: "/videos/group2/3-1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1
+      { url: "/videos/group2/3-1.webp", className: "w-full" },
+      {
+        url: "/images/group2/3-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group2/3-2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1 zoom
+      { url: "/videos/group2/3-2.webp", className: "w-full" },
+      {
+        url: "/images/group2/3-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q7
+      { url: "/videos/group2/3-2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group2/q7.webp" },
+  },
+  {
+    url: "/videos/group2/4.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song3
+      { url: "/videos/group2/4.webp", className: "w-full" },
+      {
+        url: "/images/group2/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q8
+      { url: "/videos/group2/4.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group2/q8.webp" },
+  },
+  {
+    url: "/videos/group2/5.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song4
+      { url: "/videos/group2/5.webp", className: "w-full" },
+      {
+        url: "/images/group2/5.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group2/6.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // bag
+      { url: "/videos/group2/6.webp", className: "w-full" },
+      {
+        url: "/images/group2/6.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q9
+      { url: "/videos/group2/6.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group2/q9.webp" },
+  },
+  {
+    url: "/videos/group2/7-9.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // back
+      { url: "/videos/group2/7-9.webp", className: "w-full" },
+      {
+        url: "/images/group2/7.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q10
+      { url: "/videos/group2/7-9.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group2/q10.webp" },
+  },
+];
+
+//-------------Group3-------------
+const group3: GifScene[] = [
+  {
+    url: [
+      //6-3-1
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //6-3-2
+      { url: "/videos/6/3.webp", className: "w-full" },
+      {
+        url: "/images/6/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  //--chapter2--
+  {
+    url: [
+      // window fast
+      { url: "/videos/chapter2/1.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door1
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door2
+      { url: "/videos/chapter2/2.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //  door open
+      { url: "/videos/chapter2/3.webp", className: "w-full" },
+      {
+        url: "/images/chapter2/3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
+      },
+    ],
+    duration: 1500,
+  },
+  {
+    url: "/videos/1_1/black.webp",
+    duration: 500,
+  },
+  {
+    url: [
+      //title
+      { url: "/videos/1_1/black.webp", className: "w-full" },
+      {
+        url: "/images/group3/title3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group3/1_s.webp",
+    duration: 1500,
+  },
+  {
+    url: "/videos/group3/1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      //song room
+      { url: "/videos/group3/1.webp", className: "w-full" },
+      {
+        url: "/images/group3/1-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      //song room2
+      { url: "/videos/group3/1.webp", className: "w-full" },
+      {
+        url: "/images/group3/1-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group3/2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // table
+      { url: "/videos/group3/2.webp", className: "w-full" },
+      {
+        url: "/images/group3/2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q6
+      { url: "/videos/group3/2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group3/q6.webp" },
+  },
+  {
+    url: "/videos/group3/3-1.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1
+      { url: "/videos/group3/3-1.webp", className: "w-full" },
+      {
+        url: "/images/group3/3-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group3/3-2.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song1 zoom
+      { url: "/videos/group3/3-2.webp", className: "w-full" },
+      {
+        url: "/images/group3/3-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q7
+      { url: "/videos/group3/3-2.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group3/q7.webp" },
+  },
+  {
+    url: "/videos/group3/4.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song3
+      { url: "/videos/group3/4.webp", className: "w-full" },
+      {
+        url: "/images/group3/4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q8
+      { url: "/videos/group3/4.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group3/q8.webp" },
+  },
+  {
+    url: "/videos/group3/5.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // song4
+      { url: "/videos/group3/5.webp", className: "w-full" },
+      {
+        url: "/images/group3/5.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group3/6.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // bag
+      { url: "/videos/group3/6.webp", className: "w-full" },
+      {
+        url: "/images/group3/6.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q9
+      { url: "/videos/group3/6.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group3/q9.webp" },
+  },
+  {
+    url: "/videos/group3/7-9.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // back
+      { url: "/videos/group3/7-9.webp", className: "w-full" },
+      {
+        url: "/images/group3/7.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // Q10
+      { url: "/videos/group3/7-9.webp", className: "w-full" },
+    ],
+    className: "",
+    q: { boardImageUrl: "/images/group3/q10.webp" },
+  },
+];
+
+//<--ending scene-->
+const ending: GifScene[] = [
+  {
+    url: "/videos/group1/8.webp",
+    duration: 1000,
+  },
+  {
+    url: [
+      // vlvu
+      { url: "/videos/group1/8.webp", className: "w-full" },
+      {
+        url: "/images/group1/8-1.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // vlvu2
+      { url: "/videos/group1/8.webp", className: "w-full" },
+      {
+        url: "/images/group1/8-2.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // vlv3
+      { url: "/videos/group1/8.webp", className: "w-full" },
+      {
+        url: "/images/group1/8-3.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: [
+      // vlvu4
+      { url: "/videos/group1/8.webp", className: "w-full" },
+      {
+        url: "/images/group1/8-4.webp",
+        className:
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%] animate-fadeIn",
+      },
+    ],
+    buttonImageUrl: "/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+  {
+    url: "/videos/group1/7-9.webp",
+    duration: 2000,
+  },
+  {
+    url: [
+      // result
+      { url: "/videos/group1/7-9.webp", className: "w-full" },
+      // {
+      //   url: "/images/group1/flower.webp",
+      //   className:
+      //     "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
+      // },
+    ],
+    buttonImageUrl: "/images/group1/flower.webp", //"/images/tap.webp",
+    className: "absolute bottom-[12%] right-[7%] w-[20%]",
+  },
+];
+---
+
+<Layout title="Find my flower">
+  <div
+    class="flex justify-center items-center w-full h-[100vh] overflow-hidden bg-black"
+  >
+    <FlowerGameContainer
+      serializedState={serializedState}
+      scenes={[scenes, group1, group2, group3, ending]}
+      client:load
+    />
+    <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->
+  </div>
+</Layout>
