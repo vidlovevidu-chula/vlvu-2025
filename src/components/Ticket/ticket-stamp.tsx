@@ -132,7 +132,11 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
           >
             ตกแต่ง ticket
           </button>
-          <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+          <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+          onClick={() =>
+              (window.location.href = `/ticket-stamp/stamp/${user_id}`)
+            }
+            >
             ดูแสตมป์
           </button>
         </div>
