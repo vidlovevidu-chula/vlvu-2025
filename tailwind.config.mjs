@@ -91,6 +91,19 @@ export default {
         lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
       },
       keyframes: {
+        "zoom-in": {
+          "0%": {
+            opacity: 0,
+            transform: "scale3d(0.3, 0.3, 0.3)",
+          },
+          "80%": {
+            opacity: 0.8,
+            transform: "scale3d(1.1, 1.1, 1.1)",
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
         fadeIn: {
           from: { opacity: 0 },
           to: { opacity: 1 },
@@ -103,11 +116,27 @@ export default {
           from: { opacity: 0, transform: "translateY(1rem)" },
           to: { opacity: 1, transform: "translateY(0)" },
         },
+        letterFadeUp: {
+          from: {
+            opacity: 0,
+            transform: "translate3d(50%, -150%, 0)",
+            top: "50%",
+            left: "50%",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate3d(50%, -50%, 0)",
+            top: "50%",
+            left: "50%",
+          },
+        },
       },
       animation: {
+        zoomIn: "zoom-in 1s ease-out 0s 1",
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
+        letterFadeUp: "fadeUp 1s ease-in-out",
       },
     },
   },

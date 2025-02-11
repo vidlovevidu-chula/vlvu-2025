@@ -14,7 +14,7 @@ const Minigames: React.FC = () => {
       {/* Flower game */}
       <div className="flex w-full justify-evenly items-center animate-fadeUp">
         <img
-          src="/images/home/minigames/flower-game.webp"
+          src="/images/home/minigames/flower-game-cs.webp"
           width={120}
           height={120}
           alt="Find My Flower"
@@ -28,7 +28,8 @@ const Minigames: React.FC = () => {
             onClick={() => alert("Coming soon!")}
           >
             {" "}
-            Click to Play{" "}
+            {/* Click to Play{" "} */}
+            Coming Soon!{" "}
           </a>
         </div>
       </div>
@@ -43,11 +44,12 @@ const Minigames: React.FC = () => {
             onClick={() => alert("Coming soon!")}
           >
             {" "}
-            Click to Create{" "}
+            {/* Click to Create{" "} */}
+            Coming Soon!{" "}
           </a>
         </div>
         <img
-          src="/images/home/minigames/ticket-game.webp"
+          src="/images/home/minigames/ticket-game-cs.webp"
           width={120}
           height={120}
           alt="Customize My Ticket"
@@ -58,7 +60,7 @@ const Minigames: React.FC = () => {
       {/* Stamp game */}
       <div className="flex w-full justify-evenly items-center mt-8 animate-fadeUp">
         <img
-          src="/images/home/minigames/stamp-game.webp"
+          src="/images/home/minigames/stamp-game-cs.webp"
           width={150}
           height={150}
           alt="Collect My Stamp"
@@ -72,7 +74,8 @@ const Minigames: React.FC = () => {
             onClick={() => alert("Coming soon!")}
           >
             {" "}
-            Click to Collect{" "}
+            {/* Click to Collect{" "} */}
+            Coming Soon!{" "}
           </a>
         </div>
       </div>
