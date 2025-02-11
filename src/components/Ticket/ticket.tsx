@@ -94,7 +94,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             }}
           >
             <img
-              src={"/cupid/ticket.webp"}
+              src={"/images/ticket/cupid/ticket.webp"}
               width={30}
               className="absolute right-5 top-1"
             />
@@ -107,7 +107,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             }}
           >
             <img
-              src={"/cupid/cupidmini.webp"}
+              src={"/images/ticket/cupid/cupidmini.webp"}
               width={29}
               className="absolute right-5 top-1"
             />
@@ -132,43 +132,46 @@ const Ticket = ({ user_id }: TicketProps) => {
       <div className="flex flex-col items-center h-fit">
         {/* ---- Title ---- */}
         <p className="text-[25px] text-[#925A48] font-Inter font-light">
-          My Love God
+          Oh! My Love god
         </p>
 
         {/* ---- Display ---- */}
         <div className="relative flex w-[240px] h-[427px] justify-center items-center">
           {$edgeType && $edgeColor && (
-            <img src={`/edge/${$edgeType}/${$edgeColor}.webp`} width={240} />
+            <img
+              src={`/images/ticket/edge/${$edgeType}/${$edgeColor}.webp`}
+              width={240}
+            />
           )}
           {$heartColor && (
             <img
-              src={`/heart/${$edgeType}/${$heartColor}.webp`}
+              src={`/images/ticket/heart/${$edgeType}/${$heartColor}.webp`}
               width={240}
               className="absolute"
             />
           )}
           {$wing && (
             <img
-              src={`/wing/${$wing}.webp`}
+              src={`/images/ticket/wing/${$wing}.webp`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           <img
-            src={"/cupid/cupid.webp"}
+            src={"/images/ticket/cupid/cupid.webp"}
             width={170}
             className="absolute top-[100px]"
           />
           {$style && (
             <img
-              src={`/style/${$style}.webp`}
+              src={`/images/ticket/style/${$style}.webp`}
               width={170}
               className="absolute top-[100px]"
             />
           )}
           {$prop && (
             <img
-              src={`/prop/${$prop}.webp`}
+              src={`/images/ticket/prop/${$prop}.webp`}
               width={170}
               className="absolute top-[100px]"
             />
@@ -191,7 +194,7 @@ const Ticket = ({ user_id }: TicketProps) => {
               onClick={() => scroll("prev")}
               aria-label="Scroll to previous"
             >
-              <img src={"/arrow/chevrons-left.svg"} width={29} />
+              <img src={"/images/ticket/arrow/chevrons-left.svg"} width={29} />
             </button>
 
             <div
@@ -206,7 +209,7 @@ const Ticket = ({ user_id }: TicketProps) => {
               onClick={() => scroll("next")}
               aria-label="Scroll to next"
             >
-              <img src={"/arrow/chevrons-right.svg"} width={29} />
+              <img src={"/images/ticket/arrow/chevrons-right.svg"} width={29} />
             </button>
           </div>
         )}
@@ -235,7 +238,10 @@ const Ticket = ({ user_id }: TicketProps) => {
                 page.set("Style");
               }}
             >
-              <img src="/cupid/arrow-r-blue.svg" alt="arrow-right" />
+              <img
+                src="/images/ticket/cupid/arrow-r-blue.svg"
+                alt="arrow-right"
+              />
             </button>
           </div>
         )}
@@ -250,7 +256,7 @@ const Ticket = ({ user_id }: TicketProps) => {
                 page.set("Edge");
               }}
             >
-              <img src="/cupid/arrow-left.svg" alt="arrow-left" />
+              <img src="/images/ticket/cupid/arrow-left.svg" alt="arrow-left" />
             </button>
 
             <button
@@ -281,7 +287,10 @@ const Ticket = ({ user_id }: TicketProps) => {
               className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => setDisplay("Name")}
             >
-              <img src="/cupid/arrow-r-orange.svg" alt="arrow-right" />
+              <img
+                src="/images/ticket/cupid/arrow-r-orange.svg"
+                alt="arrow-right"
+              />
             </button>
           </div>
         )}
@@ -306,7 +315,10 @@ const Ticket = ({ user_id }: TicketProps) => {
                   page.set("Style");
                 }}
               >
-                <img src="/cupid/arrow-left.svg" alt="arrow-left" />
+                <img
+                  src="/images/ticket/cupid/arrow-left.svg"
+                  alt="arrow-left"
+                />
               </button>
               <button
                 className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"

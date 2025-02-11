@@ -74,12 +74,15 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
         className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent"
       >
         {edgeType && edgeColor && (
-          <img src={`/edge/${edgeType}/${edgeColor}.webp`} width={240} />
+          <img
+            src={`/images/ticket/edge/${edgeType}/${edgeColor}.webp`}
+            width={240}
+          />
         )}
 
         {heartColor && (
           <img
-            src={`/heart/${edgeType}/${heartColor}.webp`}
+            src={`/images/ticket/heart/${edgeType}/${heartColor}.webp`}
             width={240}
             className="absolute"
           />
@@ -87,21 +90,21 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {wing && (
           <img
-            src={`/wing/${wing}.webp`}
+            src={`/images/ticket/wing/${wing}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
         )}
 
         <img
-          src={"/cupid/cupid.webp"}
+          src={"/images/ticket/cupid/cupid.webp"}
           width={170}
           className="absolute top-[100px]"
         />
 
         {style && (
           <img
-            src={`/style/${style}.webp`}
+            src={`/images/ticket/style/${style}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
@@ -109,7 +112,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {prop && (
           <img
-            src={`/prop/${prop}.webp`}
+            src={`/images/ticket/prop/${prop}.webp`}
             width={170}
             className="absolute top-[100px]"
           />

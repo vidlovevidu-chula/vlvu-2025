@@ -8,22 +8,22 @@ const Edges = () => {
   return (
     <div className="flex flex-row">
       <Ticketcustom
-        src={`/edge/edge1/${$edgeColor}.webp`}
+        src={`/images/ticket/edge/edge1/${$edgeColor}.webp`}
         alt="edge1"
         type="edge"
       />
       <Ticketcustom
-        src={`/edge/edge2/${$edgeColor}.webp`}
+        src={`/images/ticket/edge/edge2/${$edgeColor}.webp`}
         alt="edge2"
         type="edge"
       />
       <Ticketcustom
-        src={`/edge/edge3/${$edgeColor}.webp`}
+        src={`/images/ticket/edge/edge3/${$edgeColor}.webp`}
         alt="edge3"
         type="edge"
       />
       <Ticketcustom
-        src={`/edge/edge4/${$edgeColor}.webp`}
+        src={`/images/ticket/edge/edge4/${$edgeColor}.webp`}
         alt="edge4"
         type="edge"
       />
