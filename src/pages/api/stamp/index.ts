@@ -18,7 +18,7 @@ const STAMPS = [
 
 const SMALL_REWARD_STAMP = "smallRewardStamp";
 const BIG_REWARD_STAMP = "bigRewardStamp";
-const VALID_STAMPS = [...STAMPS, SMALL_REWARD_STAMP, BIG_REWARD_STAMP];
+const VALIDATE_STAMP = "validateStamp";
 
 // Add a stamp for a specific user
 export const POST: APIRoute = async ({ request }) => {
@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request }) => {
     const { uID, boothId } = await request.json();
 
     // Validate the stamp name
-    if (!VALID_STAMPS.includes(boothId)) {
+    if (![...STAMPS, VALIDATE_STAMP, SMALL_REWARD_STAMP, BIG_REWARD_STAMP].includes(boothId)) {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid stamp name!" }),
         { status: 400 },
@@ -51,6 +51,25 @@ export const POST: APIRoute = async ({ request }) => {
         JSON.stringify({ success: false, message: "Already stamped!" }),
         { status: 400 },
       );
+    }
+
+    // Check if the user is trying to collect `validateStamp`
+    if (boothId === VALIDATE_STAMP) {
+      // Ensure all `STAMPS` are collected
+      const missingStamps = STAMPS.filter(
+        (stamp) => !currentStamps.includes(stamp),
+      );
+      if (missingStamps.length > 0) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message:
+              "Cannot collect validateStamp until all other stamps are collected!",
+            missingStamps,
+          }),
+          { status: 400 },
+        );
+      }
     }
 
     // Reward logic
