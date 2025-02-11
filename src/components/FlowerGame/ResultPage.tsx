@@ -4,17 +4,17 @@ import type { FlowerType } from "./FlowerGameContainer";
 import { twMerge } from "tailwind-merge";
 import type { GifScene } from "./FirstHalfQuestions";
 
-// const FLOWER_TYPE_NAME, FLOWER_TYPE_DESCRIPTIONS = ...
-
 interface Props {
   flowerType: FlowerType;
   showIntro: boolean;
   scenes: GifScene[];
+  onRetakeQuiz: () => void;
 }
 export const ResultPage: React.FC<Props> = ({
   flowerType,
   showIntro,
   scenes,
+  onRetakeQuiz,
 }) => {
   const [currentScene, setCurrentScene] = useState(0);
   const [showResult, setShowResult] = useState(false);

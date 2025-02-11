@@ -43,7 +43,7 @@ export const FlowerGameContainer: React.FC<Props> = ({
     return FlowerGame({ serializedState, scenes });
   } catch (err) {
     if (err instanceof InvalidStateError) {
-      console.error(err);
+      console.log("Invalid game state: " + err.message);
       // clear the state if the saved state is invalid
       return FlowerGame({ serializedState: undefined, scenes });
     } else {
@@ -56,6 +56,14 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
   let storedState: SerializableGameState | undefined = undefined;
   if (serializedState !== undefined)
     storedState = JSON.parse(serializedState) as SerializableGameState;
+
+  if (
+    storedState !== undefined &&
+    storedState.questionNumber !== 1 &&
+    storedState.questionNumber <= 10
+  ) {
+    throw new InvalidStateError("Unfinished game");
+  }
 
   const [questionNumber, setQuestionNumber] = useState(
     storedState?.questionNumber ?? 1,
@@ -138,6 +146,12 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
     setQuestionNumber(questionNumber + 1);
   }
 
+  function onRetakeQuiz() {
+    setQuestionNumber(1);
+    setFirstHalfScore(0);
+    setSecondHalfScore(0);
+  }
+
   // saves the updated state to cookie
   useEffect(() => {
     const serialized = JSON.stringify({
@@ -174,6 +188,7 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
             flowerType={flowerType}
             showIntro={!storedState || storedState.questionNumber <= 10}
             scenes={scenes[4]}
+            onRetakeQuiz={onRetakeQuiz}
           />
         )}
       </div>
