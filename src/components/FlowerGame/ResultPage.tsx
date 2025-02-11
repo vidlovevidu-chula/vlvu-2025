@@ -16,8 +16,10 @@ export const ResultPage: React.FC<Props> = ({
   scenes,
   onRetakeQuiz,
 }) => {
-  const [currentScene, setCurrentScene] = useState(0);
-  const [showResult, setShowResult] = useState(!showIntro); // immediately show result if showIntro is false
+  const [currentScene, setCurrentScene] = useState(
+    showIntro ? 0 : scenes.length - 1, // use last scene if showIntro is false
+  );
+  const [showResult, setShowResult] = useState(false);
 
   const { url, buttonImageUrl, className, duration, ...props } =
     scenes?.[currentScene] || {};
