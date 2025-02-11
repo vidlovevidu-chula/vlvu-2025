@@ -1,10 +1,10 @@
 import type { APIRoute } from "astro";
 import { getFirestore, FieldValue } from "firebase-admin/firestore";
-import { app } from "../../firebase/server.ts";
+import { app } from "../../../firebase/server.ts";
 
 const db = getFirestore(app);
 
-// List of valid stamps
+// List of valid stamps and reward stamps
 const STAMPS = [
   "boot1",
   "boot2",
@@ -15,15 +15,18 @@ const STAMPS = [
   "boot7",
   "boot8",
 ];
-const VALIDATE_STAMP = "validateStamp";
+
+const SMALL_REWARD_STAMP = "smallRewardStamp";
+const BIG_REWARD_STAMP = "bigRewardStamp";
+const VALID_STAMPS = [...STAMPS, SMALL_REWARD_STAMP, BIG_REWARD_STAMP];
 
 // Add a stamp for a specific user
-export const post: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const { uID, boothId } = await request.json();
 
     // Validate the stamp name
-    if (![...STAMPS, VALIDATE_STAMP].includes(boothId)) {
+    if (!VALID_STAMPS.includes(boothId)) {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid stamp name!" }),
         { status: 400 },
@@ -50,19 +53,33 @@ export const post: APIRoute = async ({ request }) => {
       );
     }
 
-    // Check if the user is trying to collect `validateStamp`
-    if (boothId === VALIDATE_STAMP) {
-      // Ensure all `STAMPS` are collected
-      const missingStamps = STAMPS.filter(
-        (stamp) => !currentStamps.includes(stamp),
-      );
-      if (missingStamps.length > 0) {
+    // Reward logic
+    if (boothId === SMALL_REWARD_STAMP) {
+      if (
+        currentStamps.filter((stamp: string) => STAMPS.includes(stamp)).length <
+        5
+      ) {
         return new Response(
           JSON.stringify({
             success: false,
             message:
-              "Cannot collect validateStamp until all other stamps are collected!",
-            missingStamps,
+              "Cannot collect small reward stamp until at least 5 stamps are collected!",
+          }),
+          { status: 400 },
+        );
+      }
+    }
+
+    if (boothId === BIG_REWARD_STAMP) {
+      if (
+        currentStamps.filter((stamp: string) => STAMPS.includes(stamp)).length <
+        8
+      ) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message:
+              "Cannot collect big reward stamp until all 8 stamps are collected!",
           }),
           { status: 400 },
         );
@@ -87,9 +104,16 @@ export const post: APIRoute = async ({ request }) => {
 };
 
 // Get all stamps for a specific user
-export const get: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request }) => {
   try {
-    const { uID } = await request.json();
+    const uID = new URL(request.url).searchParams.get("uID");
+
+    if (!uID) {
+      return new Response(
+        JSON.stringify({ success: false, message: "Missing uID!" }),
+        { status: 400 },
+      );
+    }
 
     // Reference to the user's document in StampsCollection
     const userRef = db.collection("StampsCollection").doc(uID);
