@@ -122,7 +122,6 @@ export default {
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
-        letterFadeUp: "fadeUp 1s ease-in-out",
       },
     },
   },

@@ -77,6 +77,8 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
   const group: FlowerGroup | undefined = determineGroup();
   const flowerType: FlowerType | undefined = determineFlowerType();
 
+  const [restarted, setRestarted] = useState(false);
+
   function determineGroup(): FlowerGroup | undefined {
     if (questionNumber <= 5) return;
 
@@ -150,6 +152,7 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
     setQuestionNumber(1);
     setFirstHalfScore(0);
     setSecondHalfScore(0);
+    setRestarted(true);
   }
 
   // saves the updated state to cookie
@@ -186,7 +189,9 @@ const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
         ) : (
           <ResultPage
             flowerType={flowerType}
-            showIntro={!storedState || storedState.questionNumber <= 10}
+            showIntro={
+              restarted || !storedState || storedState.questionNumber <= 10
+            }
             scenes={scenes[4]}
             onRetakeQuiz={onRetakeQuiz}
           />
