@@ -33,6 +33,7 @@ const Ticket = ({ user_id }: TicketProps) => {
       try {
         const res = await fetch(`/api/tickets?uID=${user_id}`);
         const data = await res.json();
+        console.log("API response data:", data);
 
         if (data.success && data.tickets) {
           const ticket = data.tickets[0];

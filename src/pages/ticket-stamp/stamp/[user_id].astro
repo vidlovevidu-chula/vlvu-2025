@@ -1,0 +1,10 @@
+---
+import TicketBack from "../../../components/Ticket/ticket-back";
+import Layout from "../../../layouts/Layout.astro";
+
+const { user_id } = Astro.params;
+---
+
+<Layout>
+  <TicketBack user_id={user_id} client:load />
+</Layout>

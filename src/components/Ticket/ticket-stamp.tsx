@@ -19,7 +19,6 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
       try {
         const res = await fetch(`/api/tickets?uID=${user_id}`);
         const data = await res.json();
-
         if (data.success && data.tickets) {
           const ticket = data.tickets[0];
           setEdgeColor(ticket.decoration.edgeColor);
