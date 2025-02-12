@@ -23,9 +23,9 @@ const Minigames: React.FC = () => {
         <div className="text-center leading-tight flex flex-col gap-1 font-Ovo font-semibold">
           <h2 className="text-xl text-blackbrown"> Find My Flower </h2>
           <a
-            href="#"
+            href="/find-my-flower"
             className="text-lg text-blackrose"
-            onClick={() => alert("Coming soon!")}
+            // onClick={() => alert("Coming soon!")}
           >
             {" "}
             Click to Play{" "}

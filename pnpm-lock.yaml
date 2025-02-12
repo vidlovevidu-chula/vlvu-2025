@@ -61,6 +61,9 @@ importers:
       html-to-image:
         specifier: ^1.11.11
         version: 1.11.11
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       lucide-react:
         specifier: ^0.474.0
         version: 0.474.0(react@19.0.0)
@@ -3917,6 +3920,13 @@ packages:
       {
         integrity: sha512-1vUQX+IdDMVPj4k8kOxgUqlcK518yluMuGZwqlr44FS1ppZB/5GWh4rZG89erpOBOJjU/OBsnCVFfapsRz6nEA==,
       }
+
+  js-cookie@3.0.5:
+    resolution:
+      {
+        integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==,
+      }
+    engines: { node: ">=14" }
 
   js-tokens@4.0.0:
     resolution:
@@ -9087,6 +9097,8 @@ snapshots:
   jiti@1.21.7: {}
 
   jose@4.15.9: {}
+
+  js-cookie@3.0.5: {}
 
   js-tokens@4.0.0: {}
 

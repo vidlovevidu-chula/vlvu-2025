@@ -3,9 +3,11 @@ import type * as React from "react";
 import { FirstHalfQuestions } from "./FirstHalfQuestions";
 import { SecondHalfQuestions } from "./SecondHalfQuestions";
 import { ResultPage } from "./ResultPage";
+import type { GifScene } from "./FirstHalfQuestions";
 
 interface Props {
   serializedState: string | undefined;
+  scenes: GifScene[][];
 }
 
 class InvalidStateError extends Error {
@@ -33,24 +35,35 @@ interface SerializableGameState {
 
 export const GAME_STATE_COOKIE_KEY = "game_state";
 
-export const FlowerGameContainer: React.FC<Props> = (state) => {
+export const FlowerGameContainer: React.FC<Props> = ({
+  serializedState,
+  scenes,
+}) => {
   try {
-    return FlowerGame(state);
+    return FlowerGame({ serializedState, scenes });
   } catch (err) {
     if (err instanceof InvalidStateError) {
-      console.error(err);
+      console.log("Invalid game state: " + err.message);
       // clear the state if the saved state is invalid
-      return FlowerGame({ serializedState: undefined });
+      return FlowerGame({ serializedState: undefined, scenes });
     } else {
       throw err;
     }
   }
 };
 
-const FlowerGame: React.FC<Props> = ({ serializedState }) => {
+const FlowerGame: React.FC<Props> = ({ serializedState, scenes }) => {
   let storedState: SerializableGameState | undefined = undefined;
   if (serializedState !== undefined)
     storedState = JSON.parse(serializedState) as SerializableGameState;
+
+  if (
+    storedState !== undefined &&
+    storedState.questionNumber !== 1 &&
+    storedState.questionNumber <= 10
+  ) {
+    throw new InvalidStateError("Unfinished game");
+  }
 
   const [questionNumber, setQuestionNumber] = useState(
     storedState?.questionNumber ?? 1,
@@ -63,6 +76,8 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
   );
   const group: FlowerGroup | undefined = determineGroup();
   const flowerType: FlowerType | undefined = determineFlowerType();
+
+  const [restarted, setRestarted] = useState(false);
 
   function determineGroup(): FlowerGroup | undefined {
     if (questionNumber <= 5) return;
@@ -133,6 +148,13 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
     setQuestionNumber(questionNumber + 1);
   }
 
+  function onRetakeQuiz() {
+    setQuestionNumber(1);
+    setFirstHalfScore(0);
+    setSecondHalfScore(0);
+    setRestarted(true);
+  }
+
   // saves the updated state to cookie
   useEffect(() => {
     const serialized = JSON.stringify({
@@ -146,26 +168,32 @@ const FlowerGame: React.FC<Props> = ({ serializedState }) => {
 
   return (
     <>
-      <div>
+      <div className="max-w-screen-sm w-full max-h-screen relative">
         {flowerType === undefined ? (
           <div className="">
             {group === undefined ? (
               <FirstHalfQuestions
                 questionNumber={questionNumber}
                 onFirstHalfAnswer={onFirstHalfAnswer}
+                scenes={scenes[0]}
               />
             ) : (
               <SecondHalfQuestions
                 questionNumber={questionNumber}
                 group={group}
                 onSecondHalfAnswer={onSecondHalfAnswer}
+                scenes={[scenes[1], scenes[2], scenes[3]]}
               />
             )}
           </div>
         ) : (
           <ResultPage
             flowerType={flowerType}
-            showIntro={!storedState || storedState.questionNumber <= 10}
+            showIntro={
+              restarted || !storedState || storedState.questionNumber <= 10
+            }
+            scenes={scenes[4]}
+            onRetakeQuiz={onRetakeQuiz}
           />
         )}
       </div>
