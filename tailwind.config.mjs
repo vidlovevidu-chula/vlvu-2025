@@ -116,12 +116,17 @@ export default {
           from: { opacity: 0, transform: "translateY(1rem)" },
           to: { opacity: 1, transform: "translateY(0)" },
         },
+        slideUp: {
+          from: { transform: "translateY(100%)" },
+          to: { transform: "translateY(0)" },
+        },
       },
       animation: {
         zoomIn: "zoom-in 1s ease-out 0s 1",
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
+        slideUp: "slideUp 1s ease-in-out",
       },
     },
   },
