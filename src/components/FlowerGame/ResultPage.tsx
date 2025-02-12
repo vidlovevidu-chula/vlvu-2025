@@ -66,7 +66,7 @@ export const ResultPage: React.FC<Props> = ({
       )}
       {showResult ? (
         <div className="w-[87%] h-[80%] flex flex-col absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img alt="card" src={`/images/cards/` + flowerType + `.png`} />
+          <img alt="card" src={`/images/cards/` + flowerType + `.webp`} />
           <div className="flex justify-center gap-[2%] mt-[2%]">
             <button
               className="w-[30%]"
@@ -81,7 +81,7 @@ export const ResultPage: React.FC<Props> = ({
             </button>
             <a
               className="w-[30%] flex"
-              href={`/images/cards/` + flowerType + `.png`}
+              href={`/images/cards/` + flowerType + `.webp`}
               download
             >
               <button className="w-full" {...props}>

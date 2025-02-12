@@ -59,7 +59,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = "ticket.png";
+        link.download = "ticket.webp";
         link.click();
       })
       .catch((error) => {
@@ -140,10 +140,12 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
           >
             ตกแต่ง ticket
           </button>
-          <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-          onClick={() =>
-            (window.location.href = `/ticket-stamp/stamp/${uID}`)
-          }>
+          <button
+            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            onClick={() =>
+              (window.location.href = `/ticket-stamp/stamp/${uID}`)
+            }
+          >
             ดูแสตมป์
           </button>
         </div>

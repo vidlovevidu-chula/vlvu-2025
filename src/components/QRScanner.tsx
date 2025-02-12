@@ -61,15 +61,15 @@ const QRScanner: React.FC<QRScannerProps> = ({ user_id }) => {
 
             // Use forward slashes and handle spaces in URLs
             const stampPaths: { [key: string]: string } = {
-              "vlvu-2025/public/stamp/sugar sugar train.png": "boot1",
-              "vlvu-2025/public/stamp/harmony tales.png": "boot2",
-              "vlvu-2025/public/stamp/bouquet of scent.png": "boot3",
-              "vlvu-2025/public/stamp/lost letters of love.png": "boot4",
-              "vlvu-2025/public/stamp/next station love.png": "boot5",
-              "vlvu-2025/public/stamp/see something I lost in the beach.png":
+              "vlvu-2025/public/stamp/sugar sugar train.webp": "boot1",
+              "vlvu-2025/public/stamp/harmony tales.webp": "boot2",
+              "vlvu-2025/public/stamp/bouquet of scent.webp": "boot3",
+              "vlvu-2025/public/stamp/lost letters of love.webp": "boot4",
+              "vlvu-2025/public/stamp/next station love.webp": "boot5",
+              "vlvu-2025/public/stamp/see something I lost in the beach.webp":
                 "boot6",
-              "vlvu-2025/public/stamp/one shot.png": "boot7",
-              "vlvu-2025/public/stamp/you and me and me.png": "boot8",
+              "vlvu-2025/public/stamp/one shot.webp": "boot7",
+              "vlvu-2025/public/stamp/you and me and me.webp": "boot8",
             };
 
             // Normalize the scanned text to use forward slashes
