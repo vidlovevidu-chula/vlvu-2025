@@ -73,11 +73,11 @@ export const FirstHalfQuestions: React.FC<Props> = ({
             >
               <h1 className="">Question {questionNumber}</h1>
               <div className="flex flex-col gap-x-2 gap-y-10 max-[450px]:gap-y-[8vw]">
-                <button onClick={() => onFirstHalfAnswer("charity")}>
-                  charity
-                </button>
                 <button onClick={() => onFirstHalfAnswer("sensory")}>
                   sensory
+                </button>
+                <button onClick={() => onFirstHalfAnswer("charity")}>
+                  charity
                 </button>
                 <button onClick={() => onFirstHalfAnswer("harmony")}>
                   harmony
