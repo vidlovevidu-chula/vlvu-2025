@@ -9,6 +9,7 @@ import {
   GAME_STATE_COOKIE_KEY,
   FlowerGameContainer,
 } from "../../components/FlowerGame/FlowerGameContainer";
+import Navbar from "@/components/Navbar.astro";
 
 export const prerender = false;
 const cookies = Astro.cookies;
@@ -1294,4 +1295,7 @@ const ending: GifScene[] = [
     />
     <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->
   </div>
+  <nav class="fixed top-0 ml-1 w-auto z-30">
+    <Navbar />
+  </nav>
 </Layout>

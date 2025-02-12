@@ -1,3 +1,4 @@
+import { validateSession } from "@/firebase/auth";
 import React, { useEffect, useState } from "react";
 
 interface TicketProps {
@@ -10,6 +11,7 @@ const TicketBack = ({ user_id }: TicketProps) => {
   const [stamps, setStamps] = useState<string[]>([]);
 
   useEffect(() => {
+    validateSession();
     if (!user_id) {
       console.error("No user_id provided");
       return;

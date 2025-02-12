@@ -11,6 +11,7 @@ import {
   name,
 } from "@/store";
 import DecorationItems from "./decorationItems";
+import { validateSession } from "@/firebase/auth";
 
 interface TicketProps {
   uID: string | undefined;
@@ -29,6 +30,7 @@ const Ticket = ({ uID }: TicketProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    validateSession();
     const fetchTickets = async () => {
       try {
         const res = await fetch(`/api/tickets?uID=${uID}`);
