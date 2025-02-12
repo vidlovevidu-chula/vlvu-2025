@@ -1,12 +1,12 @@
 import type { APIRoute } from "astro";
-import { getFirestore, FieldValue } from "firebase-admin/firestore";
+import { getFirestore } from "firebase-admin/firestore";
 import { app } from "../../firebase/server";
 
 const db = getFirestore(app);
 
 export const prerender = false; // Ensures the endpoint is server-rendered
 
-// Fetch tickets for a specific user
+// Fetch ticket for a specific user
 export const GET: APIRoute = async ({ request }) => {
   try {
     const url = new URL(request.url);
@@ -22,30 +22,30 @@ export const GET: APIRoute = async ({ request }) => {
       );
     }
 
-    const userTicketsRef = db.collection("TicketsCollection").doc(uID);
-    const userTicketsDoc = await userTicketsRef.get();
+    const userTicketRef = db.collection("TicketsCollection").doc(uID);
+    const userTicketDoc = await userTicketRef.get();
 
-    if (!userTicketsDoc.exists) {
-      return new Response(JSON.stringify({ success: true, tickets: [] }), {
-        status: 200,
-      });
+    if (!userTicketDoc.exists) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "User does not have a ticket",
+        }),
+        { status: 404 },
+      );
     }
 
-    const tickets = userTicketsDoc.data()?.tickets || [];
-
-    return new Response(JSON.stringify({ success: true, tickets }), {
-      status: 200,
-    });
+    return new Response(JSON.stringify(userTicketDoc.data()), { status: 200 });
   } catch (error) {
-    console.error("Error fetching tickets:", error);
+    console.error("Error fetching ticket:", error);
     return new Response(
-      JSON.stringify({ success: false, message: "Error fetching tickets" }),
+      JSON.stringify({ success: false, message: "Error fetching ticket" }),
       { status: 500 },
     );
   }
 };
 
-// Save a new ticket under the user's uID
+// Save a new ticket for the user
 export const POST: APIRoute = async ({ request }) => {
   try {
     if (!request.body) {
@@ -56,9 +56,20 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const ticketData = await request.json();
+    const { uID, ticketName, decoration } = ticketData;
 
     // Validate required fields
-    if (!ticketData.ticketName || typeof ticketData.ticketName !== "string") {
+    if (!uID || typeof uID !== "string") {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "User ID (uID) is required",
+        }),
+        { status: 400 },
+      );
+    }
+
+    if (!ticketName || typeof ticketName !== "string") {
       return new Response(
         JSON.stringify({
           success: false,
@@ -68,47 +79,35 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    if (!ticketData.uID || typeof ticketData.uID !== "string") {
-      return new Response(
-        JSON.stringify({ success: false, message: "Invalid or missing uID" }),
-        { status: 400 },
-      );
-    }
-
-    if (
-      !ticketData.decoration ||
-      typeof ticketData.decoration !== "object" ||
-      !ticketData.decoration.edgeColor ||
-      !ticketData.decoration.edgeType ||
-      !ticketData.decoration.heartColor ||
-      !ticketData.decoration.prop ||
-      !ticketData.decoration.style ||
-      !ticketData.decoration.wing
-    ) {
+    if (!decoration || typeof decoration !== "object") {
       return new Response(
         JSON.stringify({
           success: false,
-          message: "Invalid or missing decoration fields",
+          message: "Invalid or missing decoration",
         }),
         { status: 400 },
       );
     }
 
-    const userTicketsRef = db
-      .collection("TicketsCollection")
-      .doc(ticketData.uID);
+    // Generate a unique ticket ID
+    const ticketID = `TICKET_${Date.now()}`;
 
-    // Add ticket to user's tickets array
-    await userTicketsRef.set(
-      { tickets: FieldValue.arrayUnion(ticketData) },
-      { merge: true },
-    );
+    // Save data in Firestore
+    const userTicketRef = db.collection("TicketsCollection").doc(uID);
+    await userTicketRef.set({
+      uID: uID,
+      ticketID,
+      ticketName,
+      decoration,
+    });
 
     return new Response(
-      JSON.stringify({ success: true, message: "Ticket added successfully" }),
-      {
-        status: 201,
-      },
+      JSON.stringify({
+        success: true,
+        message: "Ticket added successfully",
+        ticketID, // Return ticket ID
+      }),
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error saving ticket:", error);
@@ -119,39 +118,106 @@ export const POST: APIRoute = async ({ request }) => {
   }
 };
 
-// Delete a specific ticket by matching ticketName
-export const DELETE: APIRoute = async ({ request }) => {
+// Update an existing ticket
+export const PATCH: APIRoute = async ({ request }) => {
   try {
     const url = new URL(request.url);
     const uID = url.searchParams.get("uID");
-    const ticketName = url.searchParams.get("ticketName");
 
-    if (!uID || !ticketName) {
+    if (!uID) {
       return new Response(
         JSON.stringify({
           success: false,
-          message: "uID and ticketName are required",
+          message: "uID is required in query parameters",
         }),
         { status: 400 },
       );
     }
 
-    const userTicketsRef = db.collection("TicketsCollection").doc(uID);
-    const userTicketsDoc = await userTicketsRef.get();
-
-    if (!userTicketsDoc.exists) {
+    if (!request.body) {
       return new Response(
-        JSON.stringify({ success: false, message: "User has no tickets" }),
+        JSON.stringify({ success: false, message: "Request body is empty" }),
+        { status: 400 },
+      );
+    }
+
+    const updateData = await request.json();
+
+    if (Object.keys(updateData).length === 0) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "No fields provided to update",
+        }),
+        { status: 400 },
+      );
+    }
+
+    const userTicketRef = db.collection("TicketsCollection").doc(uID);
+    const userTicketDoc = await userTicketRef.get();
+
+    if (!userTicketDoc.exists) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          message: "User does not have a ticket",
+        }),
         { status: 404 },
       );
     }
 
-    const currentTickets = userTicketsDoc.data()?.tickets || [];
-    const updatedTickets = currentTickets.filter(
-      (ticket) => ticket.ticketName !== ticketName,
-    );
+    const existingData = userTicketDoc.data();
 
-    await userTicketsRef.update({ tickets: updatedTickets });
+    // Merge nested fields properly
+    const mergedData = {
+      ...existingData,
+      ...updateData,
+      decoration: {
+        ...existingData?.decoration,
+        ...updateData?.decoration,
+      },
+    };
+
+    // Update Firestore with the merged data
+    await userTicketRef.set(mergedData, { merge: true });
+
+    return new Response(
+      JSON.stringify({ success: true, message: "Ticket updated successfully" }),
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("Error updating ticket:", error);
+    return new Response(
+      JSON.stringify({ success: false, message: "Error updating ticket" }),
+      { status: 500 },
+    );
+  }
+};
+
+// Delete a user's ticket
+export const DELETE: APIRoute = async ({ request }) => {
+  try {
+    const url = new URL(request.url);
+    const uID = url.searchParams.get("uID");
+
+    if (!uID) {
+      return new Response(
+        JSON.stringify({ success: false, message: "uID is required" }),
+        { status: 400 },
+      );
+    }
+
+    const userTicketRef = db.collection("TicketsCollection").doc(uID);
+    const userTicketDoc = await userTicketRef.get();
+
+    if (!userTicketDoc.exists) {
+      return new Response(
+        JSON.stringify({ success: false, message: "User has no ticket" }),
+        { status: 404 },
+      );
+    }
+
+    await userTicketRef.delete();
 
     return new Response(
       JSON.stringify({ success: true, message: "Ticket deleted successfully" }),

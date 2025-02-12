@@ -117,7 +117,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
         )}
 
         {name && (
-          <p className="absolute bottom-[138px] font-Inter text-xs font-bold text-[#863752]">
+          <p className="absolute bottom-[138px] font-Yeseva text-xs font-bold text-[#863752]">
             {name}
           </p>
         )}
