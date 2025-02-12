@@ -45,9 +45,15 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
       console.error("Element with ID 'Ticket' not found.");
       return;
     }
+    const filter = (node: HTMLElement) => {
+      const exclusionClasses = ["button"];
+      return !exclusionClasses.some((classname) =>
+        node.classList?.contains(classname),
+      );
+    };
 
     htmlToImage
-      .toPng(node)
+      .toPng(node, { backgroundColor: "white", filter: filter })
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.href = dataUrl;
@@ -61,16 +67,14 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
 
   return (
     <div
+      id="Ticket"
       className="relative flex flex-col items-center justify-center gap-4 min-h-screen py-[70px] bg-cover bg-center bg-no-repeat overflow-y-scroll overflow-x-hidden"
       style={{
         backgroundImage: "url('/assets/background.webp')",
       }}
     >
       {/* ---- Ticket Card ---- */}
-      <div
-        id="Ticket"
-        className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent"
-      >
+      <div className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent">
         {edgeType && edgeColor && (
           <img
             src={`/images/ticket/edge/${edgeType}/${edgeColor}.webp`}
@@ -124,7 +128,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
       </div>
 
       {/* ---- Navigation ---- */}
-      <div className="flex flex-col gap-4">
+      <div className="button flex flex-col gap-4">
         <div className="bottom-8 flex gap-4">
           <button
             className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
