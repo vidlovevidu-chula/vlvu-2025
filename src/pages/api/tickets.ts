@@ -14,8 +14,11 @@ export const GET: APIRoute = async ({ request }) => {
 
     if (!uID) {
       return new Response(
-        JSON.stringify({ success: false, message: "User ID (uID) is required" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "User ID (uID) is required",
+        }),
+        { status: 400 },
       );
     }
 
@@ -24,20 +27,20 @@ export const GET: APIRoute = async ({ request }) => {
 
     if (!userTicketDoc.exists) {
       return new Response(
-        JSON.stringify({ success: false, message: "User does not have a ticket" }),
-        { status: 404 }
+        JSON.stringify({
+          success: false,
+          message: "User does not have a ticket",
+        }),
+        { status: 404 },
       );
     }
 
-    return new Response(
-      JSON.stringify(userTicketDoc.data()),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify(userTicketDoc.data()), { status: 200 });
   } catch (error) {
     console.error("Error fetching ticket:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error fetching ticket" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
@@ -48,7 +51,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (!request.body) {
       return new Response(
         JSON.stringify({ success: false, message: "Request body is empty" }),
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -58,22 +61,31 @@ export const POST: APIRoute = async ({ request }) => {
     // Validate required fields
     if (!uID || typeof uID !== "string") {
       return new Response(
-        JSON.stringify({ success: false, message: "User ID (uID) is required" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "User ID (uID) is required",
+        }),
+        { status: 400 },
       );
     }
 
     if (!ticketName || typeof ticketName !== "string") {
       return new Response(
-        JSON.stringify({ success: false, message: "Invalid or missing ticketName" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "Invalid or missing ticketName",
+        }),
+        { status: 400 },
       );
     }
 
     if (!decoration || typeof decoration !== "object") {
       return new Response(
-        JSON.stringify({ success: false, message: "Invalid or missing decoration" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "Invalid or missing decoration",
+        }),
+        { status: 400 },
       );
     }
 
@@ -95,13 +107,13 @@ export const POST: APIRoute = async ({ request }) => {
         message: "Ticket added successfully",
         ticketID, // Return ticket ID
       }),
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error saving ticket:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error saving ticket" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
@@ -114,15 +126,18 @@ export const PATCH: APIRoute = async ({ request }) => {
 
     if (!uID) {
       return new Response(
-        JSON.stringify({ success: false, message: "uID is required in query parameters" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "uID is required in query parameters",
+        }),
+        { status: 400 },
       );
     }
 
     if (!request.body) {
       return new Response(
         JSON.stringify({ success: false, message: "Request body is empty" }),
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -130,8 +145,11 @@ export const PATCH: APIRoute = async ({ request }) => {
 
     if (Object.keys(updateData).length === 0) {
       return new Response(
-        JSON.stringify({ success: false, message: "No fields provided to update" }),
-        { status: 400 }
+        JSON.stringify({
+          success: false,
+          message: "No fields provided to update",
+        }),
+        { status: 400 },
       );
     }
 
@@ -140,8 +158,11 @@ export const PATCH: APIRoute = async ({ request }) => {
 
     if (!userTicketDoc.exists) {
       return new Response(
-        JSON.stringify({ success: false, message: "User does not have a ticket" }),
-        { status: 404 }
+        JSON.stringify({
+          success: false,
+          message: "User does not have a ticket",
+        }),
+        { status: 404 },
       );
     }
 
@@ -162,13 +183,13 @@ export const PATCH: APIRoute = async ({ request }) => {
 
     return new Response(
       JSON.stringify({ success: true, message: "Ticket updated successfully" }),
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error updating ticket:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error updating ticket" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
@@ -182,7 +203,7 @@ export const DELETE: APIRoute = async ({ request }) => {
     if (!uID) {
       return new Response(
         JSON.stringify({ success: false, message: "uID is required" }),
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -192,7 +213,7 @@ export const DELETE: APIRoute = async ({ request }) => {
     if (!userTicketDoc.exists) {
       return new Response(
         JSON.stringify({ success: false, message: "User has no ticket" }),
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -200,13 +221,13 @@ export const DELETE: APIRoute = async ({ request }) => {
 
     return new Response(
       JSON.stringify({ success: true, message: "Ticket deleted successfully" }),
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error deleting ticket:", error);
     return new Response(
       JSON.stringify({ success: false, message: "Error deleting ticket" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
