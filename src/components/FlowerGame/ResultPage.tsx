@@ -65,16 +65,11 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-        <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <p className="w-full h-full bg-white">
-            Your flower is {flowerType}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
-            quos sit maiores, similique nesciunt ut velit possimus explicabo
-            quam porro numquam ab ea corporis.
-          </p>
-          <div className="flex justify-center gap-[2%] my-[2%]">
+        <div className="w-[87%] h-[80%] flex flex-col absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img alt="card" src={`/images/cards/` + flowerType + `.png`} />
+          <div className="flex justify-center gap-[2%] mt-[2%]">
             <button
-              className="w-[35%]"
+              className="w-[30%]"
               onClick={() => setShowResult(!showResult)}
               {...props}
             >
@@ -84,19 +79,21 @@ export const ResultPage: React.FC<Props> = ({
                 src="/images/bouquetButton.webp"
               />
             </button>
-            <button
-              className="w-[35%]"
-              onClick={() => setShowResult(!showResult)}
-              {...props}
+            <a
+              className="w-[30%] flex"
+              href={`/images/cards/` + flowerType + `.png`}
+              download
             >
-              <img
-                className="w-full"
-                alt="Close"
-                src="/images/saveButton.webp"
-              />
-            </button>
+              <button className="w-full" {...props}>
+                <img
+                  className="w-full m-0"
+                  alt="Download"
+                  src="/images/saveButton.webp"
+                />
+              </button>
+            </a>
           </div>
-          <div className="flex justify-between gap-[2%] my-[2%] font-Ribbon">
+          <div className="flex justify-between gap-[2%] font-Ribbon">
             <a
               className="text-white text-center text-xl max-[450px]:text-[5vw]"
               href="/"
