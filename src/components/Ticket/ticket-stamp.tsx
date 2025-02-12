@@ -138,7 +138,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
               (window.location.href = `/ticket-stamp/ticket/${uID}`)
             }
           >
-            Decorate Ticket
+            Customise 📝
           </button>
           <button
             className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Yeseva shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#FFF2E0] hover:bg-opacity-[75%]"
