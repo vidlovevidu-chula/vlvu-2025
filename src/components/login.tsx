@@ -38,7 +38,7 @@ const Login = () => {
 
       {/* Main content */}
       <div
-        className={`relative flex flex-col items-center justify-center h-full  gap-8 duration-[3000ms] ease-in-out z-0 ${isMounted ? "opacity-100" : "opacity-0"}`}
+        className={`relative flex flex-col items-center justify-center h-full font-NotoSansThai gap-8 duration-[3000ms] ease-in-out z-0 ${isMounted ? "opacity-100" : "opacity-0"}`}
       >
         <h1 className="text-xl font-Yeseva text-[#925A48]">Log In</h1>
 
