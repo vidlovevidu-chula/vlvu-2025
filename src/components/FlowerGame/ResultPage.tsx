@@ -4,19 +4,21 @@ import type { FlowerType } from "./FlowerGameContainer";
 import { twMerge } from "tailwind-merge";
 import type { GifScene } from "./FirstHalfQuestions";
 
-// const FLOWER_TYPE_NAME, FLOWER_TYPE_DESCRIPTIONS = ...
-
 interface Props {
   flowerType: FlowerType;
   showIntro: boolean;
   scenes: GifScene[];
+  onRetakeQuiz: () => void;
 }
 export const ResultPage: React.FC<Props> = ({
   flowerType,
   showIntro,
   scenes,
+  onRetakeQuiz,
 }) => {
-  const [currentScene, setCurrentScene] = useState(0);
+  const [currentScene, setCurrentScene] = useState(
+    showIntro ? 0 : scenes.length - 1, // use last scene if showIntro is false
+  );
   const [showResult, setShowResult] = useState(false);
 
   const { url, buttonImageUrl, className, duration, ...props } =
@@ -64,7 +66,6 @@ export const ResultPage: React.FC<Props> = ({
       )}
       {showResult ? (
         <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {showIntro && <h1>Intro</h1>}
           <p className="w-full h-full bg-white">
             Your flower is {flowerType}
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
@@ -102,6 +103,13 @@ export const ResultPage: React.FC<Props> = ({
             {`<< `}
             <span className="underline">กลับไปหน้าหลัก</span>
           </a>
+          <button
+            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
+            onClick={onRetakeQuiz}
+          >
+            {`<< `}
+            <span className="underline">ลองทำอีกรอบ</span>
+          </button>
         </div>
       ) : (
         <></>
