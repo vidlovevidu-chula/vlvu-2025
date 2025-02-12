@@ -29,8 +29,8 @@ const TicketBack = ({ user_id }: TicketProps) => {
         console.log("Ticket data:", ticketData);
         console.log("Stamp data:", stampData);
 
-        if (ticketData.success && ticketData.tickets) {
-          const ticket = ticketData.tickets[0];
+        if (ticketData.ticketName && ticketData.decoration) {
+          const ticket = ticketData;
           if (ticket.decoration) {
             setEdgeType(ticket.decoration.edgeType);
             setEdgeColor(ticket.decoration.edgeColor);
