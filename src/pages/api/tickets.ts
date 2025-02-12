@@ -14,10 +14,7 @@ export const GET: APIRoute = async ({ request }) => {
 
     if (!uID) {
       return new Response(
-        JSON.stringify({
-          success: false,
-          message: "User ID (uID) is required",
-        }),
+        JSON.stringify({ success: false, message: "User ID (uID) is required" }),
         { status: 400 }
       );
     }
@@ -33,7 +30,7 @@ export const GET: APIRoute = async ({ request }) => {
     }
 
     return new Response(
-      JSON.stringify({...userTicketDoc.data() }),
+      JSON.stringify(userTicketDoc.data()),
       { status: 200 }
     );
   } catch (error) {
@@ -45,7 +42,7 @@ export const GET: APIRoute = async ({ request }) => {
   }
 };
 
-// Save a new ticket under the user's uID 
+// Save a new ticket for the user
 export const POST: APIRoute = async ({ request }) => {
   try {
     if (!request.body) {
@@ -56,38 +53,47 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const ticketData = await request.json();
+    const { uID, ticketName, decoration } = ticketData;
 
     // Validate required fields
-    if (!ticketData.ticketName || typeof ticketData.ticketName !== "string") {
+    if (!uID || typeof uID !== "string") {
       return new Response(
-        JSON.stringify({
-          success: false,
-          message: "Invalid or missing ticketName",
-        }),
+        JSON.stringify({ success: false, message: "User ID (uID) is required" }),
         { status: 400 }
       );
     }
 
-    if (!ticketData.decoration || typeof ticketData.decoration !== "object") {
+    if (!ticketName || typeof ticketName !== "string") {
+      return new Response(
+        JSON.stringify({ success: false, message: "Invalid or missing ticketName" }),
+        { status: 400 }
+      );
+    }
+
+    if (!decoration || typeof decoration !== "object") {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid or missing decoration" }),
         { status: 400 }
       );
     }
 
-    const newTicketRef = db.collection("TicketsCollection").doc();
-    const generatedUID = newTicketRef.id; 
-    
-    await newTicketRef.set({
-      ticketName: ticketData.ticketName,
-      decoration: ticketData.decoration,
+    // Generate a unique ticket ID
+    const ticketID = `TICKET_${Date.now()}`;
+
+    // Save data in Firestore
+    const userTicketRef = db.collection("TicketsCollection").doc(uID);
+    await userTicketRef.set({
+      uID: uID,
+      ticketID,
+      ticketName,
+      decoration,
     });
 
     return new Response(
       JSON.stringify({
         success: true,
         message: "Ticket added successfully",
-        uID: generatedUID, // Return the generated uID
+        ticketID, // Return ticket ID
       }),
       { status: 201 }
     );
@@ -99,7 +105,6 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 };
-
 
 // Update an existing ticket
 export const PATCH: APIRoute = async ({ request }) => {
@@ -144,11 +149,11 @@ export const PATCH: APIRoute = async ({ request }) => {
 
     // Merge nested fields properly
     const mergedData = {
-      ...existingData, 
-      ...updateData, 
+      ...existingData,
+      ...updateData,
       decoration: {
-        ...existingData?.decoration, 
-        ...updateData?.decoration, 
+        ...existingData?.decoration,
+        ...updateData?.decoration,
       },
     };
 
@@ -176,10 +181,7 @@ export const DELETE: APIRoute = async ({ request }) => {
 
     if (!uID) {
       return new Response(
-        JSON.stringify({
-          success: false,
-          message: "uID is required",
-        }),
+        JSON.stringify({ success: false, message: "uID is required" }),
         { status: 400 }
       );
     }
