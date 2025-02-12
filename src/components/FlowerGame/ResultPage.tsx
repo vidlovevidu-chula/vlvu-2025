@@ -50,7 +50,7 @@ export const ResultPage: React.FC<Props> = ({
           {...props}
         >
           <img
-            className="w-full animate-zoomIn"
+            className="w-full animate-zoomIn drop-shadow-[-2px_-2px_10px_rgba(255,255,200,0.5)]"
             src={`/images/flowers/` + flowerType + `.webp`}
             alt={`flower type: ` + flowerType}
           />
