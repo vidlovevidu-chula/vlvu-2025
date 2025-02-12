@@ -40,19 +40,19 @@ export const ResultPage: React.FC<Props> = ({
       ) : (
         <img className="w-full" src={url} alt="scene" />
       )}
-      {buttonImageUrl && currentScene == scenes.length - 1 ? (
+      {currentScene == scenes.length - 1 ? (
         <button
           className={twMerge(
             //"absolute -bottom-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%]",
-            "border border-red-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
           )}
           onClick={() => setShowResult(!showResult)}
           {...props}
         >
           <img
-            className="w-full animate-zoomIn"
-            src={buttonImageUrl}
-            alt="next"
+            className="w-full animate-zoomIn drop-shadow-[-2px_-2px_10px_rgba(255,255,200,0.5)]"
+            src={`/images/flowers/` + flowerType + `.webp`}
+            alt={`flower type: ` + flowerType}
           />
         </button>
       ) : (
@@ -65,16 +65,11 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-        <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <p className="w-full h-full bg-white">
-            Your flower is {flowerType}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
-            quos sit maiores, similique nesciunt ut velit possimus explicabo
-            quam porro numquam ab ea corporis.
-          </p>
-          <div className="flex justify-center gap-[2%] my-[2%]">
+        <div className="w-[87%] h-[80%] flex flex-col absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img alt="card" src={`/images/cards/` + flowerType + `.png`} />
+          <div className="flex justify-center gap-[2%] mt-[2%]">
             <button
-              className="w-[35%]"
+              className="w-[30%]"
               onClick={() => setShowResult(!showResult)}
               {...props}
             >
@@ -84,32 +79,36 @@ export const ResultPage: React.FC<Props> = ({
                 src="/images/bouquetButton.webp"
               />
             </button>
-            <button
-              className="w-[35%]"
-              onClick={() => setShowResult(!showResult)}
-              {...props}
+            <a
+              className="w-[30%] flex"
+              href={`/images/cards/` + flowerType + `.png`}
+              download
             >
-              <img
-                className="w-full"
-                alt="Close"
-                src="/images/saveButton.webp"
-              />
+              <button className="w-full" {...props}>
+                <img
+                  className="w-full m-0"
+                  alt="Download"
+                  src="/images/saveButton.webp"
+                />
+              </button>
+            </a>
+          </div>
+          <div className="flex justify-between gap-[2%] font-Ribbon">
+            <a
+              className="text-white text-center text-xl max-[450px]:text-[5vw]"
+              href="/"
+            >
+              {`<< `}
+              <span className="underline">กลับไปหน้าหลัก</span>
+            </a>
+            <button
+              className="text-white text-center text-xl max-[450px]:text-[5vw]"
+              onClick={onRetakeQuiz}
+            >
+              <span className="underline">ลองทำอีกรอบ</span>
+              {` >>`}
             </button>
           </div>
-          <a
-            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
-            href="/"
-          >
-            {`<< `}
-            <span className="underline">กลับไปหน้าหลัก</span>
-          </a>
-          <button
-            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
-            onClick={onRetakeQuiz}
-          >
-            {`<< `}
-            <span className="underline">ลองทำอีกรอบ</span>
-          </button>
         </div>
       ) : (
         <></>
