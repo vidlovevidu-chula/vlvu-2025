@@ -1,15 +1,15 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import Button from "../../../components/ScannerButton.astro";
-import ScannerBox from "../../../components/QRScanner.astro";
+import Button from "../../../components/Button.astro";
+import QRScanner from "../../../components/QRScanner";
 const { user_id } = Astro.params;
 ---
 
 <Layout title="VLVU">
   <div class="container">
-    <ScannerBox />
+    <QRScanner user_id={user_id} client:load />
     <div class="button-wrapper">
-        <Button text="เสร็จสิ้น" href={`/ticket-stamp/stamp/${user_id}`} />
+      <Button text="เสร็จสิ้น" href={`/ticket-stamp/stamp/${user_id}`} />
     </div>
   </div>
 </Layout>
@@ -19,12 +19,14 @@ const { user_id } = Astro.params;
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: #FDE5EC;
+    background-image: url("/scanbackground.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-
   .button-wrapper {
     position: absolute;
-    top: calc(50% + 280px); /* 516px (scanner height) / 2 + some padding */
+    top: calc(50% + 280px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;

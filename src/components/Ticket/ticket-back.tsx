@@ -7,6 +7,7 @@ interface TicketProps {
 const TicketBack = ({ user_id }: TicketProps) => {
   const [edgeType, setEdgeType] = useState();
   const [edgeColor, setEdgeColor] = useState();
+  const [stamps, setStamps] = useState<string[]>([]);
 
   useEffect(() => {
     if (!user_id) {
@@ -14,29 +15,37 @@ const TicketBack = ({ user_id }: TicketProps) => {
       return;
     }
 
-    const fetchTicketData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`/api/tickets?uID=${user_id}`);
-        const data = await response.json();
-        console.log("API response data:", data);
+        // Fetch both ticket and stamp data in parallel
+        const [ticketResponse, stampResponse] = await Promise.all([
+          fetch(`/api/tickets?uID=${user_id}`),
+          fetch(`/api/stamp?uID=${user_id}`),
+        ]);
 
-        if (data.success && data.tickets) {
-          const ticket = data.tickets[0];
+        const ticketData = await ticketResponse.json();
+        const stampData = await stampResponse.json();
+
+        console.log("Ticket data:", ticketData);
+        console.log("Stamp data:", stampData);
+
+        if (ticketData.success && ticketData.tickets) {
+          const ticket = ticketData.tickets[0];
           if (ticket.decoration) {
             setEdgeType(ticket.decoration.edgeType);
             setEdgeColor(ticket.decoration.edgeColor);
-          } else {
-            console.error("No decoration data found for ticket:", ticket);
           }
-        } else {
-          console.error("No ticket data found for user:", user_id);
+        }
+
+        if (stampData.success) {
+          setStamps(stampData.stamps || []);
         }
       } catch (error) {
-        console.error("Error fetching ticket data:", error);
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchTicketData();
+    fetchData();
   }, [user_id]);
 
   return (
@@ -55,6 +64,86 @@ const TicketBack = ({ user_id }: TicketProps) => {
         {edgeType && edgeColor && (
           <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
             <img src={`/backedge/${edgeType}/${edgeColor}.png`} width={240} />
+            {/* Add stamp booth 1 */}
+            <div className="absolute" style={{ top: "66px", left: "56px" }}>
+              <img
+                src="/stamp/sugar sugar train.png"
+                alt="Sugar Sugar Train Stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot1") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 2 */}
+            <div className="absolute" style={{ top: "66px", left: "140px" }}>
+              <img
+                src="/stamp/harmony tales.png"
+                alt="harmony tales Stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot2") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 3 */}
+            <div className="absolute" style={{ top: "123px", left: "56px" }}>
+              <img
+                src="/stamp/bouquet of scent.png"
+                alt="bouquet of scent Stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot3") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 4 */}
+            <div className="absolute" style={{ top: "123px", left: "140px" }}>
+              <img
+                src="/stamp/lost letters of love.png"
+                alt="lost letters of love stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot4") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 5 */}
+            <div className="absolute" style={{ top: "181px", left: "56px" }}>
+              <img
+                src="/stamp/next station love.png"
+                alt="next station love stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot5") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 6 */}
+            <div className="absolute" style={{ top: "181px", left: "140px" }}>
+              <img
+                src="/stamp/see something I lost in the beach.png"
+                alt="see something I lost in the beach stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot6") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 7 */}
+            <div className="absolute" style={{ top: "238px", left: "56px" }}>
+              <img
+                src="/stamp/one shot.png"
+                alt="one shot stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot7") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp booth 8 */}
+            <div className="absolute" style={{ top: "238px", left: "140px" }}>
+              <img
+                src="/stamp/you and me and me.png"
+                alt="you and me and me stamp"
+                className={`w-11 h-11 object-contain ${stamps.includes("boot8") ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp secret5 */}
+            <div className="absolute" style={{ top: "285px", left: "43px" }}>
+              <img
+                src="/stamp/secret 5.png"
+                alt="secret 5 stamp"
+                className={`w-40 h-40 object-contain ${stamps.length >= 5 && stamps.length < 8 ? "" : "hidden"}`}
+              />
+            </div>
+            {/* Add stamp secret8 */}
+            <div className="absolute" style={{ top: "285px", left: "43px" }}>
+              <img
+                src="/stamp/secret 8.png"
+                alt="secret 8 stamp"
+                className={`w-40 h-40 object-contain ${stamps.length == 8 ? "" : "hidden"}`}
+              />
+            </div>
           </div>
         )}
       </div>
