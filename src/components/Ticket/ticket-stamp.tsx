@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as htmlToImage from "html-to-image";
+import { validateSession } from "@/firebase/auth";
 interface TicketStampProps {
   uID: string | undefined;
 }
@@ -13,6 +14,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
   const [name, setName] = useState();
 
   useEffect(() => {
+    validateSession();
     const fetchTickets = async () => {
       try {
         const res = await fetch(`/api/tickets?uID=${uID}`);
