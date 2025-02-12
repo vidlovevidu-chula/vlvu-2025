@@ -40,19 +40,19 @@ export const ResultPage: React.FC<Props> = ({
       ) : (
         <img className="w-full" src={url} alt="scene" />
       )}
-      {buttonImageUrl && currentScene == scenes.length - 1 ? (
+      {currentScene == scenes.length - 1 ? (
         <button
           className={twMerge(
             //"absolute -bottom-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%]",
-            "border border-red-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
           )}
           onClick={() => setShowResult(!showResult)}
           {...props}
         >
           <img
             className="w-full animate-zoomIn"
-            src={buttonImageUrl}
-            alt="next"
+            src={`/images/flowers/` + flowerType + `.webp`}
+            alt={`flower type: ` + flowerType}
           />
         </button>
       ) : (
