@@ -2,9 +2,9 @@
 import Ticket from "../../../components/Ticket/ticket";
 import Layout from "../../../layouts/Layout.astro";
 
-const { user_id } = Astro.params;
+const { uID } = Astro.params;
 ---
 
 <Layout>
-  <Ticket user_id={user_id} client:load />
+  <Ticket uID={uID} client:load />
 </Layout>

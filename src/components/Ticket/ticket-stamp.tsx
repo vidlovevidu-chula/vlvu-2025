@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as htmlToImage from "html-to-image";
 interface TicketStampProps {
-  user_id: string | undefined;
+  uID: string | undefined;
 }
-const TicketsStamp = ({ user_id }: TicketStampProps) => {
+const TicketsStamp = ({ uID }: TicketStampProps) => {
   const [edgeType, setEdgeType] = useState();
   const [edgeColor, setEdgeColor] = useState();
   const [heartColor, setHeartColor] = useState();
@@ -13,24 +13,22 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
   const [name, setName] = useState();
 
   useEffect(() => {
-    if (!user_id) return;
-
     const fetchTickets = async () => {
       try {
-        const res = await fetch(`/api/tickets?uID=${user_id}`);
+        const res = await fetch(`/api/tickets?uID=${uID}`);
         const data = await res.json();
 
-        if (data.success && data.tickets) {
-          const ticket = data.tickets[0];
-          setEdgeColor(ticket.decoration.edgeColor);
-          setEdgeType(ticket.decoration.edgeType);
-          setHeartColor(ticket.decoration.heartColor);
-          setStyle(ticket.decoration.style);
-          setWing(ticket.decoration.wing);
-          setProp(ticket.decoration.prop);
-          setName(ticket.ticketName);
+        if (data.ticketName && data.decoration) {
+          const decoration = data.decoration;
+          setEdgeColor(decoration.edgeColor);
+          setEdgeType(decoration.edgeType);
+          setHeartColor(decoration.heartColor);
+          setStyle(decoration.style);
+          setWing(decoration.wing);
+          setProp(decoration.prop);
+          setName(data.ticketName);
         } else {
-          console.error("No ticket data found", user_id);
+          console.error("No ticket data found", uID);
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -38,7 +36,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
     };
 
     fetchTickets();
-  }, [user_id]);
+  }, [uID]);
 
   const downloadIMG = () => {
     const node = document.getElementById("Ticket");
@@ -131,7 +129,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
           <button
             className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
             onClick={() =>
-              (window.location.href = `/ticket-stamp/ticket/${user_id}`)
+              (window.location.href = `/ticket-stamp/ticket/${uID}`)
             }
           >
             ตกแต่ง ticket

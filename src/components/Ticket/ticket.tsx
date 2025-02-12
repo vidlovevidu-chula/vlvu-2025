@@ -13,10 +13,10 @@ import {
 import DecorationItems from "./decorationItems";
 
 interface TicketProps {
-  user_id: string | undefined;
+  uID: string | undefined;
 }
 
-const Ticket = ({ user_id }: TicketProps) => {
+const Ticket = ({ uID }: TicketProps) => {
   const $pageName = useStore(page);
   const $edgeType = useStore(edgeType);
   const $edgeColor = useStore(edgeColor);
@@ -31,20 +31,20 @@ const Ticket = ({ user_id }: TicketProps) => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const res = await fetch(`/api/tickets?uID=${user_id}`);
+        const res = await fetch(`/api/tickets?uID=${uID}`);
         const data = await res.json();
 
-        if (data.success && data.tickets) {
-          const ticket = data.tickets[0];
-          edgeColor.set(ticket.decoration.edgeColor);
-          edgeType.set(ticket.decoration.edgeType);
-          heartColor.set(ticket.decoration.heartColor);
-          style.set(ticket.decoration.style);
-          wing.set(ticket.decoration.wing);
-          prop.set(ticket.decoration.prop);
-          name.set(ticket.ticketName);
+        if (data.ticketName && data.decoration) {
+          const decoration = data.decoration;
+          edgeColor.set(decoration.edgeColor);
+          edgeType.set(decoration.edgeType);
+          heartColor.set(decoration.heartColor);
+          style.set(decoration.style);
+          wing.set(decoration.wing);
+          prop.set(decoration.prop);
+          name.set(data.ticketName);
         } else {
-          console.error("No ticket data found", user_id);
+          console.error("No ticket data found", uID);
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -52,7 +52,38 @@ const Ticket = ({ user_id }: TicketProps) => {
     };
 
     fetchTickets();
-  }, [user_id]);
+  }, [uID]);
+
+  const updateTicket = async () => {
+    if (!uID) return;
+
+    const updateData = {
+      ticketName: $name,
+      decoration: {
+        edgeColor: $edgeColor,
+        edgeType: $edgeType,
+        heartColor: $heartColor,
+        style: $style,
+        wing: $wing,
+        prop: $prop,
+      },
+    };
+
+    try {
+      const res = await fetch(`/api/tickets?uID=${uID}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updateData),
+      });
+
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+
+      console.log("Ticket updated successfully");
+    } catch (error) {
+      console.error("Update error:", error);
+    }
+  };
 
   const scroll = (direction: "prev" | "next") => {
     if (containerRef.current) {
@@ -131,7 +162,7 @@ const Ticket = ({ user_id }: TicketProps) => {
 
       <div className="flex flex-col items-center h-fit">
         {/* ---- Title ---- */}
-        <p className="text-[25px] text-[#925A48] font-Inter font-light">
+        <p className="text-[25px] text-[#925A48] font-Yeseva font-light">
           Oh! My Love god
         </p>
 
@@ -177,7 +208,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             />
           )}
           {$name && (
-            <p className="absolute bottom-[138px] font-Inter text-xs font-bold text-[#863752]">
+            <p className="absolute bottom-[138px] font-Yeseva text-xs font-bold text-[#863752]">
               {$name}
             </p>
           )}
@@ -218,21 +249,21 @@ const Ticket = ({ user_id }: TicketProps) => {
         {display == "Ticket" && (
           <div className="flex gap-2 mt-4">
             <button
-              className={`h-[48.42px] w-[97.52px] text-[15px] font-Inter font-light rounded-l-full
+              className={`h-[48.42px] w-[97.52px] text-[15px] font-Yeseva font-light rounded-l-full
               ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Edge")}
             >
               <p>edge</p>
             </button>
             <button
-              className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Inter font-light rounded-r-full
+              className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Yeseva font-light rounded-r-full
               ${$pageName === "Heart" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Heart")}
             >
               <p>heart</p>
             </button>
             <button
-              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+              className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Yeseva font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => {
                 setDisplay("Dress");
                 page.set("Style");
@@ -250,7 +281,7 @@ const Ticket = ({ user_id }: TicketProps) => {
         {display == "Dress" && (
           <div className="flex gap-2 mt-4">
             <button
-              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Yeseva font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => {
                 setDisplay("Ticket");
                 page.set("Edge");
@@ -260,7 +291,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-l-full
+              className={`h-[49px] w-[67px] text-[15px] font-Yeseva font-light rounded-l-full
               ${$pageName === "Style" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Style")}
             >
@@ -268,7 +299,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light
+              className={`h-[49px] w-[67px] text-[15px] font-Yeseva font-light
               ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Wing")}
             >
@@ -276,7 +307,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             </button>
 
             <button
-              className={`h-[49px] w-[67px] text-[15px] font-Inter font-light rounded-r-full
+              className={`h-[49px] w-[67px] text-[15px] font-Yeseva font-light rounded-r-full
               ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Prop")}
             >
@@ -284,7 +315,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             </button>
 
             <button
-              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFD199] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+              className="flex h-[48px] w-[48px] items-center justify-center text-[15px] font-Yeseva font-light bg-[#FFD199] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
               onClick={() => setDisplay("Name")}
             >
               <img
@@ -297,7 +328,7 @@ const Ticket = ({ user_id }: TicketProps) => {
 
         {display === "Name" && (
           <div className="flex flex-col items-center gap-2 bg-white bg-opacity-[70%] p-4 rounded-[10px]">
-            <p className="font-Inter font-light text-[#925A48] text-center">
+            <p className="font-Yeseva font-light text-[#925A48] text-center">
               Enter your name
             </p>
             <input
@@ -309,7 +340,7 @@ const Ticket = ({ user_id }: TicketProps) => {
             />
             <div className="flex gap-2">
               <button
-                className="flex h-[27px] w-[75.95px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+                className="flex h-[27px] w-[75.95px] py-[20px] items-center justify-center text-[15px] font-Yeseva font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
                 onClick={() => {
                   setDisplay("Dress");
                   page.set("Style");
@@ -321,10 +352,11 @@ const Ticket = ({ user_id }: TicketProps) => {
                 />
               </button>
               <button
-                className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Inter font-light bg-[#FFE3E3] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-                onClick={() =>
-                  (window.location.href = `/ticket-stamp/${user_id}`)
-                }
+                className="flex h-[27px] w-[116px] py-[20px] items-center justify-center text-[15px] font-Yeseva font-light bg-[#FFE3E3] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+                onClick={() => {
+                  window.location.href = `/ticket-stamp/${uID}`;
+                  updateTicket();
+                }}
               >
                 <p>เสร็จสิ้น</p>
               </button>

@@ -7,14 +7,13 @@ const provider = new GoogleAuthProvider();
 const getStoredToken = (): string | null => localStorage.getItem("accessToken");
 
 const saveToken = (token: string) => localStorage.setItem("accessToken", token);
-const postDefaultTicket = async (uID: string) => {
+const postDefaultTicket = async () => {
   const defaultTicket = {
     ticketName: "vidva & vidya",
-    uID,
     decoration: {
       edgeColor: "pink",
       edgeType: "edge3",
-      heartColor: "edge3",
+      heartColor: "pink",
       prop: "prop3",
       style: "style4",
       wing: "wing2",
@@ -54,7 +53,7 @@ export const signInWithGoogle = async () => {
 
     if (token) saveToken(token);
     if (user) {
-      await postDefaultTicket(user.uid);
+      await postDefaultTicket();
     }
     console.log("User signed in:", user);
     console.log("Access Token:", token);
