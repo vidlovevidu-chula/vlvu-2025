@@ -5,10 +5,12 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 // Store token in sessionStorage (valid only for the session)
-const saveToken = (token: string) => sessionStorage.setItem("accessToken", token);
+const saveToken = (token: string) =>
+  sessionStorage.setItem("accessToken", token);
 
 // Generate a session fingerprint to track the session
-const generateSessionKey = (): string => btoa(`${navigator.userAgent}-${Math.random()}`);
+const generateSessionKey = (): string =>
+  btoa(`${navigator.userAgent}-${Math.random()}`);
 
 const postDefaultTicket = async (uID: string) => {
   const defaultTicket = {
@@ -55,7 +57,10 @@ const checkTicketExists = async (uID: string): Promise<boolean> => {
 // Validate session before allowing ticket access
 export const validateSession = () => {
   const storedSession = sessionStorage.getItem("sessionKey");
-  if (!storedSession || storedSession !== sessionStorage.getItem("sessionKey")) {
+  if (
+    !storedSession ||
+    storedSession !== sessionStorage.getItem("sessionKey")
+  ) {
     alert("Invalid session. Please sign in again.");
     auth.signOut();
     sessionStorage.clear();
