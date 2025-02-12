@@ -152,18 +152,18 @@ const TicketBack = ({ user_id }: TicketProps) => {
       <div className="flex flex-col items-center gap-4 mt-4">
         <div className="bottom-8 flex flex-col items-center gap-2">
           <button
-            className="text-[#000000] bg-[#FFF2E0] w-[200px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            className="text-[#000000] bg-[#FFF2E0] w-[200px] rounded-[10px] h-[51px] font-Yeseva shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
             onClick={() =>
               (window.location.href = `/ticket-stamp/scan/${user_id}`)
             }
           >
-            แสกน QR Code
+            Scan QR Code
           </button>
           <a
             href={`/ticket-stamp/${user_id}`}
-            className="text-[#000000] text-sm font-Inter underline mt-2"
+            className="text-black text-sm font-NotoSansThai underline mt-2 text-shadow-sm"
           >
-            กลับไปยัง ticket
+            ← Go back to ticket
           </a>
         </div>
       </div>

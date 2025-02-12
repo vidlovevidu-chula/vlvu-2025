@@ -162,7 +162,7 @@ const Ticket = ({ uID }: TicketProps) => {
 
       <div className="flex flex-col items-center h-fit">
         {/* ---- Title ---- */}
-        <p className="text-[25px] text-[#925A48] font-Yeseva font-light">
+        <p className="text-[25px] text-[#925A48] font-Yeseva font-light text-shadow-sm">
           Oh! My Love god
         </p>
 
@@ -253,14 +253,14 @@ const Ticket = ({ uID }: TicketProps) => {
               ${$pageName === "Edge" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Edge")}
             >
-              <p>edge</p>
+              <p>Edge</p>
             </button>
             <button
               className={`h-[48.42px] w-[97.52px] text-[15px] leading-4 font-Yeseva font-light rounded-r-full
               ${$pageName === "Heart" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Heart")}
             >
-              <p>heart</p>
+              <p>Heart</p>
             </button>
             <button
               className="flex h-[48.42px] w-[75.95px] items-center justify-center text-[#1976D2] text-[15px] font-Yeseva font-light bg-[#BAEAFE] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
@@ -295,7 +295,7 @@ const Ticket = ({ uID }: TicketProps) => {
               ${$pageName === "Style" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Style")}
             >
-              <p>style</p>
+              <p>Style</p>
             </button>
 
             <button
@@ -303,7 +303,7 @@ const Ticket = ({ uID }: TicketProps) => {
               ${$pageName === "Wing" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Wing")}
             >
-              <p>wing</p>
+              <p>Wing</p>
             </button>
 
             <button
@@ -311,7 +311,7 @@ const Ticket = ({ uID }: TicketProps) => {
               ${$pageName === "Prop" ? "bg-[#E5AB6C] text-white shadow-[inset_0px_4px_4px_rgba(0,0,0,0.25)]" : "bg-[#FBF0A9] text-[#925A48] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"}`}
               onClick={() => page.set("Prop")}
             >
-              <p>prop</p>
+              <p>Prop</p>
             </button>
 
             <button
@@ -358,7 +358,7 @@ const Ticket = ({ uID }: TicketProps) => {
                   updateTicket();
                 }}
               >
-                <p>เสร็จสิ้น</p>
+                <p className="font-Yeseva">Done</p>
               </button>
             </div>
           </div>

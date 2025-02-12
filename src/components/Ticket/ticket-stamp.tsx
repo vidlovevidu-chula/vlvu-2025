@@ -133,26 +133,26 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
       <div className="button flex flex-col gap-4">
         <div className="bottom-8 flex gap-4">
           <button
-            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Yeseva shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#FFF2E0] hover:bg-opacity-[75%]"
             onClick={() =>
               (window.location.href = `/ticket-stamp/ticket/${uID}`)
             }
           >
-            ตกแต่ง ticket
+            Decorate Ticket
           </button>
           <button
-            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Yeseva shadow-[0px_4px_4px_rgba(0,0,0,0.25)] hover:bg-[#FFF2E0] hover:bg-opacity-[75%]"
             onClick={() =>
               (window.location.href = `/ticket-stamp/stamp/${uID}`)
             }
           >
-            ดูแสตมป์
+            Check Stamps
           </button>
         </div>
 
         {/* ---- DownloadIMG ---- */}
         <div
-          className="bg-white w-full py-[10px] filter bg-blur-sm bg-opacity-[75%] rounded-[7px] text-[13px] text-center cursor-pointer hover:bg-slate-100 hover:bg-opacity-[75%]"
+          className="bg-white w-full py-[10px] filter font-Yeseva bg-blur-sm bg-opacity-[75%] rounded-[7px] text-[13px] text-center cursor-pointer hover:bg-slate-100 hover:bg-opacity-[75%]"
           onClick={downloadIMG}
         >
           Download Your Ticket

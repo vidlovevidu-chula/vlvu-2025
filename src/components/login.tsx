@@ -55,7 +55,7 @@ const Login = () => {
         <a
           href="/"
           className="absolute bottom-8 hover:text-[#FFCFCF] transition-colors duration-200
-              flex items-center gap-2"
+              flex items-center gap-2 font-NotoSansThai"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ const Login = () => {
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          กลับไปหน้าหลัก
+          Go Back Home
         </a>
       </div>
     </div>

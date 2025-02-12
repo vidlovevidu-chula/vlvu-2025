@@ -9,7 +9,7 @@ const { user_id } = Astro.params;
 	<div class="container">
 		<QRScanner user_id={user_id} client:load />
 		<div class="button-wrapper">
-			<Button text="เสร็จสิ้น" href={`/ticket-stamp/stamp/${user_id}`} />
+			<Button text="Done" href={`/ticket-stamp/stamp/${user_id}`} />
 		</div>
 	</div>
 </Layout>
