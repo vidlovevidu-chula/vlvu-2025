@@ -29,7 +29,8 @@ const Login = () => {
       ></div>
 
       <img
-        src="assets/Logo.png"
+        src="/images/home/vlvu.webp"
+        width={120}
         className={`absolute transform -translate-x-1/2 top-1/2 left-1/2  duration-[2000ms] ease-in-out z-50
     ${isMounted ? "-translate-y-56" : "-translate-y-1/2"}
   }`}
@@ -52,7 +53,7 @@ const Login = () => {
         </button>
 
         <a
-          href="/home"
+          href="/"
           className="absolute bottom-8 hover:text-[#FFCFCF] transition-colors duration-200
               flex items-center gap-2"
         >

@@ -12,8 +12,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.0",
-    "@astrojs/tailwind": "^5.1.5",
+    "@nanostores/react": "^0.8.4",
     "@astrojs/vercel": "^8.0.5",
     "@nanostores/react": "^0.8.4",
     "@radix-ui/react-slot": "^1.1.1",
@@ -37,6 +36,8 @@
     "js-cookie": "^3.0.5",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.17",
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/tailwind": "^5.1.5",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {

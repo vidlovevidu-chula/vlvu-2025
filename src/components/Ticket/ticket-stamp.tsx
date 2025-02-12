@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import * as htmlToImage from "html-to-image";
 interface TicketStampProps {
-  user_id: string | undefined;
+  uID: string | undefined;
 }
-const TicketsStamp = ({ user_id }: TicketStampProps) => {
+const TicketsStamp = ({ uID }: TicketStampProps) => {
   const [edgeType, setEdgeType] = useState();
   const [edgeColor, setEdgeColor] = useState();
   const [heartColor, setHeartColor] = useState();
@@ -13,23 +13,22 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
   const [name, setName] = useState();
 
   useEffect(() => {
-    if (!user_id) return;
-
     const fetchTickets = async () => {
       try {
-        const res = await fetch(`/api/tickets?uID=${user_id}`);
+        const res = await fetch(`/api/tickets?uID=${uID}`);
         const data = await res.json();
-        if (data.success && data.tickets) {
-          const ticket = data.tickets[0];
-          setEdgeColor(ticket.decoration.edgeColor);
-          setEdgeType(ticket.decoration.edgeType);
-          setHeartColor(ticket.decoration.heartColor);
-          setStyle(ticket.decoration.style);
-          setWing(ticket.decoration.wing);
-          setProp(ticket.decoration.prop);
-          setName(ticket.ticketName);
+
+        if (data.ticketName && data.decoration) {
+          const decoration = data.decoration;
+          setEdgeColor(decoration.edgeColor);
+          setEdgeType(decoration.edgeType);
+          setHeartColor(decoration.heartColor);
+          setStyle(decoration.style);
+          setWing(decoration.wing);
+          setProp(decoration.prop);
+          setName(data.ticketName);
         } else {
-          console.error("No ticket data found", user_id);
+          console.error("No ticket data found", uID);
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -37,7 +36,7 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
     };
 
     fetchTickets();
-  }, [user_id]);
+  }, [uID]);
 
   const downloadIMG = () => {
     const node = document.getElementById("Ticket");
@@ -46,9 +45,15 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
       console.error("Element with ID 'Ticket' not found.");
       return;
     }
+    const filter = (node: HTMLElement) => {
+      const exclusionClasses = ["button"];
+      return !exclusionClasses.some((classname) =>
+        node.classList?.contains(classname),
+      );
+    };
 
     htmlToImage
-      .toPng(node)
+      .toPng(node, { backgroundColor: "white", filter: filter })
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.href = dataUrl;
@@ -62,23 +67,24 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
   return (
     <div
+      id="Ticket"
       className="relative flex flex-col items-center justify-center gap-4 min-h-screen py-[70px] bg-cover bg-center bg-no-repeat overflow-y-scroll overflow-x-hidden"
       style={{
-        backgroundImage: "url('/assets/background.png')",
+        backgroundImage: "url('/assets/background.webp')",
       }}
     >
       {/* ---- Ticket Card ---- */}
-      <div
-        id="Ticket"
-        className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent"
-      >
+      <div className="relative flex w-[240px] h-[427px] justify-center items-center bg-transparent">
         {edgeType && edgeColor && (
-          <img src={`/edge/${edgeType}/${edgeColor}.png`} width={240} />
+          <img
+            src={`/images/ticket/edge/${edgeType}/${edgeColor}.webp`}
+            width={240}
+          />
         )}
 
         {heartColor && (
           <img
-            src={`/heart/${edgeType}/${heartColor}.png`}
+            src={`/images/ticket/heart/${edgeType}/${heartColor}.webp`}
             width={240}
             className="absolute"
           />
@@ -86,21 +92,21 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {wing && (
           <img
-            src={`/wing/${wing}.png`}
+            src={`/images/ticket/wing/${wing}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
         )}
 
         <img
-          src={"/cupid/cupid.png"}
+          src={"/images/ticket/cupid/cupid.webp"}
           width={170}
           className="absolute top-[100px]"
         />
 
         {style && (
           <img
-            src={`/style/${style}.png`}
+            src={`/images/ticket/style/${style}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
@@ -108,36 +114,31 @@ const TicketsStamp = ({ user_id }: TicketStampProps) => {
 
         {prop && (
           <img
-            src={`/prop/${prop}.png`}
+            src={`/images/ticket/prop/${prop}.webp`}
             width={170}
             className="absolute top-[100px]"
           />
         )}
 
         {name && (
-          <p className="absolute bottom-[138px] font-Inter text-xs font-bold text-[#863752]">
+          <p className="absolute bottom-[138px] font-Yeseva text-xs font-bold text-[#863752]">
             {name}
           </p>
         )}
       </div>
 
       {/* ---- Navigation ---- */}
-      <div className="flex flex-col gap-4">
+      <div className="button flex flex-col gap-4">
         <div className="bottom-8 flex gap-4">
           <button
             className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
             onClick={() =>
-              (window.location.href = `/ticket-stamp/ticket/${user_id}`)
+              (window.location.href = `/ticket-stamp/ticket/${uID}`)
             }
           >
             ตกแต่ง ticket
           </button>
-          <button
-            className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
-            onClick={() =>
-              (window.location.href = `/ticket-stamp/stamp/${user_id}`)
-            }
-          >
+          <button className="bg-[#FFF2E0] w-[128px] rounded-[10px] h-[51px] font-Inter shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
             ดูแสตมป์
           </button>
         </div>
