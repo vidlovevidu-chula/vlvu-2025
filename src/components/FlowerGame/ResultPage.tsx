@@ -24,6 +24,18 @@ export const ResultPage: React.FC<Props> = ({
   const { url, buttonImageUrl, className, duration, ...props } =
     scenes?.[currentScene] || {};
 
+  const flowerList: string[] = [
+    "Calla Lily",
+    "Pink Rose",
+    "Tulip",
+    "Gerbera",
+    "Lavender",
+    "Sunflower",
+    "Bougainvillea",
+    "Orchid",
+    "Chamomile",
+  ];
+
   useEffect(() => {
     if (buttonImageUrl || !duration) return;
 
@@ -65,49 +77,64 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-        <div className="w-[87%] h-[80%] flex flex-col absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img alt="card" src={`/images/cards/` + flowerType + `.webp`} />
-          <div className="flex justify-center gap-[2%] mt-[2%]">
-            <button
-              className="w-[30%]"
-              onClick={() => setShowResult(!showResult)}
-              {...props}
+
+
+        <div className="w-[100%] h-[100%] flex flex-col absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="relative">
+            <img
+              alt="card"
+              src={`/images/cards/` + flowerList[flowerType - 1] + `.webp`}
+            />
+            <div
+              className="absolute top-[88%] left-1/2 -translate-x-1/2 -translate-y-1/2
+            flex justify-center w-full gap-[2%] mt-[2%]"
+
             >
-              <img
-                className="w-full"
-                alt="Close"
-                src="/images/bouquetButton.webp"
-              />
-            </button>
-            <a
-              className="w-[30%] flex"
-              href={`/images/cards/` + flowerType + `.webp`}
-              download
-            >
-              <button className="w-full" {...props}>
+              <button
+                className="w-[30%]"
+                onClick={() => setShowResult(!showResult)}
+                {...props}
+              >
                 <img
-                  className="w-full m-0"
-                  alt="Download"
-                  src="/images/saveButton.webp"
+                  className="w-full"
+                  alt="Close"
+                  src="/images/bouquetButton.webp"
                 />
               </button>
-            </a>
-          </div>
-          <div className="flex justify-between gap-[2%] font-Ribbon">
-            <a
-              className="text-white text-center text-xl max-[450px]:text-[5vw]"
-              href="/"
+              <a
+                className="w-[30%] flex"
+                href={`/images/cards/` + flowerList[flowerType - 1] + `.png`}
+                download
+              >
+                <button className="w-full" {...props}>
+                  <img
+                    className="w-full m-0"
+                    alt="Download"
+                    src="/images/saveButton.webp"
+                  />
+                </button>
+              </a>
+            </div>
+            <div
+              className="absolute top-[95%] left-1/2 -translate-x-1/2 -translate-y-1/2
+            flex justify-between w-full gap-[2%] mt-[2%] px-4 font-Ribbon
+            text-white drop-shadow-[0px_0px_2px_rgba(0,0,0,1)]"
             >
-              {`<< `}
-              <span className="underline">กลับไปหน้าหลัก</span>
-            </a>
-            <button
-              className="text-white text-center text-xl max-[450px]:text-[5vw]"
-              onClick={onRetakeQuiz}
-            >
-              <span className="underline">ลองทำอีกรอบ</span>
-              {` >>`}
-            </button>
+              <a
+                className="text-center text-2xl max-[450px]:text-[5vw]"
+                href="/"
+              >
+                {`<< `}
+                <span className="underline">กลับไปหน้าหลัก</span>
+              </a>
+              <button
+                className="text-center text-2xl max-[450px]:text-[5vw]"
+                onClick={onRetakeQuiz}
+              >
+                <span className="underline">ลองทำอีกรอบ</span>
+                {` >>`}
+              </button>
+            </div>
           </div>
         </div>
       ) : (
