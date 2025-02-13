@@ -91,18 +91,6 @@ export default {
         lg: "3px 3px 6px rgba(0, 0, 0, 0.4)",
       },
       keyframes: {
-        fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
-        },
-        fadeOut: {
-          from: { opacity: 1 },
-          to: { opacity: 0 },
-        },
-        fadeUp: {
-          from: { opacity: 0, transform: "translateY(1rem)" },
-          to: { opacity: 1, transform: "translateY(0)" },
-        },
         "zoom-in": {
           "0%": {
             opacity: 0,
@@ -116,19 +104,21 @@ export default {
             opacity: 1,
           },
         },
-        letterFadeUp: {
-          from: {
-            opacity: 0,
-            transform: "translate3d(50%, -150%, 0)",
-            top: "50%",
-            left: "50%",
-          },
-          to: {
-            opacity: 1,
-            transform: "translate3d(50%, -50%, 0)",
-            top: "50%",
-            left: "50%",
-          },
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
+        fadeOut: {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        },
+        fadeUp: {
+          from: { opacity: 0, transform: "translateY(1rem)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        slideUp: {
+          from: { transform: "translateY(100%)" },
+          to: { transform: "translateY(0)" },
         },
       },
       animation: {
@@ -136,7 +126,7 @@ export default {
         fadeIn: "fadeIn 1s ease-in-out",
         fadeOut: "fadeOut 1s ease-in-out",
         fadeUp: "fadeUp 1s ease-in-out",
-        letterFadeUp: "letterFadeUp 1s ease-in-out",
+        slideUp: "slideUp 1s ease-in-out",
       },
     },
   },

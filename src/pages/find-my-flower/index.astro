@@ -9,6 +9,7 @@ import {
   GAME_STATE_COOKIE_KEY,
   FlowerGameContainer,
 } from "../../components/FlowerGame/FlowerGameContainer";
+import Navbar from "@/components/Navbar.astro";
 
 export const prerender = false;
 const cookies = Astro.cookies;
@@ -24,7 +25,7 @@ const scenes: GifScene[] = [
   },
   {
     url: "/videos/0/2_s.webp",
-    duration: 2800,
+    duration: 2000,
   },
   {
     url: "/videos/1_1/black.webp",
@@ -33,7 +34,7 @@ const scenes: GifScene[] = [
   //--opening--
   {
     url: "/videos/1/1_s.webp",
-    duration: 1300,
+    duration: 1000,
   },
   {
     url: "/videos/1/2.webp",
@@ -88,8 +89,7 @@ const scenes: GifScene[] = [
       { url: "/videos/1/3.webp", className: "w-full" },
       {
         url: "/images/1/letter.webp",
-        className:
-          "absolute top-full left-0 w-full -translate-y-full transition-all duration-0",
+        className: "absolute top-0 w-full animate-slideUp",
       },
     ],
     buttonImageUrl: "/images/tap.webp",
@@ -100,7 +100,7 @@ const scenes: GifScene[] = [
       //letter end
       { url: "/videos/1/4.webp", className: "w-full" },
     ],
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/1_1/black.webp",
@@ -139,7 +139,7 @@ const scenes: GifScene[] = [
   //--chapter1--
   {
     url: "/videos/2/1_s.webp",
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/2/2.webp",
@@ -170,7 +170,7 @@ const scenes: GifScene[] = [
   {
     //train_come
     url: "/videos/3/1_s.webp",
-    duration: 1000,
+    duration: 500,
   },
   {
     url: [
@@ -408,7 +408,7 @@ const group1: GifScene[] = [
           "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
       },
     ],
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/1_1/black.webp",
@@ -429,7 +429,7 @@ const group1: GifScene[] = [
   },
   {
     url: "/videos/group1/1_s.webp",
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/group1/1.webp",
@@ -700,7 +700,7 @@ const group2: GifScene[] = [
           "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
       },
     ],
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/1_1/black.webp",
@@ -721,7 +721,7 @@ const group2: GifScene[] = [
   },
   {
     url: "/videos/group2/1_s.webp",
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/group2/1.webp",
@@ -992,7 +992,7 @@ const group3: GifScene[] = [
           "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[65%]",
       },
     ],
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/1_1/black.webp",
@@ -1013,7 +1013,7 @@ const group3: GifScene[] = [
   },
   {
     url: "/videos/group3/1_s.webp",
-    duration: 1500,
+    duration: 1000,
   },
   {
     url: "/videos/group3/1.webp",
@@ -1265,13 +1265,13 @@ const ending: GifScene[] = [
     className: "absolute bottom-[12%] right-[7%] w-[20%]",
   },
   {
-    url: "/videos/group1/7-9.webp",
-    duration: 2000,
+    url: "/videos/ending/transition.webp",
+    duration: 1400,
   },
   {
     url: [
       // result
-      { url: "/videos/group1/7-9.webp", className: "w-full" },
+      { url: "/images/ending/lastScene.webp", className: "w-full" },
       // {
       //   url: "/images/group1/flower.webp",
       //   className:
@@ -1295,4 +1295,7 @@ const ending: GifScene[] = [
     />
     <!-- <FindYourFlowerScreen scenes={scenes} client:load /> -->
   </div>
+  <nav class="fixed top-0 ml-1 w-auto z-30">
+    <Navbar />
+  </nav>
 </Layout>

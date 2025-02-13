@@ -4,23 +4,37 @@ import type { FlowerType } from "./FlowerGameContainer";
 import { twMerge } from "tailwind-merge";
 import type { GifScene } from "./FirstHalfQuestions";
 
-// const FLOWER_TYPE_NAME, FLOWER_TYPE_DESCRIPTIONS = ...
-
 interface Props {
   flowerType: FlowerType;
   showIntro: boolean;
   scenes: GifScene[];
+  onRetakeQuiz: () => void;
 }
 export const ResultPage: React.FC<Props> = ({
   flowerType,
   showIntro,
   scenes,
+  onRetakeQuiz,
 }) => {
-  const [currentScene, setCurrentScene] = useState(0);
+  const [currentScene, setCurrentScene] = useState(
+    showIntro ? 0 : scenes.length - 1, // use last scene if showIntro is false
+  );
   const [showResult, setShowResult] = useState(false);
 
   const { url, buttonImageUrl, className, duration, ...props } =
     scenes?.[currentScene] || {};
+
+  const flowerList: string[] = [
+    "Calla Lily",
+    "Pink Rose",
+    "Tulip",
+    "Gerbera",
+    "Lavender",
+    "Sunflower",
+    "Bougainvillea",
+    "Orchid",
+    "Chamomile",
+  ];
 
   useEffect(() => {
     if (buttonImageUrl || !duration) return;
@@ -38,19 +52,19 @@ export const ResultPage: React.FC<Props> = ({
       ) : (
         <img className="w-full" src={url} alt="scene" />
       )}
-      {buttonImageUrl && currentScene == scenes.length - 1 ? (
+      {currentScene == scenes.length - 1 ? (
         <button
           className={twMerge(
             //"absolute -bottom-[5%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[20%]",
-            "border border-red-500 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
+            "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%]",
           )}
           onClick={() => setShowResult(!showResult)}
           {...props}
         >
           <img
-            className="w-full animate-zoomIn"
-            src={buttonImageUrl}
-            alt="next"
+            className="w-full animate-zoomIn drop-shadow-[-2px_-2px_10px_rgba(255,255,200,0.5)]"
+            src={`/images/flowers/` + flowerType + `.webp`}
+            alt={`flower type: ` + flowerType}
           />
         </button>
       ) : (
@@ -63,45 +77,62 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-        <div className="w-[85%] h-[80%] flex flex-col absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-          {showIntro && <h1>Intro</h1>}
-          <p className="w-full h-full bg-white">
-            Your flower is {flowerType}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quo
-            quos sit maiores, similique nesciunt ut velit possimus explicabo
-            quam porro numquam ab ea corporis.
-          </p>
-          <div className="flex justify-center gap-[2%] my-[2%]">
-            <button
-              className="w-[35%]"
-              onClick={() => setShowResult(!showResult)}
-              {...props}
+        <div className="w-[100%] h-[100%] flex flex-col absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="relative">
+            <img
+              alt="card"
+              src={`/images/cards/` + flowerList[flowerType - 1] + `.webp`}
+            />
+            <div
+              className="absolute top-[88%] left-1/2 -translate-x-1/2 -translate-y-1/2
+            flex justify-center w-full gap-[2%] mt-[2%]"
             >
-              <img
-                className="w-full"
-                alt="Close"
-                src="/images/bouquetButton.webp"
-              />
-            </button>
-            <button
-              className="w-[35%]"
-              onClick={() => setShowResult(!showResult)}
-              {...props}
+              <button
+                className="w-[30%]"
+                onClick={() => setShowResult(!showResult)}
+                {...props}
+              >
+                <img
+                  className="w-full"
+                  alt="Close"
+                  src="/images/bouquetButton.webp"
+                />
+              </button>
+              <a
+                className="w-[30%] flex"
+                href={`/images/cards/` + flowerList[flowerType - 1] + `.png`}
+                download
+              >
+                <button className="w-full" {...props}>
+                  <img
+                    className="w-full m-0"
+                    alt="Download"
+                    src="/images/saveButton.webp"
+                  />
+                </button>
+              </a>
+            </div>
+            <div
+              className="absolute top-[95%] left-1/2 -translate-x-1/2 -translate-y-1/2
+            flex justify-between w-full gap-[2%] mt-[2%] px-4 font-Ribbon
+            text-white drop-shadow-[0px_0px_2px_rgba(0,0,0,1)]"
             >
-              <img
-                className="w-full"
-                alt="Close"
-                src="/images/saveButton.webp"
-              />
-            </button>
+              <a
+                className="text-center text-2xl max-[450px]:text-[5vw]"
+                href="/"
+              >
+                {`<< `}
+                <span className="underline">กลับไปหน้าหลัก</span>
+              </a>
+              <button
+                className="text-center text-2xl max-[450px]:text-[5vw]"
+                onClick={onRetakeQuiz}
+              >
+                <span className="underline">ลองทำอีกรอบ</span>
+                {` >>`}
+              </button>
+            </div>
           </div>
-          <a
-            className="text-white font-Ribbon text-center text-lg max-[450px]:text-[4vw]"
-            href="/"
-          >
-            {`<< `}
-            <span className="underline">กลับไปหน้าหลัก</span>
-          </a>
         </div>
       ) : (
         <></>

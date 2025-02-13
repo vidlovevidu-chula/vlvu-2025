@@ -89,9 +89,9 @@ export const SecondHalfQuestions: React.FC<Props> = ({
                   </>
                 ) : (
                   <>
+                    <button onClick={() => onSecondHalfAnswer(9)}>nine</button>
                     <button onClick={() => onSecondHalfAnswer(1)}>one</button>
                     <button onClick={() => onSecondHalfAnswer(8)}>eight</button>
-                    <button onClick={() => onSecondHalfAnswer(9)}>nine</button>
                   </>
                 )}
               </div>
