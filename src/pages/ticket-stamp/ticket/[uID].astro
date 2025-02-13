@@ -1,0 +1,10 @@
+---
+import Ticket from "../../../components/Ticket/ticket";
+import Layout from "../../../layouts/Layout.astro";
+
+const { uID } = Astro.params;
+---
+
+<Layout>
+  <Ticket uID={uID} client:load />
+</Layout>

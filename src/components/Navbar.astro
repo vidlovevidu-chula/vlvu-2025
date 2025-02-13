@@ -23,7 +23,7 @@ import { Image } from "astro:assets";
   id="navbar"
   class="hidden items-center gap-4 bg-opacity-20 bg-black rounded-b-xl shadow-lg font-Yeseva"
 >
-  <!-- Navigation Item -->
+  <!-- Home Button -->
   <a href="/" class="flex flex-col items-center py-2">
     <Image
       src="/images/navbar/nav-1.webp"
@@ -35,34 +35,28 @@ import { Image } from "astro:assets";
     />
     <span class="font-semibold text-xs text-black">Home</span>
   </a>
-  <!-- Navigation Item -->
-  <a
-    href=""
-    onclick="alert('Coming soon!')"
-    class="flex flex-col items-center py-2"
-  >
-    <Image
-      src="/images/navbar/nav-2.webp"
-      width={50}
-      height={50}
-      alt="Home"
-      title="Home"
-    />
-    <span class="font-semibold text-xs text-black">Ticket</span>
-  </a>
-  <!-- Navigation Item -->
-  <a
-    href=""
-    onclick="alert('Coming soon!')"
-    class="flex flex-col items-center py-2"
-  >
+
+  <!-- Find My Flower Button -->
+  <a href="/find-my-flower" class="flex flex-col items-center py-2">
     <Image
       src="/images/navbar/nav-3.webp"
       width={50}
       height={50}
-      alt="Home"
-      title="Home"
+      alt="Find My Flower"
+      title="Find My Flower"
     />
     <span class="font-semibold text-xs text-black">Flower</span>
+  </a>
+
+  <!-- Ticket Button -->
+  <a href="/login" class="flex flex-col items-center py-2">
+    <Image
+      src="/images/navbar/nav-2.webp"
+      width={50}
+      height={50}
+      alt="Ticket"
+      title="Ticket"
+    />
+    <span class="font-semibold text-xs text-black">Ticket</span>
   </a>
 </nav>
