@@ -23,9 +23,9 @@ const Minigames: React.FC = () => {
         <div className="text-center leading-tight flex flex-col gap-1 font-Ovo font-semibold">
           <h2 className="text-xl text-blackbrown"> Find My Flower </h2>
           <a
-            href="#"
+            href="/find-my-flower"
             className="text-lg text-blackrose"
-            onClick={() => alert("Coming soon!")}
+            // onClick={() => alert("Coming soon!")}
           >
             {" "}
             Click to Play{" "}
@@ -38,9 +38,9 @@ const Minigames: React.FC = () => {
         <div className="text-center leading-tight flex flex-col gap-1 font-Ovo font-semibold">
           <h2 className="text-xl text-blackbrown"> Oh! My Love god </h2>
           <a
-            href="#"
+            href="/login"
             className="text-lg text-blackrose"
-            onClick={() => alert("Coming soon!")}
+            // onClick={() => alert("Coming soon!")}
           >
             {" "}
             Click to Create{" "}
@@ -67,9 +67,9 @@ const Minigames: React.FC = () => {
         <div className="text-center leading-tight flex flex-col gap-1 font-Ovo font-semibold">
           <h2 className="text-xl text-blackbrown"> My Stamp Collection </h2>
           <a
-            href="#"
+            href="/login"
             className="text-lg text-blackrose"
-            onClick={() => alert("Coming soon!")}
+            // onClick={() => alert("Coming soon!")}
           >
             {" "}
             Click to Collect{" "}
