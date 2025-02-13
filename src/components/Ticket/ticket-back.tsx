@@ -131,7 +131,7 @@ const TicketBack = ({ user_id }: TicketProps) => {
               />
             </div>
             {/* Add stamp secret5 */}
-            <div className="absolute" style={{ top: "285px", left: "43px" }}>
+            <div className="absolute" style={{ top: "282px", left: "43px" }}>
               <img
                 src="/stamp/secret 5.webp"
                 alt="secret 5 stamp"
@@ -139,7 +139,7 @@ const TicketBack = ({ user_id }: TicketProps) => {
               />
             </div>
             {/* Add stamp secret8 */}
-            <div className="absolute" style={{ top: "285px", left: "43px" }}>
+            <div className="absolute" style={{ top: "282px", left: "43px" }}>
               <img
                 src="/stamp/secret 8.webp"
                 alt="secret 8 stamp"
