@@ -56,7 +56,7 @@ const QRScanner: React.FC<QRScannerProps> = ({ user_id }) => {
         codeReader.decodeFromVideoDevice(undefined, "video", (result, err) => {
           if (result) {
             const scannedText = result.getText();
-            console.log("Scanned text:", scannedText); // Debug log
+            //console.log("Scanned text:", scannedText); // Debug log
             let boothname = "";
 
             // Use forward slashes and handle spaces in URLs
