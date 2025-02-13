@@ -77,8 +77,6 @@ export const ResultPage: React.FC<Props> = ({
         </button>
       )}
       {showResult ? (
-
-
         <div className="w-[100%] h-[100%] flex flex-col absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="relative">
             <img
@@ -88,7 +86,6 @@ export const ResultPage: React.FC<Props> = ({
             <div
               className="absolute top-[88%] left-1/2 -translate-x-1/2 -translate-y-1/2
             flex justify-center w-full gap-[2%] mt-[2%]"
-
             >
               <button
                 className="w-[30%]"
