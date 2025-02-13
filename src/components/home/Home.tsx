@@ -10,6 +10,7 @@ import Location from "./Location";
 import Sponsors from "./Sponsors";
 import React, { useRef } from "react";
 import Logo from "./Logo";
+import ScrollDown from "./Scrolldown";
 
 export function Home() {
   const parallaxRed = useRef<IParallax>(null);
@@ -44,6 +45,7 @@ export function Home() {
           />
         </a>
         <WebTitle />
+        <ScrollDown />
       </ParallaxLayer>
 
       {/* Mini Games Section */}
