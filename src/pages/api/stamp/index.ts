@@ -4,7 +4,7 @@ import { app } from "../../../firebase/server.ts";
 
 const db = getFirestore(app);
 
-// List of valid stamps
+// List of valid stamps 
 const STAMPS = [
   "boot1",
   "boot2",
@@ -15,6 +15,9 @@ const STAMPS = [
   "boot7",
   "boot8",
 ];
+
+const SMALL_REWARD_STAMP = "smallRewardStamp";
+const BIG_REWARD_STAMP = "bigRewardStamp";
 const VALIDATE_STAMP = "validateStamp";
 
 // Add a stamp for a specific user
@@ -23,7 +26,14 @@ export const POST: APIRoute = async ({ request }) => {
     const { uID, boothId } = await request.json();
 
     // Validate the stamp name
-    if (![...STAMPS, VALIDATE_STAMP].includes(boothId)) {
+    if (
+      ![
+        ...STAMPS,
+        VALIDATE_STAMP,
+        SMALL_REWARD_STAMP,
+        BIG_REWARD_STAMP,
+      ].includes(boothId)
+    ) {
       return new Response(
         JSON.stringify({ success: false, message: "Invalid stamp name!" }),
         { status: 400 },
@@ -63,6 +73,39 @@ export const POST: APIRoute = async ({ request }) => {
             message:
               "Cannot collect validateStamp until all other stamps are collected!",
             missingStamps,
+          }),
+          { status: 400 },
+        );
+      }
+    }
+
+    // Reward logic
+    if (boothId === SMALL_REWARD_STAMP) {
+      if (
+        currentStamps.filter((stamp: string) => STAMPS.includes(stamp)).length <
+        5
+      ) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message:
+              "Cannot collect small reward stamp until at least 5 stamps are collected!",
+          }),
+          { status: 400 },
+        );
+      }
+    }
+
+    if (boothId === BIG_REWARD_STAMP) {
+      if (
+        currentStamps.filter((stamp: string) => STAMPS.includes(stamp)).length <
+        8
+      ) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            message:
+              "Cannot collect big reward stamp until all 8 stamps are collected!",
           }),
           { status: 400 },
         );
