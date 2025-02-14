@@ -70,6 +70,9 @@ const QRScanner: React.FC<QRScannerProps> = ({ user_id }) => {
                 "boot6",
               "vlvu-2025/public/stamp/one shot.webp": "boot7",
               "vlvu-2025/public/stamp/you and me and me.webp": "boot8",
+              "vlvu-2025/public/stamp/secret 5.webp": "smallRewardStamp",
+              "vlvu-2025/public/stamp/secret 8.webp" : "bigRewardStamp"
+
             };
 
             // Normalize the scanned text to use forward slashes
