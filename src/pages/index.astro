@@ -1,11 +1,17 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "@/styles/global.css";
+import Navbar from "@/components/Navbar.astro";
+import { Home } from "@/components/home/Home";
 ---
 
-<Layout>
-  <Welcome />
+<Layout title="Home | VidLoveVidU 2025">
+  <!-- main content -->
+  <main class="min-h-screen bg-home bg-cover">
+    <Home client:load />
+  </main>
+  <!-- Navbar -->
+  <nav class="fixed top-0 ml-1 w-auto z-30">
+    <Navbar />
+  </nav>
 </Layout>

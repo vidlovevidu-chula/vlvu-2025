@@ -1,0 +1,14 @@
+---
+import TicketStamp from "../../components/Ticket/ticket-stamp";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "@/components/Navbar.astro";
+
+const { uID } = Astro.params;
+---
+
+<Layout>
+  <TicketStamp uID={uID} client:load />
+  <nav class="fixed top-0 ml-1 w-auto z-30">
+    <Navbar />
+  </nav>
+</Layout>

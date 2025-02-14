@@ -2,15 +2,28 @@
 import type { Fragment } from "react";
 import "../styles/global.css";
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL7EN8T99Z"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ZL7EN8T99Z");
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/webp" href="/favicon-vlvu.webp" />
     <meta name="generator" content="Astro" />
     <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
-    <title>Astro Basics</title>
+    <title>VLVU2025</title>
   </head>
   <body>
     <main class="mobile">
@@ -35,6 +48,25 @@ import "../styles/global.css";
     src: url("/fonts/YesevaOne-Regular.ttf") format("truetype");
   }
 
+  @font-face {
+    font-family: "Amoresa";
+    src: url("/fonts/Andrey Sharonov - Amoresa Regular.otf") format("opentype");
+  }
+
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "NotoSansThai";
+    src: url("/fonts/NotoSansThai-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Ovo";
+    src: url("/fonts/Ovo-Regular.ttf") format("truetype");
+  }
   .mobile {
     display: relative;
     max-width: 448px;
