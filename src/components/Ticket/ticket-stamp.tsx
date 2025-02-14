@@ -59,7 +59,7 @@ const TicketsStamp = ({ uID }: TicketStampProps) => {
       .then((dataUrl) => {
         const link = document.createElement("a");
         link.href = dataUrl;
-        link.download = "ticket.webp";
+        link.download = "ticket.png";
         link.click();
       })
       .catch((error) => {
