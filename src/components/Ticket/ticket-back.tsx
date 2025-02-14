@@ -139,11 +139,17 @@ const TicketBack = ({ user_id }: TicketProps) => {
               />
             </div>
             {/* Add stamp secret8 */}
-            <div className="absolute" style={{ top: `${edgeType === "edge2" ? '323px' : (edgeType === "edge4" ? '321px' : '323px')}`, left: "55px" }}>
+            <div
+              className="absolute"
+              style={{
+                top: `${edgeType === "edge2" ? "323px" : edgeType === "edge4" ? "321px" : "323px"}`,
+                left: "55px",
+              }}
+            >
               <img
                 src="/stamp/secret 8.webp"
                 alt="secret 8 stamp"
-                className={`w-[128px] h-[${edgeType === "edge2" ? '320px' : '75px'}] object-fill ${stamps.length == 8 ? "" : "hidden"}`}
+                className={`w-[128px] h-[${edgeType === "edge2" ? "320px" : "75px"}] object-fill ${stamps.length == 8 ? "" : "hidden"}`}
               />
             </div>
           </div>
