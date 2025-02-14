@@ -28,7 +28,7 @@ const WebTitle: React.FC = () => {
       >
         at Larnchak - Larn Intania
       </p>
-      <a
+      {/* <a
         href="https://forms.gle/oB1YhtJAxJ8nmkN59"
         target="_blank"
         rel="noreferrer"
@@ -40,7 +40,7 @@ const WebTitle: React.FC = () => {
         }}
       >
         PRE-REGISTER
-      </a>
+      </a> */}
     </div>
   );
 };
