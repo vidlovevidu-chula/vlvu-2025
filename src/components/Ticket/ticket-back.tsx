@@ -141,7 +141,7 @@ const TicketBack = ({ user_id }: TicketProps) => {
               <img
                 src="/stamp/secret 5.webp"
                 alt="secret 5 stamp"
-                className={`w-[126px] h-28 object-contain ${stamps.length >= 5 && stamps.length < 8 ? "" : "hidden"}`}
+                className={`w-[126px] h-28 object-contain ${stamps.includes("smallRewardStamp") ? "" : "hidden"}`}
               />
             </div>
             {/* Add stamp secret8 */}
@@ -155,7 +155,7 @@ const TicketBack = ({ user_id }: TicketProps) => {
               <img
                 src="/stamp/secret 8.webp"
                 alt="secret 8 stamp"
-                className={`w-[128px] h-[${edgeType === "edge2" ? "320px" : "75px"}] object-fill ${stamps.length == 8 ? "" : "hidden"}`}
+                className={`w-[128px] h-[${edgeType === "edge2" ? "320px" : "75px"}] object-fill ${stamps.includes("bigRewardStamp") ? "" : "hidden"}`}
               />
             </div>
           </div>
