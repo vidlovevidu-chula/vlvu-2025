@@ -6,52 +6,52 @@ const { user_id } = Astro.params;
 ---
 
 <Layout title="VLVU">
-	<div class="container">
-		<h1
-			class="font-Amoresa text-[#985556] text-shadow-sm text-center pt-[50px] text-3xl"
-		>
-			QR Code Scanner
-		</h1>
-		<h2
-			class="font-Yeseva text-[#985556] text-shadow-sm text-center text-sm pt-2 px-5"
-		>
-			Aim your camera at the correct QR Code, and you'll be redirected to the
-			stamps page, where you'll automatically receive your stamp!
-		</h2>
+  <div class="container">
+    <h1
+      class="font-Amoresa text-[#985556] text-shadow-sm text-center pt-[50px] text-3xl"
+    >
+      QR Code Scanner
+    </h1>
+    <h2
+      class="font-Yeseva text-[#985556] text-shadow-sm text-center text-sm pt-2 px-5"
+    >
+      Aim your camera at the correct QR Code, and you'll be redirected to the
+      stamps page, where you'll automatically receive your stamp!
+    </h2>
 
-		<QRScanner user_id={user_id} client:load />
-		<div class="button-wrapper font-Yeseva">
-			<Button text="Back" href={`/ticket-stamp/stamp/${user_id}`} />
-		</div>
-	</div>
+    <QRScanner user_id={user_id} client:load />
+    <div class="button-wrapper font-Yeseva">
+      <Button text="Back" href={`/ticket-stamp/stamp/${user_id}`} />
+    </div>
+  </div>
 </Layout>
 
 <style>
-	.container {
-		position: relative;
-		width: 100%;
-		height: 100vh;
-		background-image: url("/scanbackground.webp");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
-	}
-	.button-wrapper {
-		position: absolute;
-		top: calc(50% + 280px);
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 10;
-	}
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url("/scanbackground.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .button-wrapper {
+    position: absolute;
+    top: calc(50% + 280px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
 
-	@media (max-height: 750px) {
-		h2 {
-			display: none;
-		}
+  @media (max-height: 750px) {
+    h2 {
+      display: none;
+    }
 
-		h1 {
-			font-size: medium;
-			padding-top: 30px;
-		}
-	}
+    h1 {
+      font-size: medium;
+      padding-top: 30px;
+    }
+  }
 </style>
