@@ -4,7 +4,7 @@ import { app } from "../../../firebase/server.ts";
 
 const db = getFirestore(app);
 
-// List of valid stamps 
+// List of valid stamps
 const STAMPS = [
   "boot1",
   "boot2",
